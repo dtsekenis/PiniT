@@ -1,4 +1,4 @@
-﻿@model PiniT.ViewModels.IndexProductsVM
+﻿    @model PiniT.ViewModels.IndexProductsVM
 
 @{
     ViewBag.Title = "Index";
@@ -14,9 +14,9 @@
 {
     <div id="filters" class="row">
         <div class="col-6 px-1">
-            @Html.EditorFor(x=>x.Search, new { htmlAtributes = new { @class = "form-control", placeholde = "Search by product name" } } )
+            @Html.EditorFor(x=>x.Search, new { htmlAttributes = new { @class = "form-control", placeholder = "Search by product name" } } )
         </div>
-        <div class="col-2 px-1">
+        <div class="col-4 px-1">
             @Html.DropDownListFor(x => x.Category, (SelectList)ViewBag.Categories, "Category", new { @class = "form-control" })
         </div>
         @*<div class="col-2 px-1">

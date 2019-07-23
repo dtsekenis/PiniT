@@ -111,22 +111,511 @@ namespace PiniT.Migrations
             {
                 userManager.AddToRole(admin.Id, adminRole.Name);
             }
-            
-            
+
+            //Add Product Categories
+            #region MyRegion
+            ProductCategory appetizer = new ProductCategory();
+            appetizer.Name = "Appetizers";
+
+            ProductCategory salads = new ProductCategory();
+            salads.Name = "Salads";
+
+            ProductCategory main = new ProductCategory();
+            main.Name = "Main Dishes";
+
+            ProductCategory drinks = new ProductCategory();
+            drinks.Name = "Drinks";
+
+            ProductCategory dessert = new ProductCategory();
+            dessert.Name = "Desserts";
+            #endregion
+
+
 
 
 
 
             //Add Products
-            //ProductCategory main = new ProductCategory { Name = "Main dishes" };
-            //Product p1 = new Product()
-            //{
-            //    Name = "Pizza Volcano",
-            //    Category = main,
-            //    Description = "Mozzarella,Tomato,Jalapenos,Chili Sause",
-            //    Price = 11
-            //};
-            //context.Products.AddOrUpdate(x => x.Name, p1);
+            #region Products
+            Product p1 = new Product()
+            {
+                Name = "Pizza Volcano",
+                Category = main,
+                Description = "Mozzarela,Tomato,Jalapenos,Chilly Sause",
+                Price = 11
+            };
+
+            Product p2 = new Product()
+            {
+                Name = "Pizza Margerita",
+                Category = main,
+                Description = "Mozzarela,Tomato,Basillico",
+                Price = 9
+            };
+
+            Product p3 = new Product()
+            {
+                Name = "Pizza Vegeterian",
+                Category = main,
+                Description = "Mozzarela,Tomato,Olives,Onions,Peppers",
+                Price = 10
+            };
+
+            Product p4 = new Product()
+            {
+                Name = "Spaghetti Napolitana",
+                Category = main,
+                Description = "Tomato Sause,Basillico",
+                Price = 6.90m
+            };
+
+            Product p5 = new Product()
+            {
+                Name = "Spaghetti Bolognese",
+                Category = main,
+                Description = "Tomato Meat Sause",
+                Price = 10
+            };
+
+            Product p6 = new Product()
+            {
+                Name = "Spaghetti Carbonara",
+                Category = main,
+                Description = "Bacon,White Sause",
+                Price = 12
+            };
+
+            Product p7 = new Product()
+            {
+                Name = "La Bella Mafia Sallad",
+                Category = salads,
+                Description = "Lettuce,iceberg,sause",
+                Price = 10
+            };
+
+            Product p8 = new Product()
+            {
+                Name = "Ceasars",
+                Category = salads,
+                Description = "Iceberg,Chicken,Ceasers Sause",
+                Price = 7.50m
+            };
+
+            Product p9 = new Product()
+            {
+                Name = "Tiramisu",
+                Category = dessert,
+                Description = "Espesso Cream,Cacao",
+                Price = 5
+            };
+
+            Product p10 = new Product()
+            {
+                Name = "Cheesecake",
+                Category = dessert,
+                Description = "Cheese Cream with marmelade",
+                Price = 5.50m
+            };
+
+            Product p11 = new Product()
+            {
+                Name = "Bruschetta",
+                Category = appetizer,
+                Description = "Mozzarela,Tomato",
+                Price = 4.50m
+            };
+
+            Product p12 = new Product()
+            {
+                Name = "Roasted Potato",
+                Category = appetizer,
+                Description = "Potato,butter",
+                Price = 6.50m
+            };
+
+            Product p13 = new Product()
+            {
+                Name = "White Wine",
+                Category = drinks,
+                Description = "White Wine Bottle",
+                Price = 30
+            };
+
+            Product p14 = new Product()
+            {
+                Name = "Red Wine",
+                Category = drinks,
+                Description = "Red Wine Bottle",
+                Price = 30
+            };
+
+            Product p15 = new Product()
+            {
+                Name = "Water",
+                Category = drinks,
+                Description = "Water Bottle",
+                Price = 3
+            };
+
+            Product p16 = new Product()
+            {
+                Name = "Pepsi Colla",
+                Category = drinks,
+                Description = "Colla Bottle",
+                Price = 2.50m
+            };
+
+            Product p17 = new Product()
+            {
+                Name = "Single Espresso",
+                Category = drinks,
+                Description = "Espresso Coffee",
+                Price = 2.50m
+            };
+
+            Product p18 = new Product()
+            {
+                Name = "Double Espresso",
+                Category = drinks,
+                Description = "Double Espresso Coffee",
+                Price = 4.50m
+            };
+
+            //Products of Restaurant "Ôhe beautiful Beijing"
+            Product p19 = new Product()
+            {
+                Name = "Chicken Kow",
+                Category = main,
+                Description = "Chicken with vegetables",
+                Price = 15
+            };
+
+            Product p20 = new Product()
+            {
+                Name = "Sweet & Sour Pork",
+                Category = main,
+                Description = "Pork with sweet & sour pork",
+                Price = 9
+            };
+
+            Product p21 = new Product()
+            {
+                Name = "Sesame Chicken",
+                Category = main,
+                Description = "Chicken with Sesame",
+                Price = 10
+            };
+
+
+            Product p25 = new Product()
+            {
+                Name = "Egg Roll",
+                Category = appetizer,
+                Description = "Egg Roll",
+                Price = 8
+            };
+
+            Product p26 = new Product()
+            {
+                Name = "Buffalo Wing",
+                Category = appetizer,
+                Description = "Buffalo Wing",
+                Price = 7.50m
+            };
+
+            Product p27 = new Product()
+            {
+                Name = "Fried Ice Cream",
+                Category = dessert,
+                Description = "Fried Ice Cream",
+                Price = 5.80m
+            };
+
+            Product p28 = new Product()
+            {
+                Name = "Shrim with Broccolli",
+                Category = appetizer,
+                Description = "Shrims with Broccolli",
+                Price = 8.50m
+            };
+
+            Product p29 = new Product()
+            {
+                Name = "Crab Rangoon",
+                Category = appetizer,
+                Description = "",
+                Price = 9.50m
+            };
+
+            Product p30 = new Product()
+            {
+                Name = "Chicken Nuggets",
+                Category = appetizer,
+                Description = "Chicken Nuggets 20 pieces",
+                Price = 16.50m
+            };
+
+            Product p31 = new Product()
+            {
+                Name = "White Wine",
+                Category = drinks,
+                Description = "White Wine Bottle",
+                Price = 13
+            };
+
+            Product p32 = new Product()
+            {
+                Name = "Red Wine",
+                Category = drinks,
+                Description = "Red Wine Bottle",
+                Price = 16
+            };
+
+            Product p33 = new Product()
+            {
+                Name = "Water",
+                Category = drinks,
+                Description = "Water Bottle",
+                Price = 2.50m
+            };
+
+            Product p34 = new Product()
+            {
+                Name = "Pepsi Colla",
+                Category = drinks,
+                Description = "Colla Bottle",
+                Price = 2.50m
+            };
+
+            Product p35 = new Product()
+            {
+                Name = "Soda",
+                Category = drinks,
+                Description = "Soda 100ml",
+                Price = 2.50m
+            };
+
+            //Products of Restaurant "God Bless America"
+            Product p36 = new Product()
+            {
+                Name = "Cheeseburger Deluxe",
+                Category = main,
+                Description = "Simply grilled and tapped with cheese and burger mayo",
+                Price = 15.95m
+            };
+
+            Product p37 = new Product()
+            {
+                Name = "Memphis Burger",
+                Category = main,
+                Description = "Grilled burger topped with BBQ pulled pork",
+                Price = 18.95m
+            };
+
+            Product p38 = new Product()
+            {
+                Name = "Classic American",
+                Category = main,
+                Description = "Grilled with burger mayo",
+                Price = 10
+            };
+
+
+            Product p39 = new Product()
+            {
+                Name = "Mozzarella Dippers",
+                Category = appetizer,
+                Description = "Crip and golden outside, creamy melted cheese",
+                Price = 6.45m
+            };
+
+            Product p40 = new Product()
+            {
+                Name = "Garlic Bread",
+                Category = appetizer,
+                Description = "With Cheese",
+                Price = 4.50m
+            };
+
+            Product p41 = new Product()
+            {
+                Name = "Ice Cream",
+                Category = dessert,
+                Description = "Strawberry, vanilla, or chocolate flavour",
+                Price = 5.80m
+            };
+
+            Product p42 = new Product()
+            {
+                Name = "Chicken Wings",
+                Category = appetizer,
+                Description = "Chicken Wings",
+                Price = 7.50m
+            };
+
+            Product p43 = new Product()
+            {
+                Name = "Boneless Bites",
+                Category = appetizer,
+                Description = "Crispy pieces of chicken",
+                Price = 9.50m
+            };
+
+            Product p44 = new Product()
+            {
+                Name = "Loaded Potato Skins",
+                Category = appetizer,
+                Description = "Potato skins filled with cheese",
+                Price = 7.50m
+            };
+
+            Product p45 = new Product()
+            {
+                Name = "White Wine",
+                Category = drinks,
+                Description = "White Wine Bottle",
+                Price = 13
+            };
+
+            Product p46 = new Product()
+            {
+                Name = "Red Wine",
+                Category = drinks,
+                Description = "Red Wine Bottle",
+                Price = 16
+            };
+
+            Product p47 = new Product()
+            {
+                Name = "Water",
+                Category = drinks,
+                Description = "Water Bottle",
+                Price = 2.50m
+            };
+
+            Product p48 = new Product()
+            {
+                Name = "Coca Colla",
+                Category = drinks,
+                Description = "Colla Bottle",
+                Price = 2.50m
+            };
+
+            Product p49 = new Product()
+            {
+                Name = "Milk Shakes",
+                Category = drinks,
+                Description = "Chocolate,Banana,Strawberry",
+                Price = 2.95m
+            };
+
+            // Products of Restaurant "La Vie En Rose"
+            Product p50 = new Product()
+            {
+                Name = "Squash Ravioli",
+                Category = main,
+                Description = "Ambercup squash,shallot brown butter",
+                Price = 10.95m
+            };
+
+            Product p51 = new Product()
+            {
+                Name = "Ahi Tuna",
+                Category = main,
+                Description = "Sesame encrusted seared tuna steak",
+                Price = 15.95m
+            };
+
+            Product p52 = new Product()
+            {
+                Name = "Seafood Risotto",
+                Category = main,
+                Description = "Arborio rice,cream and fresh seasonal seafood",
+                Price = 16
+            };
+
+
+            Product p53 = new Product()
+            {
+                Name = "Lobster Macaroni & Cheese",
+                Category = appetizer,
+                Description = "Bay shrimp and chunks of lobster",
+                Price = 26
+            };
+
+            Product p54 = new Product()
+            {
+                Name = "Cobo Salmon",
+                Category = appetizer,
+                Description = "Over-roasted wild salmon",
+                Price = 25
+            };
+
+            Product p55 = new Product()
+            {
+                Name = "Creme Brulee",
+                Category = dessert,
+                Description = "Creme Brulee",
+                Price = 5.80m
+            };
+
+            Product p56 = new Product()
+            {
+                Name = "Beef Tenderloin",
+                Category = appetizer,
+                Description = "Roasted with spicy chili infusion",
+                Price = 18.90m
+            };
+
+            Product p57 = new Product()
+            {
+                Name = "Prime Rib",
+                Category = appetizer,
+                Description = "Rib slow roasted",
+                Price = 32
+            };
+
+            Product p58 = new Product()
+            {
+                Name = "Veal Scalloppini",
+                Category = appetizer,
+                Description = "Grilled veal chop",
+                Price = 7.50m
+            };
+
+
+            Product p60 = new Product()
+            {
+                Name = "Red Wine",
+                Category = drinks,
+                Description = "Red Wine Bottle",
+                Price = 45
+            };
+
+            Product p61 = new Product()
+            {
+                Name = "Water",
+                Category = drinks,
+                Description = "Water Bottle",
+                Price = 2.50m
+            };
+
+            Product p62 = new Product()
+            {
+                Name = "Coca Colla",
+                Category = drinks,
+                Description = "Colla Bottle",
+                Price = 2.50m
+            };
+
+            Product p63 = new Product()
+            {
+                Name = "White Wine",
+                Category = drinks,
+                Description = "White Wine Bottle",
+                Price = 35.40m
+            };
+            #endregion
 
 
             //Add Tables
