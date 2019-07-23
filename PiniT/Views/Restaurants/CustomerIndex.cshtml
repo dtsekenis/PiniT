@@ -1,0 +1,30 @@
+﻿@model PiniT.ViewModels.IndexRestaurantsVM
+
+@{
+    ViewBag.Title = "CustomerIndex";
+}
+
+<h2>Are you hungry?</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
+        </th>
+    </tr>
+
+@foreach (var restaurant in Model.Restaurants) {
+    <tr>
+
+        <td>
+            @Html.DisplayFor(modelItem => restaurant.CompanyName)
+        </td>
+        <td>
+            @Html.ActionLink("Book Now!", "CustomerIndex", new { id=restaurant.RestaurantId }) |
+            @Html.ActionLink("Details", "Details", new { id=restaurant.RestaurantId })
+        </td>
+    </tr>
+}
+
+</table>
