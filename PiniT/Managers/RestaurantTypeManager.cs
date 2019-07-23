@@ -6,17 +6,18 @@ using System.Web;
 
 namespace PiniT.Managers
 {
-    public class ProductCategoryManager
+    public class RestaurantTypeManager
     {
+
         //Not Finished
-        public ICollection<ProductCategory> GetProductCategories()
+        public ICollection<RestaurantType> GetRestaurantTypes()
         {
-            ICollection<ProductCategory> categories;
+            ICollection<RestaurantType> types;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                categories = db.ProductCategories.ToList();
+                types = db.RestaurantTypes.ToList();
             }
-            return categories;
+            return types;
         }
     }
 }

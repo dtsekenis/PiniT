@@ -10,10 +10,19 @@ using System.Web.Mvc;
 
 namespace PiniT.Controllers
 {
-    [Authorize(Roles = "Manager,Admin")]
+ 
     public class TablesController : Controller
     {
         private TableManager db = new TableManager();
+
+        [Authorize(Roles ="Customer")]
+        public ActionResult CustomerIndex(string id)
+        {
+            var tables = db.GetAvailableTables(id);
+            return View(tables);
+        }
+
+        [Authorize(Roles = "Manager,Admin")]
         public ActionResult ManagerIndex()
         {
             if (User.IsInRole("Manager"))
@@ -26,11 +35,13 @@ namespace PiniT.Controllers
             return View(allTables);
         }
 
+        [Authorize(Roles = "Manager,Admin")]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "Manager,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Table table)
@@ -39,8 +50,6 @@ namespace PiniT.Controllers
             {
                 return View(table);
             }
-
-            //Ask Vyron which is better
             table.RestaurantId = User.Identity.GetUserId();
             db.CreateTable(table);
 
@@ -48,6 +57,7 @@ namespace PiniT.Controllers
         }
 
 
+        [Authorize(Roles = "Manager,Admin")]
         public ActionResult Edit(int id)
         {
             Table table = db.GetTable(id);
@@ -63,7 +73,9 @@ namespace PiniT.Controllers
 
             return View(table);
         }
-        
+
+
+        [Authorize(Roles = "Manager,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Table table)
@@ -72,13 +84,13 @@ namespace PiniT.Controllers
             {
                 return View(table);
             }
-
-          //table.RestaurantId = User.Identity.GetUserId();
             db.UpdateTable(table);
 
             return RedirectToAction("ManagerIndex");
         }
 
+
+        [Authorize(Roles = "Manager,Admin")]
         public ActionResult Delete(int id)
         {
             Table table = db.GetTable(id);
@@ -92,6 +104,8 @@ namespace PiniT.Controllers
             }
             return View(table);
         }
+
+        [Authorize(Roles = "Manager,Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
@@ -103,6 +117,7 @@ namespace PiniT.Controllers
         }
 
         //This will be completed with AJAX
+        [Authorize(Roles = "Manager,Admin")]
         public ActionResult ToggleBooked(int id)
         {
             Table table = db.GetTable(id);

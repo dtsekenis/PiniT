@@ -29,6 +29,17 @@ namespace PiniT.Managers
 
             return tables;
         }
+        public ICollection<Table> GetAvailableTables(string restaurantId)
+        {
+            ICollection<Table> tables;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                tables = db.Tables.Where(x => x.RestaurantId == restaurantId && x.IsBooked == false)
+                                  .Include("Restaurant")
+                                  .ToList();
+            }
+            return tables;
+        }
         public Table GetTable(int id)
         {
             Table table;
@@ -86,7 +97,6 @@ namespace PiniT.Managers
             }
             return result;
         }
-
         public bool ToggleIsBooked(int id)
         {
             bool result;

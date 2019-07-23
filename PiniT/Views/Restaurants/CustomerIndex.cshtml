@@ -4,7 +4,7 @@
     ViewBag.Title = "CustomerIndex";
 }
 
-<h2>Are you hungry?</h2>
+<h2 class="h2">Are you hungry?</h2>
 
 
 <table class="table">
@@ -21,8 +21,8 @@
             @Html.DisplayFor(modelItem => restaurant.CompanyName)
         </td>
         <td>
-            @Html.ActionLink("Book Now!", "CustomerIndex", new { id=restaurant.RestaurantId }) |
-            @Html.ActionLink("Details", "Details", new { id=restaurant.RestaurantId })
+            @Html.ActionLink("Book Now!", "CustomerIndex","Tables", new { id=restaurant.RestaurantId },new { @class="btn btn-danger"}) |
+            @Html.ActionLink("Menu", "CustomerIndex","Products", new { id=restaurant.RestaurantId },new { @class="btn btn-primary" })
         </td>
     </tr>
 }

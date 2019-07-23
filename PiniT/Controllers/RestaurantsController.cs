@@ -7,29 +7,30 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PiniT.Models;
 using PiniT.ViewModels;
 
 namespace PiniT.Controllers
 {
+    //Need to check views and add js/ajax if needed
     [Authorize]
     public class RestaurantsController : Controller
     {
         private RestaurantManager db = new RestaurantManager();
 
 
-        //Not Finished
+        //Not Finished// Not sure
+        //Maybe restaurant overview with all tables/products/reservations and data
         [Authorize(Roles = "Manager")]
         public ActionResult ManagerIndex()
         {
-            if (!HasRestaurant())
+            Restaurant restaurant = db.GetRestaurantFull(User.Identity.GetUserId());
+            if (restaurant == null)
             {
                return RedirectToAction("Create");
             }
-            return RedirectToAction("ManagerIndex", "Tables");
+            return View(restaurant);
         }
 
-        //Αγαπημενο μου ημερολογιο. Σημερα δοκιμασα το gitHub και εγω και η Σταυρουλα πιστευουμε πως θα δουλεψει
         //Not Finished
         [Authorize(Roles ="Customer")]
         public ActionResult CustomerIndex(string search, string type)
@@ -66,7 +67,7 @@ namespace PiniT.Controllers
 
             db.CreateRestaurant(restaurant);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ManagerIndex");
         }
 
 
@@ -101,9 +102,10 @@ namespace PiniT.Controllers
             }
 
             db.UpdateRestaurant(restaurant);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("ManagerIndex");
         }
 
+        //Not sure if needed
         [Authorize(Roles = "Manager")]
         public ActionResult Delete()
         {
@@ -117,6 +119,8 @@ namespace PiniT.Controllers
             return View(restaurant);
         }
 
+
+        //not sure if needed
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -126,20 +130,7 @@ namespace PiniT.Controllers
             var restId = User.Identity.GetUserId();
             db.DeleteRestaurant(restId);
 
-            return RedirectToAction("Index", "Home");
-        }
-
-
-
-
-        public bool HasRestaurant()
-        {
-            Restaurant restaurant = db.GetRestaurant(User.Identity.GetUserId());
-            if (restaurant == null)
-            {
-                return false;
-            }
-            return true;
+            return RedirectToAction("ManagerIndex");
         }
     }
 }

@@ -15,6 +15,7 @@ namespace PiniT.ViewModels
         public string Search { get; set; }
 
         public Product Product { get; set; }
+        public IEnumerable<ProductCategory> Categories { get; set; }
         
     }
 

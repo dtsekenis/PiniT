@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace PiniT.Controllers
 {
+    //Need to check views and add js/ajax if needed
     [Authorize]
     public class ProductsController : Controller
     {
@@ -29,13 +30,13 @@ namespace PiniT.Controllers
                 Products = db.GetProducts(userId, search, category),
                 Search = search,
                 Category = category,
+                Categories = pcDb.GetProductCategories()
             };
 
             return View(vm);
         }
 
-        
-        //Not tested
+        //Tested
         [Authorize(Roles = "Customer")] 
         public ActionResult CustomerIndex(string id,string search,string category)
         {
@@ -45,6 +46,7 @@ namespace PiniT.Controllers
                 Products = db.GetProducts(id, search, category),
                 Search = search,
                 Category = category,
+                Categories = pcDb.GetProductCategories()
             };
             Restaurant restaurant = restDb.GetRestaurant(id);
             ViewBag.Title = $"{restaurant.CompanyName} Menu.";
@@ -59,7 +61,6 @@ namespace PiniT.Controllers
 
             return View();
         }
-
 
         //Tested
         [Authorize(Roles = "Manager")]
@@ -129,7 +130,6 @@ namespace PiniT.Controllers
 
             return View(product);
         }
-
 
         //Tested
         [Authorize(Roles = "Manager")]

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PiniT.Models.Table>
+
+@{
+    ViewBag.Title = "CustomerIndex";
+}
+
+<h2>CustomerIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsBooked)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Size)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsBooked)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.TableId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.TableId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.TableId })
+        </td>
+    </tr>
+}
+
+</table>

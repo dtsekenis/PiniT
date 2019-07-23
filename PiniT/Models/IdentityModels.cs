@@ -60,9 +60,6 @@ namespace PiniT.Models
         public virtual DbSet<Table> Tables { get; set; }
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<RestaurantType> RestaurantTypes { get; set; }
-
-        public System.Data.Entity.DbSet<PiniT.Models.ProductCategory> ProductCategories { get; set; }
-
-        public System.Data.Entity.DbSet<PiniT.Models.PiniTManager> ApplicationUsers { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategories { get; set; }
     }
 }

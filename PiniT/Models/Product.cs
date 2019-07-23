@@ -18,6 +18,7 @@ namespace PiniT.Models
 
         [ForeignKey("Category")]
         [DisplayName("Category")]
+        [Required]
         public string CategoryId { get; set; }
 
         [Required]

@@ -14,6 +14,10 @@ namespace PiniT.Controllers
             {
                 return RedirectToAction("ManagerIndex", "Tables");
             }
+            if (User.IsInRole("Customer"))
+            {
+                return RedirectToAction("CustomerIndex", "Restaurants");
+            }
             return View();
         }
 

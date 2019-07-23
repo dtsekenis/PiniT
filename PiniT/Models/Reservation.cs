@@ -9,12 +9,19 @@ namespace PiniT.Models
 {
     public class Reservation
     {
+        public Reservation()
+        {
+            BookDate = DateTime.Now;
+        }
         [Key]
         public int ReservationId { get; set; }
+
         [ForeignKey("Customer")]
         public string CustomerId { get; set; }
+
         [ForeignKey("Table")]
         public int TableId { get; set; }
+
         [Required]
         public DateTime BookDate { get; set; }
         public virtual PiniTCustomer Customer { get; set; }

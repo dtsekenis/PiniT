@@ -26,7 +26,7 @@ namespace PiniT.Migrations
             //Create Role "Manager"
             string restManagerRoleName = "Manager";
             IdentityRole restManagerRole = roleManager.FindByName(restManagerRoleName);
-            
+
             if (restManagerRole == null)
             {
                 restManagerRole = new IdentityRole(restManagerRoleName);
@@ -37,7 +37,7 @@ namespace PiniT.Migrations
             string adminRoleName = "Admin";
             IdentityRole adminRole = roleManager.FindByName(adminRoleName);
 
-            if(adminRole == null)
+            if (adminRole == null)
             {
                 adminRole = new IdentityRole(adminRoleName);
                 roleManager.Create(adminRole);
@@ -60,7 +60,7 @@ namespace PiniT.Migrations
             string restManagerUserName_2 = "Manager2";
             string restManagerEmail_2 = "manager2@gmail.com";
             string restManagerPassword_2 = "iamthemanager2";
-            
+
             PiniTManager restManager1 = (PiniTManager)userManager.FindByName(restManagerUserName_1);
             if (restManager1 == null)
             {
@@ -113,7 +113,7 @@ namespace PiniT.Migrations
             }
 
             //Add Product Categories
-            #region MyRegion
+            #region Product Categories
             ProductCategory appetizer = new ProductCategory();
             appetizer.Name = "Appetizers";
 
@@ -128,8 +128,14 @@ namespace PiniT.Migrations
 
             ProductCategory dessert = new ProductCategory();
             dessert.Name = "Desserts";
+
+            context.ProductCategories.AddOrUpdate(x => x.Name, appetizer, salads, main, drinks, dessert);
             #endregion
 
+            context.SaveChanges();
+
+            //Add Restaurant Type
+            RestaurantType bar = new RestaurantType { Name = "Bar" };
 
 
 
@@ -142,7 +148,7 @@ namespace PiniT.Migrations
                 Name = "Pizza Volcano",
                 Category = main,
                 Description = "Mozzarela,Tomato,Jalapenos,Chilly Sause",
-                Price = 11
+                Price = 11.0m
             };
 
             Product p2 = new Product()
@@ -150,7 +156,7 @@ namespace PiniT.Migrations
                 Name = "Pizza Margerita",
                 Category = main,
                 Description = "Mozzarela,Tomato,Basillico",
-                Price = 9
+                Price = 9.0m
             };
 
             Product p3 = new Product()
@@ -158,7 +164,7 @@ namespace PiniT.Migrations
                 Name = "Pizza Vegeterian",
                 Category = main,
                 Description = "Mozzarela,Tomato,Olives,Onions,Peppers",
-                Price = 10
+                Price = 10.0m
             };
 
             Product p4 = new Product()
@@ -174,7 +180,7 @@ namespace PiniT.Migrations
                 Name = "Spaghetti Bolognese",
                 Category = main,
                 Description = "Tomato Meat Sause",
-                Price = 10
+                Price = 10.0m
             };
 
             Product p6 = new Product()
@@ -182,7 +188,7 @@ namespace PiniT.Migrations
                 Name = "Spaghetti Carbonara",
                 Category = main,
                 Description = "Bacon,White Sause",
-                Price = 12
+                Price = 12.0m
             };
 
             Product p7 = new Product()
@@ -190,7 +196,7 @@ namespace PiniT.Migrations
                 Name = "La Bella Mafia Sallad",
                 Category = salads,
                 Description = "Lettuce,iceberg,sause",
-                Price = 10
+                Price = 10.0m
             };
 
             Product p8 = new Product()
@@ -206,7 +212,7 @@ namespace PiniT.Migrations
                 Name = "Tiramisu",
                 Category = dessert,
                 Description = "Espesso Cream,Cacao",
-                Price = 5
+                Price = 5.0m
             };
 
             Product p10 = new Product()
@@ -238,7 +244,7 @@ namespace PiniT.Migrations
                 Name = "White Wine",
                 Category = drinks,
                 Description = "White Wine Bottle",
-                Price = 30
+                Price = 30.0m
             };
 
             Product p14 = new Product()
@@ -246,7 +252,7 @@ namespace PiniT.Migrations
                 Name = "Red Wine",
                 Category = drinks,
                 Description = "Red Wine Bottle",
-                Price = 30
+                Price = 30.0m
             };
 
             Product p15 = new Product()
@@ -254,7 +260,7 @@ namespace PiniT.Migrations
                 Name = "Water",
                 Category = drinks,
                 Description = "Water Bottle",
-                Price = 3
+                Price = 3.0m
             };
 
             Product p16 = new Product()
@@ -281,13 +287,13 @@ namespace PiniT.Migrations
                 Price = 4.50m
             };
 
-            //Products of Restaurant "Ôhe beautiful Beijing"
+           // Products of Restaurant "Ôhe beautiful Beijing"
             Product p19 = new Product()
             {
                 Name = "Chicken Kow",
                 Category = main,
                 Description = "Chicken with vegetables",
-                Price = 15
+                Price = 15.0m
             };
 
             Product p20 = new Product()
@@ -295,7 +301,7 @@ namespace PiniT.Migrations
                 Name = "Sweet & Sour Pork",
                 Category = main,
                 Description = "Pork with sweet & sour pork",
-                Price = 9
+                Price = 9.0m
             };
 
             Product p21 = new Product()
@@ -303,7 +309,7 @@ namespace PiniT.Migrations
                 Name = "Sesame Chicken",
                 Category = main,
                 Description = "Chicken with Sesame",
-                Price = 10
+                Price = 10.0m
             };
 
 
@@ -312,7 +318,7 @@ namespace PiniT.Migrations
                 Name = "Egg Roll",
                 Category = appetizer,
                 Description = "Egg Roll",
-                Price = 8
+                Price = 8.0m
             };
 
             Product p26 = new Product()
@@ -343,7 +349,7 @@ namespace PiniT.Migrations
             {
                 Name = "Crab Rangoon",
                 Category = appetizer,
-                Description = "",
+                Description = "VALE DESCRIPTION TIN ALLH FORA",
                 Price = 9.50m
             };
 
@@ -360,7 +366,7 @@ namespace PiniT.Migrations
                 Name = "White Wine",
                 Category = drinks,
                 Description = "White Wine Bottle",
-                Price = 13
+                Price = 13.0m
             };
 
             Product p32 = new Product()
@@ -368,7 +374,7 @@ namespace PiniT.Migrations
                 Name = "Red Wine",
                 Category = drinks,
                 Description = "Red Wine Bottle",
-                Price = 16
+                Price = 16.0m
             };
 
             Product p33 = new Product()
@@ -395,7 +401,7 @@ namespace PiniT.Migrations
                 Price = 2.50m
             };
 
-            //Products of Restaurant "God Bless America"
+           // Products of Restaurant "God Bless America"
             Product p36 = new Product()
             {
                 Name = "Cheeseburger Deluxe",
@@ -417,7 +423,7 @@ namespace PiniT.Migrations
                 Name = "Classic American",
                 Category = main,
                 Description = "Grilled with burger mayo",
-                Price = 10
+                Price = 10.0m
             };
 
 
@@ -474,7 +480,7 @@ namespace PiniT.Migrations
                 Name = "White Wine",
                 Category = drinks,
                 Description = "White Wine Bottle",
-                Price = 13
+                Price = 13.0m
             };
 
             Product p46 = new Product()
@@ -482,7 +488,7 @@ namespace PiniT.Migrations
                 Name = "Red Wine",
                 Category = drinks,
                 Description = "Red Wine Bottle",
-                Price = 16
+                Price = 16.0m
             };
 
             Product p47 = new Product()
@@ -509,7 +515,7 @@ namespace PiniT.Migrations
                 Price = 2.95m
             };
 
-            // Products of Restaurant "La Vie En Rose"
+            //Products of Restaurant "La Vie En Rose"
             Product p50 = new Product()
             {
                 Name = "Squash Ravioli",
@@ -531,7 +537,7 @@ namespace PiniT.Migrations
                 Name = "Seafood Risotto",
                 Category = main,
                 Description = "Arborio rice,cream and fresh seasonal seafood",
-                Price = 16
+                Price = 16.0m
             };
 
 
@@ -540,7 +546,7 @@ namespace PiniT.Migrations
                 Name = "Lobster Macaroni & Cheese",
                 Category = appetizer,
                 Description = "Bay shrimp and chunks of lobster",
-                Price = 26
+                Price = 26.0m
             };
 
             Product p54 = new Product()
@@ -548,7 +554,7 @@ namespace PiniT.Migrations
                 Name = "Cobo Salmon",
                 Category = appetizer,
                 Description = "Over-roasted wild salmon",
-                Price = 25
+                Price = 25.0m
             };
 
             Product p55 = new Product()
@@ -572,7 +578,7 @@ namespace PiniT.Migrations
                 Name = "Prime Rib",
                 Category = appetizer,
                 Description = "Rib slow roasted",
-                Price = 32
+                Price = 32.0m
             };
 
             Product p58 = new Product()
@@ -589,7 +595,7 @@ namespace PiniT.Migrations
                 Name = "Red Wine",
                 Category = drinks,
                 Description = "Red Wine Bottle",
-                Price = 45
+                Price = 45.0m
             };
 
             Product p61 = new Product()
@@ -615,8 +621,18 @@ namespace PiniT.Migrations
                 Description = "White Wine Bottle",
                 Price = 35.40m
             };
+
+            context.Products.AddOrUpdate(x => x.ProductId,
+                                         p1, p2, p3, p4, p5, p6, p7, p8, p9, p10,
+                                         p11, p12, p13, p14, p15, p16, p17, p18, p19, p20,
+                                         p21, p25, p26, p27, p28, p29, p30,
+                                         p31, p32, p33, p34, p35, p36, p37, p38, p39, p40,
+                                         p41, p42, p43, p44, p45, p46, p47, p48, p49, p50,
+                                         p51, p52, p53, p54, p55, p56, p57, p58, p60,
+                                         p61, p62, p63);
             #endregion
 
+            context.SaveChanges();
 
             //Add Tables
             Table t1 = new Table { Size = 4, Name = "A1" };
@@ -625,6 +641,7 @@ namespace PiniT.Migrations
 
             context.Tables.AddOrUpdate(x => x.TableId, t1, t2, t3);
 
+            context.SaveChanges();
 
             //Add Restaurants
             Restaurant restaurant1 = new Restaurant
@@ -632,14 +649,14 @@ namespace PiniT.Migrations
                 CompanyName = "Restaurant1",
                 VAT = "VAT1",
                 Manager = restManager1
-                
+
             };
-            context.Restaurants.AddOrUpdate(x=>x.RestaurantId, restaurant1);
+            context.Restaurants.AddOrUpdate(x => x.RestaurantId, restaurant1);
             restaurant1.Tables.Add(t1);
             restaurant1.Tables.Add(t2);
             restaurant1.Tables.Add(t3);
 
-          //  context.SaveChanges();
+            context.SaveChanges();
 
 
         }

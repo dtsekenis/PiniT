@@ -8,6 +8,7 @@ namespace PiniT.Managers
 {
     public class ManagerContext
     {
+        //Test USERS?? Controller for Admin?? Ask Vyron
         public PiniTManager GetManager(string id)
         {
             PiniTManager manager;

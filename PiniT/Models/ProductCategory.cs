@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -14,6 +15,7 @@ namespace PiniT.Models
             Products = new HashSet<Product>();
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("Category")]
         public string Name { get; set; }
 

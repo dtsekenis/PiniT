@@ -25,6 +25,7 @@ namespace PiniT.Models
         public string CompanyName { get; set; }
 
         [Required]
+        [DisplayName("VAT Number")]
         public string VAT { get; set; }
 
         public virtual ICollection<Product> Menu { get; set; }

@@ -197,6 +197,7 @@
     <Compile Include="Managers\ProductManager.cs" />
     <Compile Include="Managers\ReservationManager.cs" />
     <Compile Include="Managers\RestaurantManager.cs" />
+    <Compile Include="Managers\RestaurantTypeManager.cs" />
     <Compile Include="Managers\TableManager.cs" />
     <Compile Include="Migrations\201907182050258_Initial.cs" />
     <Compile Include="Migrations\201907182050258_Initial.Designer.cs">
@@ -205,6 +206,10 @@
     <Compile Include="Migrations\201907201222328_tablenames.cs" />
     <Compile Include="Migrations\201907201222328_tablenames.Designer.cs">
       <DependentUpon>201907201222328_tablenames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907232003456_required fields.cs" />
+    <Compile Include="Migrations\201907232003456_required fields.Designer.cs">
+      <DependentUpon>201907232003456_required fields.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -333,6 +338,8 @@
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\CustomerIndex.cshtml" />
     <Content Include="Views\Restaurants\CustomerIndex.cshtml" />
+    <Content Include="Views\Restaurants\ManagerIndex.cshtml" />
+    <Content Include="Views\Tables\CustomerIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -346,6 +353,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907201222328_tablenames.resx">
       <DependentUpon>201907201222328_tablenames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907232003456_required fields.resx">
+      <DependentUpon>201907232003456_required fields.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

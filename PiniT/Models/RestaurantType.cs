@@ -14,6 +14,7 @@ namespace PiniT.Models
             Restaurants = new HashSet<Restaurant>();
         }
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Name { get; set; }
 
         public virtual ICollection<Restaurant> Restaurants { get; set; }

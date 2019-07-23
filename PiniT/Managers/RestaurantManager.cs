@@ -53,14 +53,12 @@ namespace PiniT.Managers
             }
             return restaurant;
         }
-
         public bool CreateRestaurant(Restaurant restaurant)
         {
             bool result;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 Restaurant rest = db.Restaurants.Find(restaurant.RestaurantId);
-               // if (!db.Restaurants.Contains(restaurant))
                 if(rest == null)
                 {
                     db.Restaurants.Add(restaurant);
