@@ -29,7 +29,7 @@ namespace PiniT.Controllers
             return RedirectToAction("ManagerIndex", "Tables");
         }
 
-
+        //Αγαπημενο μου ημερολογιο. Σημερα δοκιμασα το gitHub και εγω και η Σταυρουλα πιστευουμε πως θα δουλεψει
         //Not Finished
         [Authorize(Roles ="Customer")]
         public ActionResult CustomerIndex(string search, string type)
