@@ -136,9 +136,22 @@ namespace PiniT.Migrations
 
             //Add Restaurant Type
             RestaurantType bar = new RestaurantType { Name = "Bar" };
+            RestaurantType bistro  = new RestaurantType { Name = "Bistro" };
+            RestaurantType grill = new RestaurantType { Name = "Grill House" };
+            RestaurantType vegan = new RestaurantType { Name = "Vegan" };
+            RestaurantType italian = new RestaurantType { Name = "Italian" };
+            RestaurantType asian = new RestaurantType { Name = "Asian" };
+            RestaurantType french= new RestaurantType { Name = "French" };
+            RestaurantType restaurant= new RestaurantType { Name = "Restaurant" };
+            RestaurantType greek= new RestaurantType { Name = "Greek" };
+            RestaurantType seafood= new RestaurantType { Name = "Seafood" };
+            RestaurantType street= new RestaurantType { Name = "Street Food Bar" };
+            RestaurantType pizza= new RestaurantType { Name = "Pizza" };
+            RestaurantType barRestaurant = new RestaurantType { Name = "Bar Restaurant" };
+            RestaurantType winebar = new RestaurantType { Name = "Wine Bar" };
+            RestaurantType beer= new RestaurantType { Name = "Beer House" };
 
-
-
+          //  context.RestaurantTypes.AddOrUpdate(x => x.Name, bar, bistro,...);
 
 
             //Add Products
@@ -646,9 +659,11 @@ namespace PiniT.Migrations
             //Add Restaurants
             Restaurant restaurant1 = new Restaurant
             {
-                CompanyName = "Restaurant1",
-                VAT = "VAT1",
-                Manager = restManager1
+                CompanyName = "La Bella Mafia",
+                VAT = "12345678",
+                Manager = restManager1,
+                Type = { pizza, italian },
+                Menu = {p1,p2}
 
             };
             context.Restaurants.AddOrUpdate(x => x.RestaurantId, restaurant1);
