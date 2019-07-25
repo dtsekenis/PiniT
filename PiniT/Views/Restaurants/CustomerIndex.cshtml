@@ -18,13 +18,11 @@
                 <p class="m-0">Info</p>
             </div>
             <div class="card-footer border-dark bg-light text-center">
-                @*@Html.ActionLink("Book Now!", "CustomerIndex", new { id = restaurant.RestaurantId }) |*@
                 <div class="row">
                     @Html.ActionLink("Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12" })
                     @Html.ActionLink("Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6" })
-                    @*<a href="#" class="btn btn-danger col-6">Book Now</a>
-                    <a href="#" class="btn btn-primary col">Menu</a>*@
-                    <a href="#" class="btn btn-secondary col-6">Chat</a>
+                    
+                    <button id="chat-@restaurant.RestaurantId" class="btn btn-secondary col-6">Chat</button>
                 </div>
 
             </div>
