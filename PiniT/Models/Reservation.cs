@@ -13,6 +13,7 @@ namespace PiniT.Models
         {
             BookDate = DateTime.Now;
         }
+
         [Key]
         public int ReservationId { get; set; }
 
@@ -24,6 +25,7 @@ namespace PiniT.Models
 
         [Required]
         public DateTime BookDate { get; set; }
+        public string Comment { get; set; }
         public virtual PiniTCustomer Customer { get; set; }
         public virtual Table Table { get; set; }
         public decimal BookingFee { get; set; }

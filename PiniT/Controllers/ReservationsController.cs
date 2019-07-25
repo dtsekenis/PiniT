@@ -4,14 +4,16 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.SignalR;
 using PiniT.Managers;
 using PiniT.Models;
 
 namespace PiniT.Controllers
 {
-    [Authorize]
+    [System.Web.Mvc.Authorize]
     public class ReservationsController : Controller
     {
+        private ManagerContext manDb = new ManagerContext();
         private TableManager tableDb = new TableManager();
         private ReservationManager db = new ReservationManager();
         private RestaurantManager restDb = new RestaurantManager();
@@ -50,17 +52,32 @@ namespace PiniT.Controllers
                 return HttpNotFound();
             }
             //check User account
-            //check if table still available
 
-            
-            reservation.TableId = (int)TempData["TableId"];
+
+            //check if table still available
+            Table table = tableDb.GetTable((int)TempData["TableId"]);
+            if (table.IsBooked)
+            {
+                //Send message that this table was booked during reservation by another user
+                //Need to fix the path
+                return RedirectToAction("CustomerIndex","Tables", new { id = table.RestaurantId });
+            }
+
+
+            reservation.TableId = table.TableId;
             tableDb.ToggleIsBooked(reservation.TableId);
             reservation.CustomerId = User.Identity.GetUserId();
             db.CreateReservation(reservation);
 
             //send message to hub
-            //var hub = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
-            //hub.Clients.User(ManagerName).broadcast($"{userName} visited About!");
+            var hub = GlobalHost.ConnectionManager.GetHubContext<PiniTHub>();
+
+            var manager = manDb.GetManager(table.RestaurantId);
+            
+            hub.Clients.User(manager.UserName).getReservation(new { Customer = User.Identity.Name,
+                                                                    Comment = reservation.Comment,
+                                                                    Date = reservation.BookDate,
+                                                                    Table = table.Name});
 
             return RedirectToAction("Index","Home");
         }

@@ -8,9 +8,9 @@ namespace PiniT
 {
     public class PiniTHub : Hub
     {
-        public void Hello()
+        public void SendMessage(string to, string message)
         {
-            Clients.All.hello();
+            Clients.User(to).gotMessage(Context.User.Identity.Name, message);
         }
     }
 }
