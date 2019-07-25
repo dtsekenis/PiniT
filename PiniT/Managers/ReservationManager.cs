@@ -80,7 +80,7 @@ namespace PiniT.Managers
             bool result;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                if (!db.Reservations.Contains(reservation))
+                if (db.Reservations.Find(reservation.ReservationId) == null)
                 {
                     db.Reservations.Add(reservation);
                     db.SaveChanges();

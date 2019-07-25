@@ -5,26 +5,29 @@
 }
 
 <h2 class="h2">Are you hungry?</h2>
+<div class="row">
+    @foreach (var restaurant in Model.Restaurants)
+    {
+        <div class="col-md-3 card shadow border border-dark p-0 mx-1">
+            <div class="card-header border-dark font-weight-bolder bg-secondary text-white text-center">
+                <p class="m-0">@restaurant.CompanyName</p>
+            </div>
+            <div class="card-body bg-light border-dark text-center">
+                <img class="card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
+                <hr class="m-1" />
+                <p class="m-0">Info</p>
+            </div>
+            <div class="card-footer border-dark bg-light text-center">
+                @*@Html.ActionLink("Book Now!", "CustomerIndex", new { id = restaurant.RestaurantId }) |*@
+                <div class="row">
+                    @Html.ActionLink("Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12" })
+                    @Html.ActionLink("Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6" })
+                    @*<a href="#" class="btn btn-danger col-6">Book Now</a>
+                    <a href="#" class="btn btn-primary col">Menu</a>*@
+                    <a href="#" class="btn btn-secondary col-6">Chat</a>
+                </div>
 
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
-        </th>
-    </tr>
-
-@foreach (var restaurant in Model.Restaurants) {
-    <tr>
-
-        <td>
-            @Html.DisplayFor(modelItem => restaurant.CompanyName)
-        </td>
-        <td>
-            @Html.ActionLink("Book Now!", "CustomerIndex","Tables", new { id=restaurant.RestaurantId },new { @class="btn btn-danger"}) |
-            @Html.ActionLink("Menu", "CustomerIndex","Products", new { id=restaurant.RestaurantId },new { @class="btn btn-primary" })
-        </td>
-    </tr>
-}
-
-</table>
+            </div>
+        </div>
+    }
+</div>
