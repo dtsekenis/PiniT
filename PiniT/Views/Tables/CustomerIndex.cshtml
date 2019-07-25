@@ -35,9 +35,7 @@
         </td>
 
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TableId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TableId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TableId })
+            @Html.ActionLink("PinIT!", "Create","Reservations",new { id=item.TableId }, new { @class="btn btn-dark" })
         </td>
     </tr>
 }

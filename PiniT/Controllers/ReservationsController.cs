@@ -12,6 +12,7 @@ namespace PiniT.Controllers
     [Authorize]
     public class ReservationsController : Controller
     {
+        private TableManager tableDb = new TableManager();
         private ReservationManager db = new ReservationManager();
         private RestaurantManager restDb = new RestaurantManager();
         public ActionResult Index()
@@ -48,12 +49,18 @@ namespace PiniT.Controllers
             {
                 return HttpNotFound();
             }
-            //Request to Manager of restaurant
+            //check User account
+            //check if table still available
 
-
+            
             reservation.TableId = (int)TempData["TableId"];
+            tableDb.ToggleIsBooked(reservation.TableId);
             reservation.CustomerId = User.Identity.GetUserId();
             db.CreateReservation(reservation);
+
+            //send message to hub
+            //var hub = GlobalHost.ConnectionManager.GetHubContext<ChatHub>();
+            //hub.Clients.User(ManagerName).broadcast($"{userName} visited About!");
 
             return RedirectToAction("Index","Home");
         }
