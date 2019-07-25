@@ -61,6 +61,14 @@ namespace PiniT.Migrations
             string restManagerEmail_2 = "manager2@gmail.com";
             string restManagerPassword_2 = "iamthemanager2";
 
+            string restManagerUserName_3 = "Manager3";
+            string restManagerEmail_3 = "manager3@gmail.com";
+            string restManagerPassword_3 = "iamthemanager3";
+
+            string restManagerUserName_4 = "Manager4";
+            string restManagerEmail_4 = "manager4@gmail.com";
+            string restManagerPassword_4 = "iamthemanager4";
+
             PiniTManager restManager1 = (PiniTManager)userManager.FindByName(restManagerUserName_1);
             if (restManager1 == null)
             {
@@ -90,6 +98,37 @@ namespace PiniT.Migrations
             if (!userManager.IsInRole(restManager2.Id, restManagerRole.Name))
             {
                 userManager.AddToRole(restManager2.Id, restManagerRole.Name);
+            }
+
+            PiniTManager restManager3 = (PiniTManager)userManager.FindByName(restManagerUserName_3);
+            if (restManager3 == null)
+            {
+                restManager3 = new PiniTManager
+                {
+                    UserName = restManagerEmail_3,
+                    Email = restManagerEmail_3
+                };
+                userManager.Create(restManager3, restManagerPassword_3);
+            }
+
+            if (!userManager.IsInRole(restManager3.Id, restManagerRole.Name))
+            {
+                userManager.AddToRole(restManager3.Id, restManagerRole.Name);
+            }
+            PiniTManager restManager4 = (PiniTManager)userManager.FindByName(restManagerUserName_4);
+            if (restManager4 == null)
+            {
+                restManager4 = new PiniTManager
+                {
+                    UserName = restManagerEmail_4,
+                    Email = restManagerEmail_4
+                };
+                userManager.Create(restManager4, restManagerPassword_4);
+            }
+
+            if (!userManager.IsInRole(restManager4.Id, restManagerRole.Name))
+            {
+                userManager.AddToRole(restManager4.Id, restManagerRole.Name);
             }
             //Add Admin
             string adminUserName = "Tasos";
@@ -151,10 +190,11 @@ namespace PiniT.Migrations
             RestaurantType winebar = new RestaurantType { Name = "Wine Bar" };
             RestaurantType beer= new RestaurantType { Name = "Beer House" };
 
-          //  context.RestaurantTypes.AddOrUpdate(x => x.Name, bar, bistro,...);
+            context.RestaurantTypes.AddOrUpdate(x => x.Name, bar, bistro,grill, vegan,italian,asian,french,restaurant,greek,seafood,street,pizza,barRestaurant,winebar,beer);
 
 
             //Add Products
+            //La bella Mafia
             #region Products
             Product p1 = new Product()
             {
@@ -651,8 +691,54 @@ namespace PiniT.Migrations
             Table t1 = new Table { Size = 4, Name = "A1" };
             Table t2 = new Table { Size = 6, Name = "A2" };
             Table t3 = new Table { Size = 8, Name = "A3" };
+            Table t4 = new Table { Size = 4, Name = "A4" };
+            Table t5 = new Table { Size = 6, Name = "A5" };
+            Table t6 = new Table { Size = 8, Name = "A6" };
+            Table t7 = new Table { Size = 4, Name = "A7" };
+            Table t8 = new Table { Size = 6, Name = "A8" };
+            Table t9 = new Table { Size = 8, Name = "A9" };
+            Table t10 = new Table { Size = 4, Name = "A10" };
+            Table t11 = new Table { Size = 6, Name = "A11" };
+            Table t12 = new Table { Size = 8, Name = "A12" };
+            Table t13 = new Table { Size = 4, Name = "A13" };
+            Table t14 = new Table { Size = 6, Name = "A14" };
+            Table t15= new Table { Size = 8, Name = "A15" };
+            Table t16 = new Table { Size = 4, Name = "A16" };
+            Table t17 = new Table { Size = 6, Name = "A17" };
+            Table t18 = new Table { Size = 8, Name = "A18" };
+            Table t19= new Table { Size = 4, Name = "A19" };
+            Table t20 = new Table { Size = 6, Name = "A20" };
+            Table t21 = new Table { Size = 8, Name = "A21" };
+            Table t22 = new Table { Size = 4, Name = "A22" };
+            Table t23 = new Table { Size = 6, Name = "A23" };
+            Table t24 = new Table { Size = 8, Name = "A24" };
+            Table t25 = new Table { Size = 4, Name = "A25" };
+            Table t26 = new Table { Size = 6, Name = "A26" };
+            Table t27 = new Table { Size = 8, Name = "A27" };
+            Table t28 = new Table { Size = 4, Name = "A28" };
+            Table t29 = new Table { Size = 6, Name = "A29" };
+            Table t30 = new Table { Size = 8, Name = "A30" };
+            Table t31 = new Table { Size = 4, Name = "A31" };
+            Table t32 = new Table { Size = 6, Name = "A32" };
+            Table t33 = new Table { Size = 8, Name = "A33" };
+            Table t34 = new Table { Size = 4, Name = "A34" };
+            Table t35 = new Table { Size = 6, Name = "A35" };
+            Table t36= new Table { Size = 8, Name = "A36" };
+            Table t37 = new Table { Size = 4, Name = "A37" };
+            Table t38= new Table { Size = 6, Name = "A38" };
+            Table t39= new Table { Size = 8, Name = "A39" };
+            Table t40 = new Table { Size = 4, Name = "A40" };
+            Table t41 = new Table { Size = 6, Name = "A41" };
+            Table t42 = new Table { Size = 8, Name = "A42" };
+            Table t43 = new Table { Size = 4, Name = "A43" };
+            Table t44 = new Table { Size = 6, Name = "A44" };
+            Table t45 = new Table { Size = 8, Name = "A45" };
+            Table t46 = new Table { Size = 4, Name = "A46" };
+            Table t47 = new Table { Size = 6, Name = "A47" };
+            Table t48 = new Table { Size = 8, Name = "A48" };
 
-            context.Tables.AddOrUpdate(x => x.TableId, t1, t2, t3);
+
+            context.Tables.AddOrUpdate(x => x.TableId, t1, t2, t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30,t31,t32,t33,t34,t35,t36,t37,t38,t39,t40,t41,t42,t43,t44,t45,t46,t47,t48);
 
             context.SaveChanges();
 
@@ -663,13 +749,45 @@ namespace PiniT.Migrations
                 VAT = "12345678",
                 Manager = restManager1,
                 Type = { pizza, italian },
-                Menu = {p1,p2}
-
+                Menu = {p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18},
+                Tables = {t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12}
             };
-            context.Restaurants.AddOrUpdate(x => x.RestaurantId, restaurant1);
-            restaurant1.Tables.Add(t1);
-            restaurant1.Tables.Add(t2);
-            restaurant1.Tables.Add(t3);
+
+            Restaurant restaurant2 = new Restaurant
+            {
+                CompanyName = "The Beautiful Beijing",
+                VAT = "12345679",
+                Manager = restManager2,
+                Type = { restaurant, asian  },
+                Menu = { p19, p20, p21, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35 },
+                Tables = { t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24 }
+            };
+
+            Restaurant restaurant3 = new Restaurant
+            {
+                CompanyName = "God Bless America",
+                VAT = "12345680",
+                Manager = restManager3,
+                Type = { restaurant, grill},
+                Menu = { p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49},
+                Tables = { t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36 }
+            };
+
+            Restaurant restaurant4 = new Restaurant
+            {
+                CompanyName = "La vie en rose",
+                VAT = "12345682",
+                Manager = restManager4,
+                Type = { restaurant, french,bistro, bar },
+                Menu = { p50, p51, p52, p53, p54, p55, p56, p57, p58, p60, p61, p62, p63 },
+                Tables = { t37, t38, t39, t40, t41, t42, t43, t44, t45, t46, t47, t48 }
+            };
+
+
+            context.Restaurants.AddOrUpdate(x => x.RestaurantId, restaurant1,restaurant2,restaurant3,restaurant4);
+            //restaurant1.Tables.Add(t1);
+            //restaurant1.Tables.Add(t2);
+            //restaurant1.Tables.Add(t3);
 
             context.SaveChanges();
 
