@@ -4,20 +4,49 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+    <h3 class="m-0 text-center">Company Name</h3>
 
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Reservation</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-        <p> Are you sure?</p>
-        @*<div class="form-group">
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="row">
+    <div class="col-md-3 card shadow border border-dark p-0 mx-auto">
+        <div class="card-header border-dark font-weight-bolder bg-secondary text-white text-center">
+            <p class="m-0">Reservation Details</p>
+        </div>
+        <div class="card-body bg-light border-dark text-center">
+
+            <p class="m-0">Table Size: <cite class="font-weight-light"> 4</cite></p>
+            <hr />
+            <p class="m-0">Email: <cite class="font-weight-light">  user@gmail.com</cite></p>
+            <hr />
+            <p class="m-0">BookDate: <cite class="font-weight-light">  19/07/2019</cite></p>
+            <hr />
+            <p class="m-0">BookFee: <cite class="font-weight-light">  10$</cite></p>
+            <hr />
+            <p class="m-0">Comment<br /> <cite class="font-weight-light"> elpizw na einai ola etoima se ena tetarto </cite></p>
+
+
+        </div>
+        @*<div class="card-footer border-dark bg-light text-center">*@
+            @*@Html.ActionLink("Book Now!", "CustomerIndex", new { id = restaurant.RestaurantId }) |*@
+            <div class="row">
+                @*@Html.ActionLink("Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12" })
+                @Html.ActionLink("Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6" })*@
+                @*<a href="#" class="btn btn-danger col-6">Book Now</a>
+                    <a href="#" class="btn btn-primary col">Menu</a>*@
+            </div>
+       
+    </div>
+</div>
+    <hr />
+    <p class="col-md-2 text-center border border-success mx-auto"> Are you sure?</p>
+    @*<div class="form-group">
             @Html.LabelFor(model => model.BookDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.BookDate, new { htmlAttributes = new { @class = "form-control" } })
@@ -33,18 +62,18 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        <div class="text-center mx-auto">
+            <input type="submit" value="Create" class="col-md-1 btn btn-warning mx-auto text-center" />
         </div>
     </div>
+</div>
 }
 
-<div>
+<div class="text-center">
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-@section Scripts {
+@*@section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+}*@
