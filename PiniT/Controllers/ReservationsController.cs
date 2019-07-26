@@ -24,11 +24,15 @@ namespace PiniT.Controllers
 
             if (User.IsInRole("Manager"))
             {
+                ViewBag.Restaurants = restDb.GetRestaurants();
+
                 reservations = db.GetRestaurantReservations(userId);
                 return View(reservations);
             }
             if (User.IsInRole("Admin"))
             {
+                ViewBag.Restaurants = restDb.GetRestaurants();
+
                 reservations = db.GetReservationsFull();
                 return View(reservations);
             }

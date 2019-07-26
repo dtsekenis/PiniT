@@ -1,23 +1,32 @@
 ﻿@model IEnumerable<PiniT.Models.Reservation>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Reservations";
 }
 
-<h2>Index</h2>
+<h2>Your Reservations</h2>
 
     @foreach (var reservation in Model)
         {
     <div class="row">
         <div class="col-md-8 card shadow-lg p-0 mx-auto">
             <div class="card-header border-bottom border-dark text-center">
-                @foreach (var restaurant in ViewBag.Restaurants)
+                @if (User.IsInRole("Customer"))
                 {
-                    if (restaurant.RestaurantId == reservation.Table.RestaurantId)
+                    foreach (var restaurant in ViewBag.Restaurants)
                     {
-                        <h4 class="m-0">@restaurant.CompanyName</h4>
+                        if (restaurant.RestaurantId == reservation.Table.RestaurantId)
+                        {
+                            <h4 class="m-0">@restaurant.CompanyName</h4>
+                        }
                     }
                 }
+                @if (User.IsInRole("Manager"))
+                {
+                    <h4 class="m-0">@reservation.Customer.UserName</h4>
+                }
+
+
 
             </div>
             <div class="card-body bg-light boder border-dark text-center">
