@@ -26,12 +26,10 @@
 
                 <p class="m-0">BookDate: <cite class="font-weight-light">  @DateTime.Now.ToString("dd/MM/yyyy HH:mm")</cite></p>
                 <hr />
-                <p class="m-0">BookFee: <cite class="font-weight-light">  10$</cite></p>
+                <p class="m-0">BookFee: <cite class="font-weight-light">  $10</cite></p>
                 <hr />
                 @Html.LabelFor(x => x.Comment, new { htmlAttributes = new { @class = "mx-auto" } })<br />
                 @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "m-0 p-0 form-control border border-secondary font-weight-light mx-auto", rows = "5" } })
-
-
             </div>
         </div>
     </div>
