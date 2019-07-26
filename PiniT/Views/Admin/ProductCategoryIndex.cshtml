@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PiniT.Models.ProductCategory>
+
+@{
+    ViewBag.Title = "ProductCategoryIndex";
+}
+
+<h2>ProductCategoryIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateProductCategory")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(x => x.Name);
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name);
+        </td>
+        <td>
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.Name })*@
+        </td>
+    </tr>
+}
+
+</table>

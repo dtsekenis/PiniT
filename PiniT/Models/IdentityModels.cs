@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -13,8 +14,8 @@ namespace PiniT.Models
 
     public class PiniTManager : ApplicationUser
     {
-        //[ForeignKey("Restaurant")]
-        //public string RestaurandId { get; set; }
+        [DisplayName("Authorized")]
+        public bool RestaurantAuthorized { get; set; }
         public virtual Restaurant Restaurant { get; set; }
     }
     public class PiniTCustomer : ApplicationUser
@@ -61,5 +62,7 @@ namespace PiniT.Models
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<RestaurantType> RestaurantTypes { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+
+        public System.Data.Entity.DbSet<PiniT.Models.PiniTCustomer> ApplicationUsers { get; set; }
     }
 }

@@ -30,7 +30,7 @@ namespace PiniT.Controllers
                 Products = db.GetProducts(userId, search, category),
                 Search = search,
                 Category = category,
-                Categories = pcDb.GetProductCategories()
+                Categories = pcDb.GetProductCategoriesFull()
             };
 
             return View(vm);

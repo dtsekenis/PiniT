@@ -90,6 +90,16 @@ namespace PiniT.Managers
                 Restaurant restaurant = db.Restaurants.Find(id);
                 if (restaurant != null)
                 {
+                    var restaurantTables = db.Tables.Where(x => x.RestaurantId == restaurant.RestaurantId);
+                    var restaurantProducts = db.Products.Where(x => x.ServedAt == restaurant.RestaurantId);
+                    foreach (Table table in restaurantTables)
+                    {
+                        db.Tables.Remove(table);
+                    }
+                    foreach (Product product in restaurantProducts)
+                    {
+                        db.Products.Remove(product);
+                    }
                     db.Restaurants.Remove(restaurant);
                     db.SaveChanges();
                     result = true;

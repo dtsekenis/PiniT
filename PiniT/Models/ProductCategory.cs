@@ -18,7 +18,6 @@ namespace PiniT.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("Category")]
         public string Name { get; set; }
-
         public virtual ICollection<Product> Products { get; set; }  
     }
 }

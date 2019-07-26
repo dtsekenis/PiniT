@@ -189,6 +189,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\CustomerContext.cs" />
     <Compile Include="Managers\ManagerContext.cs" />
     <Compile Include="Managers\ProductCategoryManager.cs" />
     <Compile Include="Managers\ProductManager.cs" />
@@ -220,6 +222,10 @@
     <Compile Include="Migrations\201907251147489_reservation_comment.cs" />
     <Compile Include="Migrations\201907251147489_reservation_comment.Designer.cs">
       <DependentUpon>201907251147489_reservation_comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907261604085_Authorize_Restaurant.cs" />
+    <Compile Include="Migrations\201907261604085_Authorize_Restaurant.Designer.cs">
+      <DependentUpon>201907261604085_Authorize_Restaurant.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -354,6 +360,14 @@
     <Content Include="Views\Restaurants\CustomerIndex.cshtml" />
     <Content Include="Views\Restaurants\ManagerIndex.cshtml" />
     <Content Include="Views\Tables\CustomerIndex.cshtml" />
+    <Content Include="Views\Admin\CreateProductCategory.cshtml" />
+    <Content Include="Views\Admin\ProductCategoryIndex.cshtml" />
+    <Content Include="Views\Admin\CustomersIndex.cshtml" />
+    <Content Include="Views\Admin\EditCustomer.cshtml" />
+    <Content Include="Views\Admin\DeleteCustomer.cshtml" />
+    <Content Include="Views\Admin\ManagersIndex.cshtml" />
+    <Content Include="Views\Admin\DeleteManager.cshtml" />
+    <Content Include="Views\Admin\EditManager.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -373,6 +387,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907251147489_reservation_comment.resx">
       <DependentUpon>201907251147489_reservation_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907261604085_Authorize_Restaurant.resx">
+      <DependentUpon>201907261604085_Authorize_Restaurant.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

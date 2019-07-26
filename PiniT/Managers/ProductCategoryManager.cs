@@ -19,9 +19,26 @@ namespace PiniT.Managers
             }
             return categories;
         }
-
-       
+        public ICollection<ProductCategory> GetProductCategoriesFull()
+        {
+            ICollection<ProductCategory> categories;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                categories = db.ProductCategories.Include("Products")
+                                                 .ToList();
+            }
+            return categories;
+        }
         public ProductCategory GetProductCategory(string id)
+        {
+            ProductCategory category;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                category = db.ProductCategories.Find(id);
+            }
+            return category;
+        }
+        public ProductCategory GetProductCategoryFull(string id)
         {
             ProductCategory category;
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -30,7 +47,6 @@ namespace PiniT.Managers
             }
             return category;
         }
-
         public bool CreateProductCategory(ProductCategory category)
         {
             bool result;
@@ -50,7 +66,6 @@ namespace PiniT.Managers
 
             return result;
         }
-
         public void UpdateProductCategory(ProductCategory category)
         {
            
@@ -62,8 +77,6 @@ namespace PiniT.Managers
             }
 
         }
-
-
         public bool DeleteProductCategory(string id)
         {
             bool result;

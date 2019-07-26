@@ -23,6 +23,8 @@ namespace PiniT.Migrations
             var roleStore = new RoleStore<IdentityRole>(context);
             RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(roleStore);
 
+
+            #region Role Creation
             //Create Role "Manager"
             string restManagerRoleName = "Manager";
             IdentityRole restManagerRole = roleManager.FindByName(restManagerRoleName);
@@ -45,13 +47,15 @@ namespace PiniT.Migrations
             //Create Role "Customer"
             string customerRoleName = "Customer";
             IdentityRole customerRole = roleManager.FindByName(customerRoleName);
-
+         
             if (customerRole == null)
             {
                 customerRole = new IdentityRole(customerRoleName);
                 roleManager.Create(customerRole);
             }
+            #endregion
 
+            #region Managers
             //Add Managers
             string restManagerUserName_1 = "Manager1";
             string restManagerEmail_1 = "manager1@gmail.com";
@@ -75,7 +79,8 @@ namespace PiniT.Migrations
                 restManager1 = new PiniTManager
                 {
                     UserName = restManagerEmail_1,
-                    Email = restManagerEmail_1
+                    Email = restManagerEmail_1,
+                    RestaurantAuthorized = true
                 };
                 userManager.Create(restManager1, restManagerPassword_1);
             }
@@ -90,7 +95,8 @@ namespace PiniT.Migrations
                 restManager2 = new PiniTManager
                 {
                     UserName = restManagerEmail_2,
-                    Email = restManagerEmail_2
+                    Email = restManagerEmail_2,
+                    RestaurantAuthorized = true
                 };
                 userManager.Create(restManager2, restManagerPassword_2);
             }
@@ -106,7 +112,8 @@ namespace PiniT.Migrations
                 restManager3 = new PiniTManager
                 {
                     UserName = restManagerEmail_3,
-                    Email = restManagerEmail_3
+                    Email = restManagerEmail_3,
+                    RestaurantAuthorized = true
                 };
                 userManager.Create(restManager3, restManagerPassword_3);
             }
@@ -121,7 +128,8 @@ namespace PiniT.Migrations
                 restManager4 = new PiniTManager
                 {
                     UserName = restManagerEmail_4,
-                    Email = restManagerEmail_4
+                    Email = restManagerEmail_4,
+                    RestaurantAuthorized = true
                 };
                 userManager.Create(restManager4, restManagerPassword_4);
             }
@@ -130,6 +138,11 @@ namespace PiniT.Migrations
             {
                 userManager.AddToRole(restManager4.Id, restManagerRole.Name);
             }
+            context.SaveChanges();
+
+            #endregion
+
+            #region Admin
             //Add Admin
             string adminUserName = "Tasos";
             string adminEmail = "admin@gmail.com";
@@ -150,9 +163,12 @@ namespace PiniT.Migrations
             {
                 userManager.AddToRole(admin.Id, adminRole.Name);
             }
+            context.SaveChanges();
 
-            //Add Product Categories
+            #endregion
+
             #region Product Categories
+            //Add Product Categories
             ProductCategory appetizer = new ProductCategory();
             appetizer.Name = "Appetizers";
 
@@ -169,10 +185,10 @@ namespace PiniT.Migrations
             dessert.Name = "Desserts";
 
             context.ProductCategories.AddOrUpdate(x => x.Name, appetizer, salads, main, drinks, dessert);
+            context.SaveChanges();
             #endregion
 
-            context.SaveChanges();
-
+            #region Restaurant Types
             //Add Restaurant Type
             RestaurantType bar = new RestaurantType { Name = "Bar" };
             RestaurantType bistro  = new RestaurantType { Name = "Bistro" };
@@ -191,11 +207,11 @@ namespace PiniT.Migrations
             RestaurantType beer= new RestaurantType { Name = "Beer House" };
 
             context.RestaurantTypes.AddOrUpdate(x => x.Name, bar, bistro,grill, vegan,italian,asian,french,restaurant,greek,seafood,street,pizza,barRestaurant,winebar,beer);
+            context.SaveChanges();
+            #endregion
 
-
-            //Add Products
-            //La bella Mafia
             #region Products
+            //Add Products
             Product p1 = new Product()
             {
                 Name = "Pizza Volcano",
@@ -402,7 +418,7 @@ namespace PiniT.Migrations
             {
                 Name = "Crab Rangoon",
                 Category = appetizer,
-                Description = "VALE DESCRIPTION TIN ALLH FORA",
+                Description = "Crab well made",
                 Price = 9.50m
             };
 
@@ -683,10 +699,11 @@ namespace PiniT.Migrations
                                          p41, p42, p43, p44, p45, p46, p47, p48, p49, p50,
                                          p51, p52, p53, p54, p55, p56, p57, p58, p60,
                                          p61, p62, p63);
-            #endregion
-
             context.SaveChanges();
 
+            #endregion
+
+            #region Tables
             //Add Tables
             Table t1 = new Table { Size = 4, Name = "A1" };
             Table t2 = new Table { Size = 6, Name = "A2" };
@@ -741,7 +758,9 @@ namespace PiniT.Migrations
             context.Tables.AddOrUpdate(x => x.TableId, t1, t2, t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30,t31,t32,t33,t34,t35,t36,t37,t38,t39,t40,t41,t42,t43,t44,t45,t46,t47,t48);
 
             context.SaveChanges();
+            #endregion
 
+            #region Restaurants
             //Add Restaurants
             Restaurant restaurant1 = new Restaurant
             {
@@ -785,12 +804,8 @@ namespace PiniT.Migrations
 
 
             context.Restaurants.AddOrUpdate(x => x.RestaurantId, restaurant1,restaurant2,restaurant3,restaurant4);
-            //restaurant1.Tables.Add(t1);
-            //restaurant1.Tables.Add(t2);
-            //restaurant1.Tables.Add(t3);
-
             context.SaveChanges();
-
+            #endregion
 
         }
     }
