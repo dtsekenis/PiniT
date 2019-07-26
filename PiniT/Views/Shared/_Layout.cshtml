@@ -34,8 +34,38 @@
         </div>
     </nav>
 
+
     <div class="container body-content">
+
+
         @RenderBody()
+
+        <div class="row">
+            <div class="col-md-2 card shadow-lg border border-danger p-0 fixed-bottom" style="border-width:5px;">
+                <div class="card-header border-dark font-weight-bolder bg-danger text-white text-center">
+                    <p class="m-0">Reservation Request</p>
+                </div>
+                <div class="card-body bg-light border-danger text-center">
+                    <p class="m-0">Customer Name: <cite class="font-weight-light">@*@ViewBag.Table.Size*@</cite></p>
+                    <hr />
+                    <p class="m-0">Table Name: <cite class="font-weight-light">@*@ViewBag.Table.Size*@</cite></p>
+                    <hr />
+                    <p class="m-0">BookDate: <cite class="font-weight-light">  @*@DateTime.Now.ToString("dd/MM/yyyy HH:mm")*@</cite></p>
+                    <hr />
+                    <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        Comments
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body bg-light border-danger text-center mt-1">
+                           Text Area.... 
+                        </div>
+                    </div>
+                    @*@Html.LabelFor(x => x.Comment, new { htmlAttributes = new { @class = "mx-auto" } })<br />
+        @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "m-0 p-0 form-control border border-secondary font-weight-light mx-auto", rows = "5" } })*@
+
+                </div>
+            </div>
+        </div>
         <hr />
         <footer class="row">
             <p class="mr-auto col-3">&copy; @DateTime.Now.Year - Pinit Application</p>
@@ -54,23 +84,25 @@
     <script src="~/signalr/hubs"></script>
     @RenderSection("scripts", required: false)
 
+
+
     <script>
-            $(document).ready(() => {
+        $(document).ready(() => {
 
-                let hub = $.connection.piniTHub;
-                
-                hub.client.getReservation = (reservation) => {
-                    console.log(reservation);
-                    $('#notifications').append(`<p>${reservation.Customer} pinned Table:${reservation.Table} at ${reservation.Date} <br/> Comment : Bblaalbla </p>`);
-                };
+            let hub = $.connection.piniTHub;
 
-                $.connection.hub.start().done(() => {
-                    console.log('Connected');
-                });
+            hub.client.getReservation = (reservation) => {
+                console.log(reservation);
+                $('#notifications').append(`<p>${reservation.Customer} pinned Table:${reservation.Table} at ${reservation.Date} <br/> Comment : ${reservation.Comment} </p>`);
+            };
 
-
+            $.connection.hub.start().done(() => {
+                console.log('Connected');
             });
 
-        </script>
+
+        });
+
+    </script>
 </body>
 </html>

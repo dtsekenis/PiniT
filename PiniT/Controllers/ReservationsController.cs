@@ -34,12 +34,16 @@ namespace PiniT.Controllers
             }
 
             reservations = db.GetCustomerReservationsFull(userId);
+            ViewBag.Restaurants = restDb.GetRestaurants();
             return View(reservations);
         }
 
         public ActionResult Create(int id)
         {
+            Table table = tableDb.GetTable(id);
             TempData["TableId"] = id;
+            ViewBag.Restaurant = restDb.GetRestaurant(table.RestaurantId);
+            ViewBag.Table = table;
             return View();
         }
 
