@@ -40,32 +40,36 @@
 
         @RenderBody()
 
-        <div class="row">
-            <div class="col-md-2 card shadow-lg border border-danger p-0 fixed-bottom" style="border-width:5px;">
+        @*<div class="row">
+            <div class="col-md-2 card shadow-lg border border-danger p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="border-width:5px;">
                 <div class="card-header border-dark font-weight-bolder bg-danger text-white text-center">
-                    <p class="m-0">Reservation Request</p>
+                    <div class="row">
+
+                        <p class="col-10  mb-0 mr-auto">new reservation</p>
+                        <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="card-body bg-light border-danger text-center">
-                    <p class="m-0">Customer Name: <cite class="font-weight-light">@*@ViewBag.Table.Size*@</cite></p>
+                    <p class="m-0">customer name: <cite class="font-weight-light"></cite></p>
                     <hr />
-                    <p class="m-0">Table Name: <cite class="font-weight-light">@*@ViewBag.Table.Size*@</cite></p>
+                    <p class="m-0">table name: <cite class="font-weight-light"></cite></p>
                     <hr />
-                    <p class="m-0">BookDate: <cite class="font-weight-light">  @*@DateTime.Now.ToString("dd/MM/yyyy HH:mm")*@</cite></p>
+                    <p class="m-0">bookdate: <cite class="font-weight-light">  </cite></p>
                     <hr />
-                    <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Comments
+                    <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
+                        comments
                     </button>
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="collapseexample">
                         <div class="card card-body bg-light border-danger text-center mt-1">
-                           Text Area.... 
+                           text area.... 
                         </div>
                     </div>
-                    @*@Html.LabelFor(x => x.Comment, new { htmlAttributes = new { @class = "mx-auto" } })<br />
-        @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "m-0 p-0 form-control border border-secondary font-weight-light mx-auto", rows = "5" } })*@
 
                 </div>
             </div>
-        </div>
+        </div>*@
         <hr />
         <footer class="row">
             <p class="mr-auto col-3">&copy; @DateTime.Now.Year - Pinit Application</p>
@@ -90,18 +94,50 @@
         $(document).ready(() => {
 
             let hub = $.connection.piniTHub;
-
+            const notificationElement = document.getElementById('notifications');
             hub.client.getReservation = (reservation) => {
                 console.log(reservation);
-                $('#notifications').append(`<p>${reservation.Customer} pinned Table:${reservation.Table} at ${reservation.Date} <br/> Comment : ${reservation.Comment} </p>`);
+                notificationElement.innerHTML = '';
+                $('#notifications').append(`<div class="row">
+            <div class="col-md-2 card shadow-lg border border-danger p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="border-width:5px;">
+                <div class="card-header border-dark font-weight-bolder bg-danger text-white text-center">
+                    <div class="row">
+
+                        <p class="col-10  mb-0 mr-auto">new reservation</p>
+                        <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body bg-light border-danger text-center">
+                    <p class="m-0">Customer: <cite class="font-weight-light">${reservation.Customer}</cite></p>
+                    <hr />
+                    <p class="m-0">Table: <cite class="font-weight-light">${reservation.Table}</cite></p>
+                    <hr />
+                    <p class="m-0">Book date: <cite class="font-weight-light">${reservation.Date}  </cite></p>
+                    <hr />
+                    <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
+                        comments
+                    </button>
+                    <div class="collapse" id="collapseexample">
+                        <div class="card card-body bg-light border-danger text-center mt-1">
+                           ${reservation.Comment}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>`);
             };
 
             $.connection.hub.start().done(() => {
                 console.log('Connected');
             });
-
-
         });
+
+        function closeWin() {
+            close-button.close();
+        }
 
     </script>
 </body>

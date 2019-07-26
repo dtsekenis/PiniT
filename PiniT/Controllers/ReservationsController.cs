@@ -80,7 +80,7 @@ namespace PiniT.Controllers
             
             hub.Clients.User(manager.UserName).getReservation(new { Customer = User.Identity.Name,
                                                                     Comment = reservation.Comment,
-                                                                    Date = reservation.BookDate,
+                                                                    Date = reservation.BookDate.ToString("dd/MM/yyyy HH:mm"),
                                                                     Table = table.Name});
 
             return RedirectToAction("Index","Home");
