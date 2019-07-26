@@ -21,11 +21,40 @@
                 <div class="row">
                     @Html.ActionLink("Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12" })
                     @Html.ActionLink("Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6" })
-                    
-                    <button id="chat-@restaurant.RestaurantId" class="btn btn-secondary col-6">Chat</button>
+
+                    <button id="@restaurant.RestaurantId" class="btn btn-secondary col-6 restaurant-chat">Chat</button>
                 </div>
 
             </div>
         </div>
     }
 </div>
+
+@section scripts {
+
+    <script>
+        $(document).ready(() => {
+            let chat = $.connection.piniTHub;
+
+            $('.restaurant-chat').click((e) => {
+
+                $(`#chat`).html('');
+                $('#chat').append(`<input id="message" type="text" />
+                                                   <button id="send">Send</button>
+                                                   <div id="messages"></div>`);
+
+                $.connection.hub.start().done(() => {
+
+                    $('#send').click(() => {
+                        chat.server.sendToUser(e.target.id, $('#message').val());
+                        $('#messages').append(`<p>Me: ${$('#message').val()}</p>`)
+
+                        $('#message').val('').focus();
+                    });
+
+                });
+            });
+        });
+
+    </script>
+}

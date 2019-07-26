@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
+using PiniT.Models;
 
 namespace PiniT
 {
     public class PiniTHub : Hub
     {
-        public void SendMessage(string to, string message)
+        ApplicationDbContext db = new ApplicationDbContext();
+        public void SendToUser(string to, string message)
         {
-            Clients.User(to).gotMessage(Context.User.Identity.Name, message);
+            var user = db.Users.Find(to);
+            Clients.User(user.UserName).gotMessage(Context.User.Identity.Name, message);
         }
     }
 }
