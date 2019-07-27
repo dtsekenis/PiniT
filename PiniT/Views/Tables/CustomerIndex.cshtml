@@ -4,23 +4,15 @@
     ViewBag.Title = "CustomerIndex";
 }
 
-<h2>CustomerIndex</h2>
+<h2 class="a mb-3 mt-3">Choose a Table</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-
-<table class="table">
+<table class="table col-6 mx-auto">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Size)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsBooked)
         </th>
     </tr>
 
@@ -33,13 +25,13 @@
             @Html.DisplayFor(modelItem => item.Size)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IsBooked)
-        </td>
-
-        <td>
             @Html.ActionLink("PinIT!", "Create","Reservations",new { id=item.TableId }, new { @class="btn btn-dark" })
         </td>
     </tr>
 }
 
 </table>
+
+<div>
+    @Html.ActionLink("Back to List", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-info col-2" })
+</div>

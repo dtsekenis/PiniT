@@ -5,12 +5,13 @@
 }
 
 <div class="row mt-3 mb-1">
-    <div class="col-md-6 my-auto">
-        <h2>@ViewBag.Title</h2>
-
+    <div class="col-md-9 mx-auto">
+        <h2 class="a">@ViewBag.Title</h2>
     </div>
-    <div class="col-md-6 mt-auto p-3 border rounded bg-light">
-        @using (Html.BeginForm("CustomerIndex", "Products", FormMethod.Get, new { id = "search-form"}))
+</div>
+<div class="row mt-3 mb-1">
+    <div class="col-md-6 p-3 border rounded bg-light mx-auto">
+        @using (Html.BeginForm("CustomerIndex", "Products", FormMethod.Get, new { id = "search-form" }))
         {
             <div id="filters" class="row">
                 <div class="col-6 px-1">
@@ -36,19 +37,26 @@
 
             <div class="col-sm-2"></div>
             <div class=" col-sm-8 rounded shadow-lg mx-auto mt-3 mb-1 text-center">
-                <h3 class="h3">@category.Name</h3>
+                <h3 class="a">@category.Name</h3>
                 @foreach (var product in Model.Products)
                 {
                     if (product.CategoryId == category.Name)
                     {
-                        <p class="h5">@product.Name - @product.Price</p>
-                        <p class="font-weight-lighter">@product.Description</p>
+                        <p class="font-weight-bold font-italic">@product.Name - <cite class="font-weight-light">$@product.Price</cite><br />
+                        <cite class="font-weight-lighter font-italic">@product.Description</cite></p>
+                        <hr />
                     }
                 }
             </div>
             <div class="col-sm-2"></div>
 
         }
+    </div>
+</div>
+
+<div>
+    <div id="a">
+        @Html.ActionLink("Back to List", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-info col-2 ml-3" })
     </div>
 </div>
 

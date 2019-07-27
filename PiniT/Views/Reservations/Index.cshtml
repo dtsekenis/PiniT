@@ -4,10 +4,10 @@
     ViewBag.Title = "Reservations";
 }
 
-<h2>Your Reservations</h2>
+<h2 class="a">My Reservations</h2>
 
-    @foreach (var reservation in Model)
-        {
+@foreach (var reservation in Model)
+{
     <div class="row">
         <div class="col-md-8 card shadow-lg p-0 mx-auto">
             <div class="card-header border-bottom border-dark text-center">
@@ -31,20 +31,21 @@
             </div>
             <div class="card-body bg-light boder border-dark text-center">
                 <div class="row">
-                <div class="col-sm-6 text-center">
-                    <p class="m-0">BookDate: <br/><cite class="font-weight-light">@reservation.BookDate</cite></p>
-                    <br>
-                    <p class="m-0">BookFee: <cite class="font-weight-light">10$</cite></p>
-                </div>
-                <div class="col-sm-6 border-left text-center">
-                    <p class="m-0 ">Comment:<br/> <cite class="font-weight-light">@reservation.Comment</cite></p>
+                    <div class="col-sm-6 text-center">
+                        <p class="m-0">BookDate: <br /><cite class="font-weight-light">@reservation.BookDate</cite></p>
+                        <br>
+                        <p class="m-0">BookFee: <cite class="font-weight-light">10$</cite></p>
+                    </div>
+                    <div class="col-sm-6 border-left text-center">
+                        <p class="m-0 ">Comment:<br /> <cite class="font-weight-light">@reservation.Comment</cite></p>
 
+                    </div>
                 </div>
-                </div>
-            </div>
             </div>
         </div>
-
+    </div>
 }
 
-    
+<div>
+    @Html.ActionLink("Back to List", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-info col-2" })
+</div>
