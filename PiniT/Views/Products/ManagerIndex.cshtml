@@ -3,31 +3,33 @@
 @{
     ViewBag.Title = "Index";
 }
-<div class="row mt-3 mb-1">
-    <div class="col-md-6 ">
-        <h2>Your Products</h2>
+    <div class="row mt-3 mb-1">
+        <div class="col-md-6 ">
+            <h2 class="a">Your Products</h2>
 
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+        </div>
+
+        
+        <div class="col-md-6 mt-auto p-3 border rounded bg-light">
+            @using (Html.BeginForm("ManagerIndex", "Products", FormMethod.Get, new { id = "search-form" }))
+            {
+                <div id="filters" class="row">
+                    <div class="col-6 px-1">
+                        @Html.EditorFor(x => x.Search, new { htmlAttributes = new { @class = "form-control", placeholder = "Search by product name" } })
+                    </div>
+                    <div class="col-4 px-1">
+                        @Html.DropDownListFor(x => x.Category, (SelectList)ViewBag.Categories, "Category", new { @class = "form-control", id = "category" })
+                    </div>
+                    <div class="col-2 px-1">
+                        <button id="search" type="submit" class="btn btn-primary btn-block">Search</button>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-    <div class="col-md-6 mt-auto p-3 border rounded bg-light">
-        @using (Html.BeginForm("ManagerIndex", "Products", FormMethod.Get, new { id = "search-form" }))
-        {
-            <div id="filters" class="row">
-                <div class="col-6 px-1">
-                    @Html.EditorFor(x => x.Search, new { htmlAttributes = new { @class = "form-control", placeholder = "Search by product name" } })
-                </div>
-                <div class="col-4 px-1">
-                    @Html.DropDownListFor(x => x.Category, (SelectList)ViewBag.Categories, "Category", new { @class = "form-control", id = "category" })
-                </div>
-                <div class="col-2 px-1">
-                    <button id="search" type="submit" class="btn btn-primary btn-block">Search</button>
-                </div>
-            </div>
-        }
-    </div>
-</div>
 <div id="customer-menu">
     <div class="row">
         @foreach (var category in Model.Categories.Reverse())
@@ -88,10 +90,11 @@
                 @Html.DisplayFor(modelItem => product.Price)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = product.ProductId }) |
-                @Html.ActionLink("Details", "Details", new { id = product.ProductId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = product.ProductId })
-            </td>
+                
+                <i class="fas fa-spinner fa-pulse">
+                    @Html.ActionLink("Edit", "Edit", new { id = product.ProductId }, new { @class = "fas fa-pencil-alt" }) |</i>
+                                @Html.ActionLink("Delete", "Delete", new { id = product.ProductId }, new { @class = "glyphicon glyphicon-trash" })
+</td>
         </tr>
     }
 
