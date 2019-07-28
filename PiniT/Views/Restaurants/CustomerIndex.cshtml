@@ -5,10 +5,12 @@
 }
 
 <br>
-<h2 class="a">Available Restaurants</h2>
+
+    <h2 class="a  mx-auto text-center">Available Restaurants</h2>
+
 
 <div class="row mt-3 mb-1">
-    <div id="a" class="col-md-6 p-3 border rounded bg-light mr-0">
+    <div id="a" class="col-md-6 p-3 border rounded bg-light mx-auto">
         @using (Html.BeginForm("CustomerIndex", "Restaurants", FormMethod.Get, new { id = "search-form" }))
         {
             <div id="filters" class="row">
@@ -16,11 +18,8 @@
                     @Html.EditorFor(x => x.Search, new { htmlAttributes = new { @class = "form-control", placeholder = "Search by Restaurant Name" } })
                 </div>
                 <div class="col-4 px-1">
-                    @*@Html.DropDownListFor(x => x.Restaurant, (SelectList)ViewBag.RestaurantType, "Category", new { @class = "form-control", id = "restType" })*@
+                    @Html.DropDownListFor(x => x.Type, (SelectList)ViewBag.RestaurantTypes, "Type", new { @class = "form-control", id = "restType" })
                 </div>
-                @*<div class="col-2 px-1">
-                        @Html.EnumDropDownListFor(x => x.SortBy, "Sort By", new { @class = "form-control" })
-                    </div>*@
                 <div class="col-2 px-1">
                     <button id="search" type="submit" class="btn btn-primary btn-block">Search</button>
                 </div>
@@ -39,8 +38,14 @@
             <div class="card-body bg-light border-dark text-center">
                 <img class="card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
                 <hr class="m-1" />
-                <p class="m-0 font-italic">Restaurant Type: <cite class="font-weight-light">@*@restaurant.RestaurantType*@</cite></p>
-                <p class="m-0 font-italic">Total Free Tables: <cite class="font-weight-light">@*@table.IsBooked*@15</cite></p>
+                <p class="m-0 font-italic">
+                    Restaurant Type:
+                    @foreach (var item in restaurant.Type)
+                    {
+                        <cite class="font-weight-light">@item.Name</cite>
+                    }
+                </p>
+                <p class="m-0 font-italic">Total Free Tables: <cite class="font-weight-light">@restaurant.Tables.Count(x=>x.IsBooked==false)</cite></p>
 
             </div>
             <div class="card-footer border-dark bg-light text-center">
@@ -70,28 +75,28 @@
 
                 $(`#chat`).html('');
                 $('#chat').append(`
-                    <div class="row">
-                        <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:250px;">
-                            <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
-                                <div class="row">
-                                    <p class="col-10 mb-0 mr-auto ml-2">${e.target.getAttribute('data-company')}</p>
-                                    <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body bg-light border-success">
-                                <div id="messages" class="overflow-auto" style="height:120px"></div>
-                                 <br/>
-                                <input id="message" class="form-control border border-success">
-                                <button id="send" class="btn btn-success mt-1 mx-auto" type="button" aria-expanded="false">
-                                    Send
-                                </button>
+                                    <div class="row">
+                                        <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:250px;">
+                                            <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
+                                                <div class="row">
+                                                    <p class="col-10 mb-0 mr-auto ml-2">${e.target.getAttribute('data-company')}</p>
+                                                    <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body bg-light border-success">
+                                                <div id="messages" class="overflow-auto" style="height:120px"></div>
+                                                 <br/>
+                                                <input id="message" class="form-control border border-success">
+                                                <button id="send" class="btn btn-success mt-1 mx-auto" type="button" aria-expanded="false">
+                                                    Send
+                                                </button>
 
 
-                            </div>
-                        </div>
-                    </div>`);
+                                            </div>
+                                        </div>
+                                    </div>`);
 
                 $.connection.hub.start().done(() => {
 
@@ -106,9 +111,9 @@
 
             });
         });
-   
+
         window.onload = () => {
-            //const categoryDropdown = document.getElementById('category');
+            const categoryDropdown = document.getElementById('restType');
             const searchForm = document.getElementById('search-form');
             let searchButton = document.getElementById('search');
 

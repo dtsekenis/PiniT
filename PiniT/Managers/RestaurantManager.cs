@@ -31,6 +31,29 @@ namespace PiniT.Managers
             }
             return restaurants;
         }
+        public ICollection<Restaurant> GetRestaurantsFull(string search, string type)
+        {
+            ICollection<Restaurant> restaurants;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var query = db.Restaurants.Include("Type")
+                                                .Include("Menu")
+                                                .Include("Tables")
+                                                .Include("Manager")
+                                                .AsQueryable();
+                if (!String.IsNullOrEmpty(search))
+                {
+                    query = query.Where(x => x.CompanyName.Contains(search));
+                }
+                if (!String.IsNullOrEmpty(type))
+                {
+                    RestaurantType searchType = db.RestaurantTypes.Find(type);
+                    query = query.Where(x => x.Type.Any(y=>y.Name == searchType.Name));
+                }
+                restaurants = query.ToList();
+            }
+            return restaurants;
+        }
         public Restaurant GetRestaurant(string id)
         {
             Restaurant restaurant;
@@ -59,7 +82,7 @@ namespace PiniT.Managers
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 Restaurant rest = db.Restaurants.Find(restaurant.RestaurantId);
-                if(rest == null)
+                if (rest == null)
                 {
                     db.Restaurants.Add(restaurant);
                     db.SaveChanges();

@@ -16,6 +16,7 @@ namespace PiniT.Controllers
     public class RestaurantsController : Controller
     {
         private RestaurantManager db = new RestaurantManager();
+        private RestaurantTypeManager typeDb = new RestaurantTypeManager();
 
 
         //Not Finished// Not sure
@@ -35,9 +36,10 @@ namespace PiniT.Controllers
         [Authorize(Roles ="Customer")]
         public ActionResult CustomerIndex(string search, string type)
         {
+            ViewBag.RestaurantTypes = new SelectList(typeDb.GetRestaurantTypes(), "Name", "Name");
             IndexRestaurantsVM vm = new IndexRestaurantsVM
             {
-                Restaurants = db.GetRestaurantsFull(),
+                Restaurants = db.GetRestaurantsFull(search,type),
                 Search = search,
                 Type = type
             };
