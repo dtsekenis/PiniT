@@ -7,9 +7,9 @@
     
         <h2 class="cold-md-6 text-center mx-auto">Your Products</h2>
 
-        @*<p>
+        <p>
                 @Html.ActionLink("Create New", "Create")
-            </p>*@
+            </p>
     </div>
 
     <div class="row">
@@ -45,9 +45,11 @@
                         {
                             <p class="h5">@product.Name - @product.Price</p>
                             <p class="font-weight-lighter mb-1">@product.Description</p>
-                            <i class="fas fa-spinner fa-pulse">
-                                @Html.ActionLink("Edit", "Edit", new { id = product.ProductId }, new { @class = "fas fa-pencil-alt mb-2 " }) |</i>
-                            @Html.ActionLink("Delete", "Delete", new { id = product.ProductId }, new { @class = "glyphicon glyphicon-trash" })
+                            @Html.ActionLink(" ", "Edit", new { id = product.ProductId }, new { @class = "m-1 btn btn-dark fas fa-pencil-alt" })
+
+                           
+                            @Html.ActionLink(" ", "Delete", new { id = product.ProductId }, new { @class = "m-1 btn btn-danger fas fa-trash" })
+                            <hr/>
                         }
                     }
                 </div>
@@ -57,45 +59,6 @@
     </div>
 </div>
 
-
-
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(x => x.Product.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.CategoryId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Product.Price)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var product in Model.Products)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => product.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => product.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => product.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => product.Price)
-            </td>
-            <td></td>
-        </tr>
-    }
-
-</table>*@
 
 @section scripts{
     <script>
