@@ -31,13 +31,13 @@ namespace PiniT.Controllers
                 reservations = db.GetRestaurantReservations(userId);
                 return View(reservations);
             }
-            if (User.IsInRole("Admin"))
-            {
-                ViewBag.Restaurants = restDb.GetRestaurants();
+            //if (User.IsInRole("Admin"))
+            //{
+            //    ViewBag.Restaurants = restDb.GetRestaurants();
 
-                reservations = db.GetReservationsFull();
-                return View(reservations);
-            }
+            //    reservations = db.GetReservationsFull();
+            //    return View(reservations);
+            //}
 
             reservations = db.GetCustomerReservationsFull(userId);
             ViewBag.Restaurants = restDb.GetRestaurants();

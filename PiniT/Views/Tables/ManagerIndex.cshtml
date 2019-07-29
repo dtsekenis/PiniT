@@ -12,9 +12,9 @@
     </p>
     <table class="table">
         <tr>
-            @*<th>
-                    @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
-                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Size)
             </th>
@@ -39,23 +39,25 @@
                     @Html.DisplayFor(modelItem => item.Size)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsBooked)
-                    <button id="@item.TableId" class="btn book-button"><i class="fas fa-check"></i></button>
-                    @Html.ActionLink("Book", "ToggleBooked", new { id = item.TableId })
-                    <hr />
+                    @if (item.IsBooked)
+                    {
+                        <button id="@item.TableId" class="btn book-button"><i class="fas fa-check"></i></button>
+                    }
+                    else
+                    {
+                        <button id="@item.TableId" class="btn book-button"><i class="fas fa-times"></i></button>
+                    }
+ 
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
-                    <hr />
                 </td>
-
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.TableId }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.TableId })
                 </td>
             </tr>
         }
-
     </table>
 </div>
 
@@ -66,17 +68,15 @@
 
             $('.book-button').on('click', (e) => {
 
-                console.log(e.currentTarget.id);
                 fetch(`/Tables/ToggleBooked/${e.currentTarget.id}`, { method: 'POST' })
-                    .then((response) => {
-                        if (response) {
-                            console.log(response);
-                        }
-                        else {
-                            console.log(response);
+                    .then((response) => response.json())
+                    .then(json => {
+                        console.log(json);
+                        ; if (json) {
+                            e.currentTarget.firstChild.classList.toggle('fa-times');
+                            e.currentTarget.firstChild.classList.toggle('fa-check');
                         }
                     });
-
             });
         };
     </script>

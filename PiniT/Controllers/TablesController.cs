@@ -22,7 +22,7 @@ namespace PiniT.Controllers
             return View(tables);
         }
 
-        [Authorize(Roles = "Manager,Admin")]
+        [Authorize(Roles = "Manager")]
         public ActionResult ManagerIndex()
         {
             if (User.IsInRole("Manager"))
@@ -35,13 +35,13 @@ namespace PiniT.Controllers
             return View(allTables);
         }
 
-        [Authorize(Roles = "Manager,Admin")]
+        [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "Manager,Admin")]
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Table table)
@@ -57,7 +57,7 @@ namespace PiniT.Controllers
         }
 
 
-        [Authorize(Roles = "Manager,Admin")]
+        [Authorize(Roles = "Manager")]
         public ActionResult Edit(int id)
         {
             Table table = db.GetTable(id);
@@ -66,7 +66,7 @@ namespace PiniT.Controllers
                 return HttpNotFound();
             }
 
-            if (table.RestaurantId != User.Identity.GetUserId() && !User.IsInRole("Admin"))
+            if (table.RestaurantId != User.Identity.GetUserId())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
@@ -75,7 +75,7 @@ namespace PiniT.Controllers
         }
 
 
-        [Authorize(Roles = "Manager,Admin")]
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Table table)
@@ -90,7 +90,7 @@ namespace PiniT.Controllers
         }
 
 
-        [Authorize(Roles = "Manager,Admin")]
+        [Authorize(Roles = "Manager")]
         public ActionResult Delete(int id)
         {
             Table table = db.GetTable(id);
@@ -98,14 +98,14 @@ namespace PiniT.Controllers
             {
                 return HttpNotFound();
             }
-            if (table.RestaurantId != User.Identity.GetUserId() && !User.IsInRole("Admin"))
+            if (table.RestaurantId != User.Identity.GetUserId())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             return View(table);
         }
 
-        [Authorize(Roles = "Manager,Admin")]
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Delete")]
@@ -116,7 +116,6 @@ namespace PiniT.Controllers
             return RedirectToAction("ManagerIndex");
         }
 
-        //This will be completed with AJAX
         [Authorize(Roles = "Manager,Admin")]
         [HttpPost]
         public ActionResult ToggleBooked(int id)
