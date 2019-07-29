@@ -4,7 +4,7 @@
     ViewBag.Title = "Reservations";
 }
 
-<h2 class="a">My Reservations</h2>
+<h2 class="a mx-auto text-center">My Reservations</h2>
 
 @foreach (var reservation in Model)
 {
@@ -45,5 +45,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-info col-2" })
+    @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-info col-2" })
 </div>
