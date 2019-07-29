@@ -42,7 +42,6 @@ namespace PiniT.Managers
             }
             return reservations;
         }
-
         public ICollection<Reservation> GetCustomerReservationsFull(string customerId)
         {
             ICollection<Reservation> reservations;

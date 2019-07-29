@@ -66,6 +66,8 @@ namespace PiniT.Managers
 
             return result;
         }
+
+        //Can't Update a Category
         public void UpdateProductCategory(ProductCategory category)
         {
            

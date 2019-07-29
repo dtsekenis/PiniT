@@ -32,7 +32,7 @@ namespace PiniT.Controllers
             return View(restaurant);
         }
 
-        //Not Finished
+        //Added Search
         [Authorize(Roles ="Customer")]
         public ActionResult CustomerIndex(string search, string type)
         {
@@ -47,6 +47,7 @@ namespace PiniT.Controllers
         }
 
         //Tested
+        //Need to Add Type select list
         [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
@@ -55,6 +56,7 @@ namespace PiniT.Controllers
 
 
         //Tested
+        //Need to Add Types
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -145,10 +145,23 @@ namespace PiniT.Controllers
 
         //Needs to be executed with Ajax
 
-        public ActionResult ToggleAuthorize(string id)
+        //public ActionResult ToggleAuthorize(string id)
+        //{
+        //    bool response;
+        //    response = manDb.ToggleRestaurantAuthorize(id);
+        //    return RedirectToAction("ManagersIndex");
+        //}
+
+        public ActionResult AssignRoleManager(string id)
         {
-            bool response;
-            response = manDb.ToggleRestaurantAuthorize(id);
+            PiniTManager manager = manDb.GetManager(id);
+            if (manager == null)
+            {
+                return HttpNotFound();
+            }
+
+            bool result = manDb.AssignRoleManager(id);
+
             return RedirectToAction("ManagersIndex");
         }
     }

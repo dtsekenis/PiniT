@@ -16,6 +16,7 @@ namespace PiniT.Managers
             {
                 customers = db.Users.OfType<PiniTCustomer>()
                                     .Include("Reservations")    
+                                    .Include("AccountWallet")
                                     .ToList();
             }
             return customers;
@@ -27,6 +28,7 @@ namespace PiniT.Managers
             {
                 customer = db.Users.OfType<PiniTCustomer>()
                                    .Include("Reservations")
+                                   .Include("AccountWallet")
                                    .FirstOrDefault(x => x.Id == id);
             }
             return customer;

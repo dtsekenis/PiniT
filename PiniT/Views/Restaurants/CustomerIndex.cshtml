@@ -6,7 +6,7 @@
 
 <br>
 
-    <h2 class="a  mx-auto text-center">Available Restaurants</h2>
+<h2 class="a  mx-auto text-center">Available Restaurants</h2>
 
 
 <div class="row mt-3 mb-1">
@@ -45,7 +45,7 @@
                         <cite class="font-weight-light">@item.Name</cite>
                     }
                 </p>
-                <p class="m-0 font-italic">Total Free Tables: <cite class="font-weight-light">@restaurant.Tables.Count(x=>x.IsBooked==false)</cite></p>
+                <p class="m-0 font-italic">Total Free Tables: <cite class="font-weight-light">@restaurant.Tables.Count(x => x.IsBooked == false)</cite></p>
 
             </div>
             <div class="card-footer border-dark bg-light text-center">
@@ -75,28 +75,28 @@
 
                 $(`#chat`).html('');
                 $('#chat').append(`
-                                    <div class="row">
-                                        <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:250px;">
-                                            <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
-                                                <div class="row">
-                                                    <p class="col-10 mb-0 mr-auto ml-2">${e.target.getAttribute('data-company')}</p>
-                                                    <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                            <div class="row">
+                                                <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:250px;">
+                                                    <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
+                                                        <div class="row">
+                                                            <p class="col-10 mb-0 mr-auto ml-2">${e.target.getAttribute('data-company')}</p>
+                                                            <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="card-body bg-light border-success">
+                                                        <div id="messages" class="overflow-auto" style="height:120px"></div>
+                                                         <br/>
+                                                        <input id="message" class="form-control border border-success">
+                                                        <button id="send" class="btn btn-success mt-1 mx-auto" type="button" aria-expanded="false">
+                                                            Send
+                                                        </button>
+
+
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="card-body bg-light border-success">
-                                                <div id="messages" class="overflow-auto" style="height:120px"></div>
-                                                 <br/>
-                                                <input id="message" class="form-control border border-success">
-                                                <button id="send" class="btn btn-success mt-1 mx-auto" type="button" aria-expanded="false">
-                                                    Send
-                                                </button>
-
-
-                                            </div>
-                                        </div>
-                                    </div>`);
+                                            </div>`);
 
                 $.connection.hub.start().done(() => {
 
@@ -122,5 +122,20 @@
             };
         };
 
+
+    </script>
+
+    <script>
+        window.onload = () => {
+
+            if ("@TempData["Message"]")
+            {
+                alert("@TempData["Message"]");
+                TempData["Message"] = '';
+            }
+        };
     </script>
 }
+
+
+

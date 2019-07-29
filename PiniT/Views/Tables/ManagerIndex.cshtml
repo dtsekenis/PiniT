@@ -4,56 +4,80 @@
     ViewBag.Title = "Index";
 }
 
-    <div class="card bg-white col-md-6 mx-auto">
-        <h2 class="text-center mx-auto">Table Layout</h2>
+<div class="card bg-white col-md-6 mx-auto">
+    <h2 class="text-center mx-auto">Table Layout</h2>
 
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        <table class="table">
-            <tr>
-                @*<th>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            @*<th>
                     @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
                 </th>*@
-                <th>
-                    @Html.DisplayNameFor(model => model.Size)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.IsBooked)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsBooked)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsBooked)
+                    <button id="@item.TableId" class="btn book-button"><i class="fas fa-check"></i></button>
+                    @Html.ActionLink("Book", "ToggleBooked", new { id = item.TableId })
+                    <hr />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                    <hr />
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.TableId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.TableId })
+                </td>
             </tr>
+        }
 
+    </table>
+</div>
 
-            @foreach (var item in Model)
-            {
-                <tr>
+@section scripts {
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Size)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IsBooked)
-                        @Html.ActionLink("Book", "ToggleBooked", new { id = item.TableId })
-                        <hr />
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                        <hr />
-                    </td>
-                    
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.TableId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.TableId })
-                    </td>
-                </tr>
-            }
+    <script>
+        window.onload = () => {
 
-        </table>
-    </div>
+            $('.book-button').on('click', (e) => {
+
+                console.log(e.currentTarget.id);
+                fetch(`/Tables/ToggleBooked/${e.currentTarget.id}`, { method: 'POST' })
+                    .then((response) => {
+                        if (response) {
+                            console.log(response);
+                        }
+                        else {
+                            console.log(response);
+                        }
+                    });
+
+            });
+        };
+    </script>
+}

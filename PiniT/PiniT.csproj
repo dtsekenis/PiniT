@@ -199,6 +199,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Managers\AccountWalletManager.cs" />
     <Compile Include="Managers\CustomerContext.cs" />
     <Compile Include="Managers\ManagerContext.cs" />
     <Compile Include="Managers\ProductCategoryManager.cs" />
@@ -227,6 +228,10 @@
     <Compile Include="Migrations\201907261604085_Authorize_Restaurant.Designer.cs">
       <DependentUpon>201907261604085_Authorize_Restaurant.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907291308511_Account_Wallet.cs" />
+    <Compile Include="Migrations\201907291308511_Account_Wallet.Designer.cs">
+      <DependentUpon>201907291308511_Account_Wallet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -237,6 +242,7 @@
     <Compile Include="Models\Restaurant.cs" />
     <Compile Include="Models\RestaurantType.cs" />
     <Compile Include="Models\Table.cs" />
+    <Compile Include="Models\AccountWallet.cs" />
     <Compile Include="PiniTHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -390,6 +396,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907261604085_Authorize_Restaurant.resx">
       <DependentUpon>201907261604085_Authorize_Restaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907291308511_Account_Wallet.resx">
+      <DependentUpon>201907291308511_Account_Wallet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

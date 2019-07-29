@@ -13,6 +13,8 @@ namespace PiniT.Controllers
     [System.Web.Mvc.Authorize]
     public class ReservationsController : Controller
     {
+        private AccountWalletManager walletDb = new AccountWalletManager();
+        private CustomerContext custDb = new CustomerContext();
         private ManagerContext manDb = new ManagerContext();
         private TableManager tableDb = new TableManager();
         private ReservationManager db = new ReservationManager();
@@ -42,6 +44,7 @@ namespace PiniT.Controllers
             return View(reservations);
         }
 
+        [System.Web.Mvc.Authorize(Roles = "Customer")]
         public ActionResult Create(int id)
         {
             Table table = tableDb.GetTable(id);
@@ -55,39 +58,49 @@ namespace PiniT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Reservation reservation)
         {
+            Table table = tableDb.GetTable((int)TempData["TableId"]);
+            PiniTCustomer customer = custDb.GetCustomer(User.Identity.GetUserId());
+            var manager = manDb.GetManager(table.RestaurantId);
+            var hub = GlobalHost.ConnectionManager.GetHubContext<PiniTHub>();
+
             if (!ModelState.IsValid)
             {
-                return HttpNotFound();
+                return View(reservation);
             }
-            //check User account
 
+            if (customer.AccountWallet.Credits < reservation.BookingFee)
+            {
+                
+                TempData["Message"] = "Not enough Credits. Reservation Cancelled";
+                return RedirectToAction("CustomerIndex", "Tables", new { id = table.RestaurantId });
+            }
 
-            //check if table still available
-            Table table = tableDb.GetTable((int)TempData["TableId"]);
             if (table.IsBooked)
             {
-                //Send message that this table was booked during reservation by another user
-                //Need to fix the path
+                TempData["Message"] = "Sorry! Someone else Booked that Table! You can Book another one :)";
                 return RedirectToAction("CustomerIndex","Tables", new { id = table.RestaurantId });
             }
-
 
             reservation.TableId = table.TableId;
             tableDb.ToggleIsBooked(reservation.TableId);
             reservation.CustomerId = User.Identity.GetUserId();
             db.CreateReservation(reservation);
-
-            //send message to hub
-            var hub = GlobalHost.ConnectionManager.GetHubContext<PiniTHub>();
-
-            var manager = manDb.GetManager(table.RestaurantId);
-            
             hub.Clients.User(manager.UserName).getReservation(new { Customer = User.Identity.Name,
                                                                     Comment = reservation.Comment,
                                                                     Date = reservation.BookDate.ToString("dd/MM/yyyy HH:mm"),
                                                                     Table = table.Name});
+            bool result = walletDb.PayFee(reservation.BookingFee, reservation.CustomerId, table.RestaurantId);
 
-            return RedirectToAction("Index","Home");
+            if (result)
+            {
+                TempData["Message"] = "Reservation Accepted! :)";
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                TempData["Message"] = "Sorry Something went Wrong ! :'(";
+                return RedirectToAction("CustomerIndex", "Tables", new { id = table.RestaurantId });
+            }
         }
     }
 }

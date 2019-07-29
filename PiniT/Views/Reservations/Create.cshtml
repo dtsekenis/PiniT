@@ -34,7 +34,7 @@
         </div>
     </div>
     <hr />
-        <label class="checkbox-inline col-md-12 text-center p-1 mb-2 mx-auto"><input type="checkbox" value="">  Are you Sure?</label>
+        <label class="checkbox-inline col-md-12 text-center p-1 mb-2 mx-auto"><input type="checkbox" value="" required>  Are you Sure?</label>
     <div class="form-group">
         <div class="text-center mx-auto">
             <input type="submit" value="Reservation" class="col-md-1 btn btn-warning p-1 mx-auto text-center" />
@@ -46,7 +46,3 @@
 <div class="text-center">
     @Html.ActionLink("Back to List", "CustomerIndex","Tables", new { id=ViewBag.Restaurant.RestaurantId}, null)
 </div>
-
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}*@

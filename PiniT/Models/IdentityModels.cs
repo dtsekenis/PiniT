@@ -34,6 +34,7 @@ namespace PiniT.Models
     public class ApplicationUser : IdentityUser
     {
 
+        public virtual AccountWallet AccountWallet { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -62,7 +63,6 @@ namespace PiniT.Models
         public virtual DbSet<Reservation> Reservations { get; set; }
         public virtual DbSet<RestaurantType> RestaurantTypes { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
-
-        public System.Data.Entity.DbSet<PiniT.Models.PiniTCustomer> ApplicationUsers { get; set; }
+        public virtual DbSet<AccountWallet> AccountWallets { get; set; }
     }
 }

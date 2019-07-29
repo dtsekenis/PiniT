@@ -16,22 +16,37 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Size)
-        </td>
-        <td>
-            @Html.ActionLink("PinIT!", "Create","Reservations",new { id=item.TableId }, new { @class="btn btn-dark" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.ActionLink("PinIT!", "Create", "Reservations", new { id = item.TableId }, new { @class = "btn btn-dark" })
+            </td>
+        </tr>
+    }
 
 </table>
 
 <div>
     @Html.ActionLink("Back to List", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-info col-2" })
 </div>
+
+
+@section scripts {
+    <script>
+        window.onload = () => {
+
+            if ("@TempData["Message"]")
+            {
+                alert("@TempData["Message"]");
+            }
+        };
+    </script>
+
+}

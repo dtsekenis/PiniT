@@ -118,6 +118,7 @@ namespace PiniT.Controllers
 
         //This will be completed with AJAX
         [Authorize(Roles = "Manager,Admin")]
+        [HttpPost]
         public ActionResult ToggleBooked(int id)
         {
             Table table = db.GetTable(id);
@@ -130,9 +131,9 @@ namespace PiniT.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
-            db.ToggleIsBooked(id);
+            bool result = db.ToggleIsBooked(id);
 
-            return RedirectToAction("ManagerIndex");
+            return Json(result);
         }
     }
 }

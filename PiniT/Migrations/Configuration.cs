@@ -142,6 +142,32 @@ namespace PiniT.Migrations
 
             #endregion
 
+            // Tess Area
+            string customerUsername_1 = "Customer1";
+            string customerEmail_1 = "customer1@gmail.com";
+            string customerPassword_1 = "iamthecustomer1";
+
+            PiniTCustomer customer1 = new PiniTCustomer { Email = customerEmail_1, UserName = customerEmail_1 };
+            userManager.Create(customer1, customerPassword_1);
+            userManager.AddToRole(customer1.Id, customerRoleName);
+
+            #region Wallets
+            //Manager Wallets
+            AccountWallet wallet1 = new AccountWallet { Id = restManager1.Id, Credits = 2000.50m };
+            AccountWallet wallet3 = new AccountWallet { Id = restManager2.Id, Credits = 1234.99m };
+            AccountWallet wallet4 = new AccountWallet { Id = restManager3.Id, Credits = 320.16m };
+            AccountWallet wallet5 = new AccountWallet { Id = restManager4.Id, Credits = 250.50m };
+
+            //Customer Wallets
+            AccountWallet wallet2 = new AccountWallet { Id = customer1.Id, Credits = 52.23m };
+
+            //Add Wallets
+
+            context.AccountWallets.AddOrUpdate(x=>x.Id,wallet1,wallet2,wallet3,wallet4,wallet5);
+            context.SaveChanges();
+            #endregion
+
+
             #region Admin
             //Add Admin
             string adminUserName = "Tasos";

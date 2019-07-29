@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity;
 
 namespace PiniT.Managers
 {
@@ -15,7 +17,10 @@ namespace PiniT.Managers
             ICollection<PiniTManager> managers;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                managers = db.Users.OfType<PiniTManager>().Include("Restaurant").ToList();
+                managers = db.Users.OfType<PiniTManager>()
+                                   .Include("Restaurant")
+                                   .Include("AccountWallet")
+                                   .ToList();
             }
 
             return managers;
@@ -25,8 +30,9 @@ namespace PiniT.Managers
             PiniTManager manager;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                                                
+
                 manager = (PiniTManager)db.Users.Include("Restaurant")
+                                                .Include("AccountWallet")
                                                 .Where(x => x.Id == id)
                                                 .OfType<PiniTManager>()
                                                 .FirstOrDefault();
@@ -86,6 +92,28 @@ namespace PiniT.Managers
                     result = false;
                 }
 
+            }
+            return result;
+        }
+
+        public bool AssignRoleManager(string id)
+        {
+            bool result;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                var userStore = new UserStore<ApplicationUser>(db);
+                ApplicationUserManager userManager = new ApplicationUserManager(userStore);
+                PiniTManager manager = db.Users.OfType<PiniTManager>().FirstOrDefault(x => x.Id == id);
+                if (!userManager.IsInRole(manager.Id,"Manager"))
+                {
+                    userManager.AddToRole(manager.Id, "Manager");
+                    db.SaveChanges();
+                    result = true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             return result;
         }
