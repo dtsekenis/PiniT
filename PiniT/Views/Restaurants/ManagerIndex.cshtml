@@ -4,39 +4,46 @@
     ViewBag.Title = "ManagerIndex";
 }
 
-<h2>ManagerIndex</h2>
+@*<h2 class="font-italic text-center mx-auto">ManagerIndex</h2>*@
+    
+        <div class="card bg-white col-md-6 mx-auto">
+            <h4 class="font-italic ml-2 mt-2">Restaurant</h4>
+            <hr />
 
-<div>
-    <h4>Restaurant</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Manager.Email)
-        </dt>
+            <dl class="dl-horizontal ml-2">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Manager.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Manager.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Manager.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.CompanyName)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CompanyName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.CompanyName)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.VAT)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.VAT)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.VAT)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.VAT)
+                </dd>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </dl>
+        </div>
+   
+         <div class="row">
+        <p class="col-md-6 mx-auto mt-1">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantId },new { @class = "btn btn-danger font-weight-bold p-1" })
+            @*@Html.ActionLink("Back to List", "Index")*@
+            @Html.ActionLink("Back", "ManagerIndex", "Tables", null, new { @class = "btn btn-warning font-weight-bold p-1 ml-1" })
+        </p>
+             </div>
+
+

@@ -4,49 +4,56 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+    <div class="card bg-white col-md-6 mx-auto">
+        <h2 class="text-center mx-auto">Table Layout</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Size)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsBooked)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
-   
-@foreach (var item in Model) {
-    <tr>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Size)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsBooked)
-            @Html.ActionLink("Book","ToggleBooked", new { id = item.TableId})
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TableId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TableId })
-        </td>
-    </tr>
-}
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.Size)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsBooked)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
 
-</table>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IsBooked)
+                        @Html.ActionLink("Book", "ToggleBooked", new { id = item.TableId })
+                        <hr />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                        <hr />
+                    </td>
+                    
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.TableId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TableId })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
