@@ -27,40 +27,26 @@
                 {
                     <li class="nav-item">@Html.ActionLink("Reservations", "Index", "Reservations", null, new { @class = "nav-link" })</li>
                 }
-                @*<li class="nav-item">@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>*@
-            </ul>
-            @Html.Partial("_LoginPartial")
+                </ul>
+
+                @*<ul class="navbar-nav ml-auto">
+                    <li class="nav-item dropdown">
+                        <i class="nav-link far fa-question-circle m-1 mr-auto" href="#" id="navbardrop" data-toggle="dropdown">
+
+                        </i>
+                        <div class="dropdown-menu bg-dark">
+                            <a class="">@Html.ActionLink("  How To Use", "About", "Home", null, new { @class = "nav-link btn btn-dark text-left far fa-keyboard" })</a>
+                            <a class="">@Html.ActionLink("  Contact", "Contact", "Home", null, new { @class = "nav-link btn btn-dark text-left far fa-envelope" })</a>
+                        </div>
+
+                    </li>
+                </ul>*@
+
+                @Html.Partial("_LoginPartial")
         </div>
-    </nav>
+            </nav>
 
     @*<div class="row">
-        <button type="button" class="btn btn-default bg-info mr-4 mt-2 ml-auto" data-toggle="collapse" data-target="#demo" aria-label="Left Align" onmouseover="hoverFunction()">
-            <span class="glyphicon glyphicon-align-left" aria-hidden="true">Info</span>
-        </button>
-        </div>
-        <div id="demo" class="collapse">
-            <div class="row">
-                <div class="col-sm-1 card shadow-lg bg-transparent p-0 ml-auto mt-1 mr-3">
-
-                        <div class="row">
-                            <div class="card-body border-info text-center">
-                                <div class="row">
-                                <button class="btn btn-info p-0 mb-1 mr-4 ml-auto" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
-                                    @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
-                                </button>
-                                    </div>
-                                <div class="row">
-                                <button class="btn btn-info p-0 mr-3 ml-auto" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
-                                    @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
-                                </button></div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>*@
-
-    <div class="row">
         <div class="panel-group btn btn-default shadow-lg p-1 bg-info mr-4 mt-2 bg-transparent border border-info ml-auto text-center" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default bg-transparent">
                 <div class="panel-heading" role="tab" id="headingOne">
@@ -74,7 +60,6 @@
                     <div class="panel-body">
                         <div class="row">
                             <button class="btn btn-info bg-transparent border-0 p-0 mb-1 ml-1 font-weight-light" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
-
                                 @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
                             </button>
                         </div>
@@ -88,7 +73,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
 
     <div class="container body-content">
 
@@ -174,10 +159,6 @@
 
         function closeWin() {
             close - button.close();
-        }
-
-        function hoverFunction() {
-            window.open("");
         }
 
     </script>
