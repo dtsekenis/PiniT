@@ -112,7 +112,7 @@ namespace PiniT.Managers
                 }
                 else
                 {
-                    return false;
+                    result = false;
                 }
             }
             return result;
