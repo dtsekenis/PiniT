@@ -158,6 +158,7 @@ namespace PiniT.Controllers
             if (ModelState.IsValid)
             {
                 var user = new PiniTCustomer { UserName = model.Email, Email = model.Email };
+                user.AccountWallet = new AccountWallet { Id = user.Id };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "Customer");
                 if (result.Succeeded)
@@ -188,7 +189,10 @@ namespace PiniT.Controllers
             if (ModelState.IsValid)
             {
                 var user = new PiniTManager { UserName = model.Email, Email = model.Email };
+                user.AccountWallet = new AccountWallet { Id = user.Id };
+               
                 var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);

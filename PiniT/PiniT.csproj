@@ -189,6 +189,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountWalletsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -246,6 +247,7 @@
     <Compile Include="PiniTHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AccountWalletsVM.cs" />
     <Compile Include="ViewModels\ProductsVM.cs" />
     <Compile Include="ViewModels\ReservationsVM.cs" />
     <Compile Include="ViewModels\RestaurantsVM.cs" />
@@ -374,6 +376,7 @@
     <Content Include="Views\Admin\ManagersIndex.cshtml" />
     <Content Include="Views\Admin\DeleteManager.cshtml" />
     <Content Include="Views\Admin\EditManager.cshtml" />
+    <Content Include="Views\AccountWallets\AddCredits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

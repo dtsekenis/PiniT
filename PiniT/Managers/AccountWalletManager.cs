@@ -16,7 +16,7 @@ namespace PiniT.Managers
             {
                 wallets = db.AccountWallets.Include("User").ToList();
             }
-            return wallets; 
+            return wallets;
         }
         public AccountWallet GetAccountWallet(string id)
         {
@@ -25,7 +25,7 @@ namespace PiniT.Managers
             {
                 wallet = db.AccountWallets.Include("User").FirstOrDefault(x => x.Id == id);
             }
-            return wallet; 
+            return wallet;
         }
         public bool CreateAccountWallet(AccountWallet wallet)
         {
@@ -67,6 +67,27 @@ namespace PiniT.Managers
                 {
                     customerWallet.Credits -= payment;
                     restaurantWallet.Credits += payment;
+                    db.SaveChanges();
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
+
+        public bool AddCredits(string walletId, decimal credits)
+        {
+            bool result;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                AccountWallet wallet = db.AccountWallets.Find(walletId);
+
+                if (wallet != null && credits > 0)
+                {
+                    wallet.Credits += credits;
                     db.SaveChanges();
                     result = true;
                 }
