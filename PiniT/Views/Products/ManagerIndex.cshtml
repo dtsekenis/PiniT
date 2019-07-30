@@ -3,13 +3,16 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    #create-product {
+        position:absolute;
+        top:0;
+        left:0;
+        
+    }
+</style>
     <div class="row">
-    
         <h2 class="cold-md-6 text-center mx-auto">Your Products</h2>
-
-        <p>
-           @Html.ActionLink("Create New", "Create",null, new { @class = "nav-link btn btn-dark text-left far fa-plus-square" })
-        </p>
     </div>
 
     <div class="row">
@@ -36,20 +39,22 @@
         {
             if (Model.Products.Any(x => x.CategoryId == category.Name))
             {
-                <div class="col-sm-2"></div>
-                <div class=" col-sm-8 rounded shadow-lg mx-auto mt-3 mb-1 text-center">
-                    <h3 class="font-italic border-bottom mt-1">@category.Name</h3>
+                <div class="col-2"></div>
+                <div class=" col-sm-8 rounded bg-light shadow-lg mx-auto mt-3 mb-1 text-center">
+                    
+                    <h3 class="font-italic border-bottom mt-1"> @category.Name <cite>@Html.ActionLink(" ", "Create", null, new { id="create-product", @class = "btn btn-primary fas fa-plus mt-1 ml-1 p-1" })</cite></h3>
                     @foreach (var product in Model.Products)
                     {
+
                         if (product.CategoryId == category.Name)
                         {
                             <p class="h5">@product.Name - @product.Price</p>
                             <p class="font-weight-lighter mb-1">@product.Description</p>
                             @Html.ActionLink(" ", "Edit", new { id = product.ProductId }, new { @class = "m-1 btn btn-dark fas fa-pencil-alt" })
 
-                           
+
                             @Html.ActionLink(" ", "Delete", new { id = product.ProductId }, new { @class = "m-1 btn btn-danger fas fa-trash" })
-                            <hr/>
+                            <hr />
                         }
                     }
                 </div>
