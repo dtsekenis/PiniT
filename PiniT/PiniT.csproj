@@ -192,6 +192,7 @@
     <Compile Include="Controllers\AccountWalletsController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImagesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ReservationsController.cs" />
@@ -202,6 +203,7 @@
     </Compile>
     <Compile Include="Managers\AccountWalletManager.cs" />
     <Compile Include="Managers\CustomerContext.cs" />
+    <Compile Include="Managers\ImageManager.cs" />
     <Compile Include="Managers\ManagerContext.cs" />
     <Compile Include="Managers\ProductCategoryManager.cs" />
     <Compile Include="Managers\ProductManager.cs" />
@@ -233,9 +235,18 @@
     <Compile Include="Migrations\201907291308511_Account_Wallet.Designer.cs">
       <DependentUpon>201907291308511_Account_Wallet.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907301705024_Images_ProfileRestImage.cs" />
+    <Compile Include="Migrations\201907301705024_Images_ProfileRestImage.Designer.cs">
+      <DependentUpon>201907301705024_Images_ProfileRestImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907301842452_bool_ProfileImage.cs" />
+    <Compile Include="Migrations\201907301842452_bool_ProfileImage.Designer.cs">
+      <DependentUpon>201907301842452_bool_ProfileImage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Image.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductCategory.cs" />
@@ -378,6 +389,8 @@
     <Content Include="Views\Admin\DeleteManager.cshtml" />
     <Content Include="Views\Admin\EditManager.cshtml" />
     <Content Include="Views\AccountWallets\AddCredits.cshtml" />
+    <Content Include="Views\Images\AddImage.cshtml" />
+    <Content Include="Views\Images\SetProfileImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -403,6 +416,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907291308511_Account_Wallet.resx">
       <DependentUpon>201907291308511_Account_Wallet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907301705024_Images_ProfileRestImage.resx">
+      <DependentUpon>201907301705024_Images_ProfileRestImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907301842452_bool_ProfileImage.resx">
+      <DependentUpon>201907301842452_bool_ProfileImage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

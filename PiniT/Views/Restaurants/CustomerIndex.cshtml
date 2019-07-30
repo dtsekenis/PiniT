@@ -36,7 +36,16 @@
                 <p class="m-0 font-italic font-weight-bolder">@restaurant.CompanyName</p>
             </div>
             <div class="card-body bg-light border-dark text-center">
-                <img class="card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
+                @if (restaurant.Images.FirstOrDefault(x=>x.isProfileImage) == null)
+                {
+                    <img class="card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
+                }
+                else
+                {
+                    <img class="card-img-top" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1" style="max-width:250px; max-height:250px;">
+
+                }
+
                 <hr class="m-1" />
                 <p class="m-0 font-italic">
                     Restaurant Type:

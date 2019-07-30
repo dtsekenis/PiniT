@@ -27,11 +27,10 @@ namespace PiniT.Models
         [Required]
         [DisplayName("VAT Number")]
         public string VAT { get; set; }
-
         public virtual ICollection<Product> Menu { get; set; }
         public virtual ICollection<RestaurantType> Type { get; set; }
         public virtual ICollection<Table> Tables { get; set; }
         public virtual PiniTManager Manager { get; set; }
-
+        public virtual ICollection<Image> Images { get; set; }
     }
 }

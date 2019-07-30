@@ -27,6 +27,7 @@ namespace PiniT.Managers
                                             .Include("Menu")
                                             .Include("Tables")
                                             .Include("Manager")
+                                            .Include("Images")
                                             .ToList();
             }
             return restaurants;
@@ -40,6 +41,7 @@ namespace PiniT.Managers
                                                 .Include("Menu")
                                                 .Include("Tables")
                                                 .Include("Manager")
+                                                .Include("Images")
                                                 .AsQueryable();
                 if (!String.IsNullOrEmpty(search))
                 {
@@ -72,6 +74,7 @@ namespace PiniT.Managers
                                            .Include("Menu")
                                            .Include("Tables")
                                            .Include("Manager")
+                                           .Include("Images")
                                            .FirstOrDefault(x => x.RestaurantId == id);
             }
             return restaurant;

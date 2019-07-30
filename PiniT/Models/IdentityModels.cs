@@ -64,5 +64,6 @@ namespace PiniT.Models
         public virtual DbSet<RestaurantType> RestaurantTypes { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<AccountWallet> AccountWallets { get; set; }
+        public virtual DbSet<Image> Images { get; set; }
     }
 }

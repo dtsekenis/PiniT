@@ -47,7 +47,7 @@
                     {
                         <button id="@item.TableId" class="btn book-button"><i class="fas fa-times"></i></button>
                     }
- 
+
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
@@ -72,7 +72,7 @@
                     .then((response) => response.json())
                     .then(json => {
                         console.log(json);
-                        ; if (json) {
+                        if (json) {
                             e.currentTarget.firstChild.classList.toggle('fa-times');
                             e.currentTarget.firstChild.classList.toggle('fa-check');
                         }

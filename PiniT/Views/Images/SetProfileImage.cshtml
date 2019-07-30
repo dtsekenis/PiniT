@@ -1,0 +1,34 @@
+﻿@model IEnumerable<PiniT.Models.Image>
+
+@foreach (var img in Model)
+{
+    <img id="@img.ImageId" class="rest-img" src="@Url.Content(img.ImagePath)" alt="@img.Title" style="width:250px; height:250px;" />
+}
+
+@section scripts{
+    <script>
+        $(document).ready(() => {
+
+            $('.rest-img').on('click', (e) => {
+
+                fetch(`/Images/SetProfileImage/${e.currentTarget.id}`, {method:'POST'})
+                    .then(response => response.json())
+                    .then(json => {
+                        console.log(json);
+                        if (json) {
+                            window.location.href = '/Restaurants/ManagerIndex';
+                        }
+                    })
+
+
+            });
+
+
+
+
+
+
+
+        });
+    </script>
+}
