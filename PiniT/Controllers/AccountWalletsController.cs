@@ -10,10 +10,12 @@ using System.Web.Mvc;
 
 namespace PiniT.Controllers
 {
+    [Authorize]
     public class AccountWalletsController : Controller
     {
         AccountWalletManager db = new AccountWalletManager();
-
+        
+        [Authorize(Roles = "Customer")]
         public ActionResult AddCredits()
         {
             AccountWallet wallet = db.GetAccountWallet(User.Identity.GetUserId());
@@ -29,6 +31,7 @@ namespace PiniT.Controllers
             return View(vm);
         }
 
+        [Authorize(Roles = "Customer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddCredits(AddCreditsAccountWalletVM vm)

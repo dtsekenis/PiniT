@@ -51,7 +51,16 @@ namespace PiniT.Controllers
         [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
-            return View();
+            CreateRestaurantVM vm = new CreateRestaurantVM
+            {
+                Restaurant = new Restaurant(),
+                Types = typeDb.GetRestaurantTypes().Select(x => new SelectListItem()
+                {
+                    Value = x.Name,
+                    Text = x.Name
+                })
+            };
+            return View(vm);
         }
 
 
@@ -60,16 +69,14 @@ namespace PiniT.Controllers
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Restaurant restaurant)
+        public ActionResult Create(CreateRestaurantVM vm)
         {
             if (!ModelState.IsValid)
             {
-                return View(restaurant);
+                return View(vm);
             }
-
-            restaurant.RestaurantId = User.Identity.GetUserId();
-
-            db.CreateRestaurant(restaurant);
+            vm.Restaurant.RestaurantId = User.Identity.GetUserId();
+            db.CreateRestaurant(vm.Restaurant,vm.SelectedTypes);
 
             return RedirectToAction("ManagerIndex");
         }
@@ -81,12 +88,22 @@ namespace PiniT.Controllers
         {
 
             var managerId = User.Identity.GetUserId();
-            Restaurant restaurant = db.GetRestaurant(managerId);
+            Restaurant restaurant = db.GetRestaurantFull(managerId);
             if (restaurant == null)
             {
                 return HttpNotFound();
             }
-            return View(restaurant);
+
+            CreateRestaurantVM vm = new CreateRestaurantVM
+            {
+                Restaurant = restaurant,
+                Types = typeDb.GetRestaurantTypes().Select(x => new SelectListItem()
+                {
+                    Value = x.Name,
+                    Text = x.Name
+                })
+            };
+            return View(vm);
         }
 
 
@@ -94,18 +111,18 @@ namespace PiniT.Controllers
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Restaurant restaurant)
+        public ActionResult Edit(CreateRestaurantVM vm)
         {
             if (!ModelState.IsValid)
             {
-                return View(restaurant);
+                return View(vm);
             }
-            if(User.Identity.GetUserId() != restaurant.RestaurantId)
+            if(User.Identity.GetUserId() != vm.Restaurant.RestaurantId)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
 
-            db.UpdateRestaurant(restaurant);
+            db.UpdateRestaurant(vm.Restaurant,vm.SelectedTypes);
             return RedirectToAction("ManagerIndex");
         }
 

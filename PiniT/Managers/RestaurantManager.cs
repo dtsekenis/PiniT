@@ -76,7 +76,7 @@ namespace PiniT.Managers
             }
             return restaurant;
         }
-        public bool CreateRestaurant(Restaurant restaurant)
+        public bool CreateRestaurant(Restaurant restaurant,List<string> typeIds)
         {
             bool result;
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -85,6 +85,15 @@ namespace PiniT.Managers
                 if (rest == null)
                 {
                     db.Restaurants.Add(restaurant);
+                    db.SaveChanges();
+                    foreach (string typeId in typeIds)
+                    {
+                        RestaurantType type = db.RestaurantTypes.Find(typeId);
+                        if (type !=null)
+                        {
+                            restaurant.Type.Add(type);
+                        }
+                    }
                     db.SaveChanges();
                     result = true;
                 }
@@ -95,11 +104,22 @@ namespace PiniT.Managers
             }
             return result;
         }
-        public void UpdateRestaurant(Restaurant restaurant)
+        public void UpdateRestaurant(Restaurant restaurant, List<string> typeIds)
         {
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 db.Restaurants.Attach(restaurant);
+                db.Entry(restaurant).Collection("Type").Load();
+                restaurant.Type.Clear();
+                db.SaveChanges();
+                foreach (string typeId in typeIds)
+                {
+                    RestaurantType type = db.RestaurantTypes.Find(typeId);
+                    if (type !=null)
+                    {
+                        restaurant.Type.Add(type);
+                    }
+                }
                 db.Entry(restaurant).State = EntityState.Modified;
                 db.SaveChanges();
 
