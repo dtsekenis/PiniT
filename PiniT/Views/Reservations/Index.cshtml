@@ -6,7 +6,7 @@
 
 <h2 class="a mx-auto text-center">My Reservations</h2>
 
-@foreach (var reservation in Model)
+@foreach (var reservation in Model.OrderBy(x=>x.BookDate))
 {
     <div class="row">
         <div class="col-md-8 card shadow-lg p-0 mx-auto">
