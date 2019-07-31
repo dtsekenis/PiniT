@@ -271,6 +271,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\pexels-photo-1640777.jpeg" />
+    <Content Include="Content\Images\sunluckphoto194349154.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
