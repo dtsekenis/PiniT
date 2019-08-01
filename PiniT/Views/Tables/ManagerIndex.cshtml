@@ -4,72 +4,85 @@
     ViewBag.Title = "Index";
 }
 <style>
-   #container{
-       background-image: url("");
-       background
+   body{
+       background: url("https://cdn11.bigcommerce.com/s-nu6nzn6ej0/images/stencil/1280x1280/products/6009/13022/Com-table-planked-elm-interior__24883.1559837903.jpg?c=2&imbypass=on") no-repeat center center fixed;
+       -webkit-background-size: cover;
+       -moz-background-size: cover;
+       -o-background-size: cover;
+       background-size: cover;       
+}
+
+   #table{
+       opacity:0.9;
    }
+   .fa-plus:hover{
+       
+   }
+ 
+   
 </style>
+    <h2 class="col-md-4 text-center my-2 mx-auto a" style="color:rgba(250, 250, 250, 0.7);">Table Layout</h2>
 
-<div id="container" class="card bg-white col-md-6 mx-auto">
-    <h2 class="text-center mx-auto">Table Layout</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Size)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsBooked)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-
-
-        @foreach (var item in Model)
-        {
+        <table id="table" class="bg-white table font-italic shadow-lg">
             <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Size)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsBooked)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Size)
-                </td>
-                <td>
-                    @if (item.IsBooked)
-                    {
-                        <button id="@item.TableId" class="btn book-button"><i class="fas fa-check"></i></button>
-                    }
-                    else
-                    {
-                        <button id="@item.TableId" class="btn book-button"><i class="fas fa-times"></i></button>
-                    }
-
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.TableId }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.TableId })
-                </td>
+               
+                <th>
+                    <cite>@Html.ActionLink(" ", "Create", null, new {id="data-toggle" , @class = "btn btn-primary fas fa-plus mt-1 ml-1 p-1" })</cite>
+                </th>
             </tr>
-        }
-    </table>
-</div>
 
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
+                        @if (item.IsBooked)
+                        {
+                            <button id="@item.TableId" class="btn text-success book-button"><i class="fas fa-check"></i></button>
+                        }
+                        else
+                        {
+                            <button id="@item.TableId" class="btn text-danger book-button"><i class="fas fa-times"></i></button>
+                        }
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        <div class="btn-group btn rounded-pill">
+                            @Html.ActionLink(" ", "Edit", new { id = item.TableId }, new { @class = "btn btn-warning fas fa-pencil-alt" })
+                            @Html.ActionLink(" ", "Delete", new { id = item.TableId }, new { @class = "btn btn-danger fas fa-trash" })
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+  
 @section scripts {
 
     <script>
+        $(document).ready(function () {
+            $('#data-toggle').popover({
+                trigger: 'hover',
+                title: 'Popover title',
+                content: '<p>Popover content.</p>'
+            });
+        }
+    
         window.onload = () => {
 
             $('.book-button').on('click', (e) => {
@@ -80,7 +93,9 @@
                         console.log(json);
                         if (json) {
                             e.currentTarget.firstChild.classList.toggle('fa-times');
+                            e.currentTarget.classList.toggle('text-danger');
                             e.currentTarget.firstChild.classList.toggle('fa-check');
+                            e.currentTarget.classList.toggle('text-success');
                         }
                     });
             });
