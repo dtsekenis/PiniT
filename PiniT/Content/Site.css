@@ -106,3 +106,31 @@ h3.a {
     color: black;
     margin-bottom: 40px;
 }
+
+
+.circle {
+    margin-top: 40px;
+    margin-left: 60px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    box-shadow: 0 5px 10px lightgrey;
+    /*font-size: 30px;*/
+    font-family: 'Berkshire Swash', cursive;
+    font-weight: bold;
+    color: #fff;
+    line-height: 220px;
+    text-align: center;
+    background: #404040;
+    opacity: 0.85;
+    margin-bottom: 20px;
+}
+
+.aboutimage {
+    background-image: url('Images/about.jpg');
+    height: 600px;
+    background-size: cover;
+    width: 100%;
+    margin-top:10px;
+    margin-bottom: 30px;
+}

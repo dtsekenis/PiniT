@@ -10,12 +10,10 @@
             background-image: url("https://as2.ftcdn.net/jpg/02/56/04/19/500_F_256041907_eWiahJpwVZG5rjyrGX8w42l2K2ZVSXyx.jpg");
             background-size: cover;
             background-repeat: no-repeat;
-            /*background-repeat: no-repeat;
-            background-size: auto;*/
         }
         .card-img-top{
-            width:250px;
-            height:250px;
+            max-width:100%; 
+            max-height:100%;
         }
     </style>
 <br>
@@ -49,17 +47,19 @@
             <div class="card-header border-dark font-weight-bolder bg-secondary text-white text-center">
                 <p class="m-0 font-italic font-weight-bolder">@restaurant.CompanyName</p>
             </div>
+
             <div class="card-body bg-light border-dark text-center">
-                @if (restaurant.Images.FirstOrDefault(x=>x.isProfileImage) == null)
-                {
-                    <img class="card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
-                }
-                else
-                {
-                    <img class="card-img-top" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1" style="max-width:250px; max-height:250px;">
+                <div class="row">
+                    @if (restaurant.Images.FirstOrDefault(x => x.isProfileImage) == null)
+                    {
+                        <img class="col card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
+                    }
+                    else
+                    {
+                        <img class="col card-img-top" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1">
 
-                }
-
+                    }
+                </div>
                 <hr class="m-1" />
                 <p class="m-0 font-italic">
                     Restaurant Type:
@@ -72,11 +72,13 @@
 
             </div>
             <div class="card-footer border-dark bg-light text-center">
-                <div class="row">
-                    @Html.ActionLink("Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12" })
-                    @Html.ActionLink("Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6" })
+                <div class="row btn-group">
+                    
 
-                    <button id="@restaurant.RestaurantId" data-company="@restaurant.CompanyName" class="btn btn-secondary col-6 restaurant-chat">Chat</button>
+                    @Html.ActionLink(" Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12 fab fa-pinterest-p" })
+                    @Html.ActionLink(" Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6 fas fa-book-open" })
+
+                    <button id="@restaurant.RestaurantId" data-company="@restaurant.CompanyName" class="btn btn-secondary col-6 restaurant-chat fas fa-comments"> Chat</button>
                 </div>
             </div>
         </div>
