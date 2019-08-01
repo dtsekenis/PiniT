@@ -73,7 +73,7 @@ namespace PiniT.Migrations
             string restManagerEmail_4 = "manager4@gmail.com";
             string restManagerPassword_4 = "iamthemanager4";
 
-            PiniTManager restManager1 = (PiniTManager)userManager.FindByName(restManagerUserName_1);
+            PiniTManager restManager1 = (PiniTManager)userManager.FindByName(restManagerEmail_1);
             if (restManager1 == null)
             {
                 restManager1 = new PiniTManager
@@ -89,7 +89,7 @@ namespace PiniT.Migrations
             {
                 userManager.AddToRole(restManager1.Id, restManagerRole.Name);
             }
-            PiniTManager restManager2 = (PiniTManager)userManager.FindByName(restManagerUserName_2);
+            PiniTManager restManager2 = (PiniTManager)userManager.FindByName(restManagerEmail_2);
             if (restManager2 == null)
             {
                 restManager2 = new PiniTManager
@@ -106,7 +106,7 @@ namespace PiniT.Migrations
                 userManager.AddToRole(restManager2.Id, restManagerRole.Name);
             }
 
-            PiniTManager restManager3 = (PiniTManager)userManager.FindByName(restManagerUserName_3);
+            PiniTManager restManager3 = (PiniTManager)userManager.FindByName(restManagerEmail_3);
             if (restManager3 == null)
             {
                 restManager3 = new PiniTManager
@@ -122,7 +122,7 @@ namespace PiniT.Migrations
             {
                 userManager.AddToRole(restManager3.Id, restManagerRole.Name);
             }
-            PiniTManager restManager4 = (PiniTManager)userManager.FindByName(restManagerUserName_4);
+            PiniTManager restManager4 = (PiniTManager)userManager.FindByName(restManagerEmail_4);
             if (restManager4 == null)
             {
                 restManager4 = new PiniTManager
@@ -147,9 +147,21 @@ namespace PiniT.Migrations
             string customerEmail_1 = "customer1@gmail.com";
             string customerPassword_1 = "iamthecustomer1";
 
-            PiniTCustomer customer1 = new PiniTCustomer { Email = customerEmail_1, UserName = customerEmail_1 };
-            userManager.Create(customer1, customerPassword_1);
-            userManager.AddToRole(customer1.Id, customerRoleName);
+            PiniTCustomer customer1 = (PiniTCustomer)userManager.FindByName(customerEmail_1);
+            if (customer1 == null)
+            {
+                customer1 = new PiniTCustomer
+                {
+                    Email = customerEmail_1,
+                    UserName = customerEmail_1
+                };
+                userManager.Create(customer1, customerPassword_1);
+            }
+            if (!userManager.IsInRole(customer1.Id,customerRole.Name))
+            {
+                userManager.AddToRole(customer1.Id, customerRoleName);
+            }
+            context.SaveChanges();
 
             #region Wallets
             //Manager Wallets
@@ -167,14 +179,13 @@ namespace PiniT.Migrations
             context.SaveChanges();
             #endregion
 
-
             #region Admin
             //Add Admin
             string adminUserName = "Tasos";
             string adminEmail = "admin@gmail.com";
             string adminPassword = "iamtheadmin";
 
-            ApplicationUser admin = userManager.FindByName(adminUserName);
+            ApplicationUser admin = userManager.FindByName(adminEmail);
             if (admin == null)
             {
                 admin = new ApplicationUser

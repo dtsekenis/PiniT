@@ -3,56 +3,54 @@
 @{
     ViewBag.Title = "Edit";
 }
-
-<h2>Edit</h2>
-
+    <style>
+        body {
+            background: url("https://cdn11.bigcommerce.com/s-nu6nzn6ej0/images/stencil/1280x1280/products/6009/13022/Com-table-planked-elm-interior__24883.1559837903.jpg?c=2&imbypass=on") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+        }
+    </style>
+<h2 class="col-md-4 text-center my-2 mx-auto a" style="color:rgba(250, 250, 250, 0.7);">Edit Table</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Table</h4>
+
+    <div class="form-horizontal col-md-6 bg-light mx-auto text-center">
+
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.TableId)
         @Html.HiddenFor(model => model.RestaurantId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold" })
+            <div class="col-md-6 mx-auto">
+                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control text-center" } })
                 @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IsBooked, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsBooked)
-                    @Html.ValidationMessageFor(model => model.IsBooked, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold" })
+            <div class="col-md-6 mx-auto">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control text-center" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div class="col-md-offset-2 col-md-4 mx-auto  btn-group">
+                <input type="submit" value="Save" class="btn btn-success mb-2" />
+                @Html.ActionLink("Back", "ManagerIndex", null, new { @class = "btn btn-dark ml-auto mb-2" })
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "ManagerIndex")
+    
 </div>
 
 @section Scripts {

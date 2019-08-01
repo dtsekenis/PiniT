@@ -10,10 +10,12 @@
             background-image: url("https://as2.ftcdn.net/jpg/02/56/04/19/500_F_256041907_eWiahJpwVZG5rjyrGX8w42l2K2ZVSXyx.jpg");
             background-size: cover;
             background-repeat: no-repeat;
-            image-resolution:2000dpi;
-            opacity:0.9;
             /*background-repeat: no-repeat;
             background-size: auto;*/
+        }
+        .card-img-top{
+            width:250px;
+            height:250px;
         }
     </style>
 <br>
@@ -97,10 +99,11 @@
                 searchForm.submit();
             };
             $('.restaurant-chat').click((e) => {
-
+                
                 $(`#chat`).html('');
+                $('#chat').removeClass('d-none');
                 $('#chat').append(`<div class="row">
-                                        <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:250px;">
+                                        <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:280px;">
                                             <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
                                                 <div class="row">
                                                     <p class="col-10 mb-0 mr-auto ml-2">${e.target.getAttribute('data-company')}</p>
@@ -130,6 +133,10 @@
                     });
 
                 });
+                chat.client.gotMessage = (from, message) => {
+                    console.log(message);
+                $('#messages').append(`<p>Manager: ${message}</p>`);
+                };
 
             });
 
