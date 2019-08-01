@@ -21,62 +21,26 @@
                 <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
                 @if (User.IsInRole("Manager"))
                 {
+                    <li class="nav-item">@Html.ActionLink("Wallet", "Index", "AccountWallets", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Restaurant", "ManagerIndex", "Restaurants", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Menu", "ManagerIndex", "Products", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Reservations", "Index", "Reservations", null, new { @class = "nav-link" })</li>
                 }
                 @if (User.IsInRole("Customer"))
                 {
+                    <li class="nav-item">@Html.ActionLink("Wallet", "Index", "AccountWallets", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Reservations", "Index", "Reservations", null, new { @class = "nav-link" })</li>
                 }
-                </ul>
-
-                @*<ul class="navbar-nav ml-auto">
-                    <li class="nav-item dropdown">
-                        <i class="nav-link far fa-question-circle m-1 mr-auto" href="#" id="navbardrop" data-toggle="dropdown">
-
-                        </i>
-                        <div class="dropdown-menu bg-dark">
-                            <a class="">@Html.ActionLink("  How To Use", "About", "Home", null, new { @class = "nav-link btn btn-dark text-left far fa-keyboard" })</a>
-                            <a class="">@Html.ActionLink("  Contact", "Contact", "Home", null, new { @class = "nav-link btn btn-dark text-left far fa-envelope" })</a>
-                        </div>
-
-                    </li>
-                </ul>*@
-
-                @Html.Partial("_LoginPartial")
+                @if (User.IsInRole("Admin"))
+                {
+                    <li class="nav-item">@Html.ActionLink("Products", "ProductCategoryIndex", "Admin", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Customers", "CustomersIndex", "Admin", null, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Managers", "ManagersIndex", "Admin", null, new { @class = "nav-link" })</li>
+                }
+            </ul>
+            @Html.Partial("_LoginPartial")
         </div>
-            </nav>
-
-    @*<div class="row">
-        <div class="panel-group btn btn-default shadow-lg p-1 bg-info mr-4 mt-2 bg-transparent border border-info ml-auto text-center" id="accordion" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default bg-transparent">
-                <div class="panel-heading" role="tab" id="headingOne">
-                    <h5 class="panel-title">
-                        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Info
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        <div class="row">
-                            <button class="btn btn-info bg-transparent border-0 p-0 mb-1 ml-1 font-weight-light" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
-                                @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
-                            </button>
-                        </div>
-                        <div class="row">
-                            <button class="btn btn-info p-0 bg-transparent border-0 font-weight-light" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
-                                @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
-                            </button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
+    </nav>
     <div class="container body-content">
 
         @RenderBody()
@@ -88,8 +52,27 @@
                 @Html.ActionLink("Business Account", "RegisterManager", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "col-3 btn btn-primary" })
             }
         </footer>
-        <div id="chat">
-            <div id="messages"></div>
+        <div id="chat" class="d-none">
+            <div class="row">
+                <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" style="width:280px;">
+                    <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
+                        <div class="row">
+                            <p id="sender" class="col-10 mb-0 mr-auto ml-2"></p>
+                            <button id="button-close" type="button" class="close col-2 ml-auto mr-1">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body bg-light border-success">
+                        <div id="messages" class="overflow-auto" style="height:120px"></div>
+                        <br />
+                        <input id="message" class="form-control border border-success">
+                        <button id="send-reply" class="btn btn-success mt-1 mx-auto" data-user="" type="button" aria-expanded="false">
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="notifications"></div>
     </div>
@@ -101,54 +84,72 @@
     <script src="https://kit.fontawesome.com/3bc198b0bc.js"></script>
     @RenderSection("scripts", required: false)
 
-
-
     <script>
         $(document).ready(() => {
-
+            let chatUser;
             let hub = $.connection.piniTHub;
             const notificationElement = document.getElementById('notifications');
             hub.client.getReservation = (reservation) => {
                 console.log(reservation);
                 notificationElement.innerHTML = '';
-                $('#notifications').append(`<div class="row">
-                            <div class="col-md-2 card shadow-lg border border-danger p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="border-width:5px;">
-                                <div class="card-header border-dark font-weight-bolder bg-danger text-white text-center">
-                                    <div class="row">
+                $('#notifications').append(`
+                                        <div class="card shadow-lg border border-danger p-0 fixed-bottom alert alert-dismissible fade show mr-auto" role="alert" style="width:300px;">
+                                            <div class="card-header border-dark font-weight-bolder bg-danger text-white text-center">
+                                                <div class="row style="width:300px;"">
 
-                                        <p class="col-10  mb-0 mr-auto">new reservation</p>
-                                        <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="card-body bg-light border-danger text-center">
-                                    <p class="m-0">Customer: <cite class="font-weight-light">${reservation.Customer}</cite></p>
-                                    <hr />
-                                    <p class="m-0">Table: <cite class="font-weight-light">${reservation.Table}</cite></p>
-                                    <hr />
-                                    <p class="m-0">Book date: <cite class="font-weight-light">${reservation.Date}  </cite></p>
-                                    <hr />
-                                    <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
-                                        comments
-                                    </button>
-                                    <div class="collapse" id="collapseexample">
-                                        <div class="card card-body bg-light border-danger text-center mt-1">
-                                           ${reservation.Comment}
+                                                    <p class="col-10  mb-0">New Reservation</p>
+                                                    <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="card-body bg-light border-danger text-center">
+                                                <p class="m-0">Customer: <cite class="font-weight-light">${reservation.Customer}</cite></p>
+                                                <hr />
+                                                <p class="m-0">Table: <cite class="font-weight-light">${reservation.Table}</cite></p>
+                                                <hr />
+                                                <p class="m-0">Book date: <cite class="font-weight-light">${reservation.Date}  </cite></p>
+                                                <hr />
+                                                <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
+                                                    Comment
+                                                </button>
+                                                <div class="collapse" id="collapseexample">
+                                                    <div class="card card-body bg-light border-danger text-center mt-1">
+                                                       ${reservation.Comment}
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>`);
+                                    `);
             };
 
             hub.client.gotMessage = (from, message) => {
-                $('#messages').append(`<p>${from}: ${message}</p>`)
+                chatUser = from;
+                $('#send-reply').attr('data-user',`${from}`)
+                $('#chat').removeClass('d-none');
+                $('#sender').html(`${from}`);
+                $('#messages').append(`<p class="text-right">${message}</p>`);
+                $("#messages").scrollTop($("#messages")[0].scrollHeight);
+
+
             };
+            $('#send-reply').on('click', () => {
+                hub.server.sendToUser(chatUser, $('#message').val());
+                console.log(chatUser);
+                $('#messages').append(`<p>Me: ${$('#message').val()}</p>`);
+                $("#messages").scrollTop($("#messages")[0].scrollHeight);
+                $('#message').val('').focus();
+            });
 
             $.connection.hub.start().done(() => {
                 console.log('Connected');
             });
+            $('#button-close').on('click', () => {
+                $('#chat').addClass('d-none');
+            });
+
+
+
         });
 
         $(".panel-heading").parent('.panel').hover(
@@ -156,12 +157,7 @@
                 $(this).children('.collapse').collapse('show');
             }, function () {
                 $(this).children('.collapse').collapse('hide');
-            }
-        );
-
-        function closeWin() {
-            close - button.close();
-        }
+            });
 
     </script>
 </body>

@@ -97,10 +97,11 @@
                 searchForm.submit();
             };
             $('.restaurant-chat').click((e) => {
-
+                
                 $(`#chat`).html('');
+                $('#chat').removeClass('d-none');
                 $('#chat').append(`<div class="row">
-                                        <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:250px;">
+                                        <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:280px;">
                                             <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
                                                 <div class="row">
                                                     <p class="col-10 mb-0 mr-auto ml-2">${e.target.getAttribute('data-company')}</p>
@@ -130,6 +131,10 @@
                     });
 
                 });
+                chat.client.gotMessage = (from, message) => {
+                    console.log(message);
+                $('#messages').append(`<p>Manager: ${message}</p>`);
+                };
 
             });
 

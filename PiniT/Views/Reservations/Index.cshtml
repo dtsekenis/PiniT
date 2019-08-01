@@ -4,9 +4,10 @@
     ViewBag.Title = "Reservations";
 }
 
-<h2 class="a mx-auto text-center">My Reservations</h2>
+<h2 class="a my-2 mx-auto text-center">My Reservations</h2>
 
-@foreach (var reservation in Model.OrderBy(x=>x.BookDate))
+
+@foreach (var reservation in Model.OrderBy(x=>x.BookDate).Reverse())
 {
     <div class="row">
         <div class="col-md-8 card shadow-lg p-0 mx-auto">
@@ -42,8 +43,10 @@
             </div>
         </div>
     </div>
+    
 }
-
-<div>
-    @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-info col-2" })
+<div class="text-center">
+    @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-info ml-auto" })
 </div>
+
+

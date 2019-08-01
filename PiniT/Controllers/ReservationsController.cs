@@ -31,14 +31,6 @@ namespace PiniT.Controllers
                 reservations = db.GetRestaurantReservations(userId);
                 return View(reservations);
             }
-            //if (User.IsInRole("Admin"))
-            //{
-            //    ViewBag.Restaurants = restDb.GetRestaurants();
-
-            //    reservations = db.GetReservationsFull();
-            //    return View(reservations);
-            //}
-
             reservations = db.GetCustomerReservationsFull(userId);
             ViewBag.Restaurants = restDb.GetRestaurants();
             return View(reservations);
@@ -84,6 +76,10 @@ namespace PiniT.Controllers
             reservation.TableId = table.TableId;
             tableDb.ToggleIsBooked(reservation.TableId);
             reservation.CustomerId = User.Identity.GetUserId();
+            if (reservation.Comment == null || reservation.Comment =="")
+            {
+                reservation.Comment = "No Comment";
+            }
             db.CreateReservation(reservation);
             hub.Clients.User(manager.UserName).getReservation(new { Customer = User.Identity.Name,
                                                                     Comment = reservation.Comment,
