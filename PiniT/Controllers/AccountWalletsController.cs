@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 
 namespace PiniT.Controllers
 {
@@ -15,6 +16,16 @@ namespace PiniT.Controllers
     {
         AccountWalletManager db = new AccountWalletManager();
         
+
+        public ActionResult Index()
+        {
+            AccountWallet wallet = db.GetAccountWallet(User.Identity.GetUserId());
+            if (wallet == null)
+            {
+                return HttpNotFound();
+            }
+            return View(wallet);
+        }
         [Authorize(Roles = "Customer")]
         public ActionResult AddCredits()
         {
@@ -22,6 +33,10 @@ namespace PiniT.Controllers
             if (wallet == null)
             {
                 return HttpNotFound();
+            }
+            if (wallet.Id != User.Identity.GetUserId())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
             }
             AddCreditsAccountWalletVM vm = new AddCreditsAccountWalletVM
             {
@@ -40,9 +55,12 @@ namespace PiniT.Controllers
             {
                 return View(vm);
             }
-
+            if (vm.Wallet.Id != User.Identity.GetUserId())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.Forbidden);
+            }
             db.AddCredits(vm.Wallet.Id, vm.AmountToBeAdded);
-            return RedirectToAction("CustomerIndex", "Restaurants");
+            return RedirectToAction("Index");
         }
     }
 }

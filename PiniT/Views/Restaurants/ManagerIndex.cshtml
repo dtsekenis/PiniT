@@ -1,49 +1,80 @@
 ﻿@model PiniT.Models.Restaurant
-
+<style>
+    #all-images {
+        overflow: hidden;
+        height: 300px;
+        overflow-y: scroll;
+    }
+</style>
 @{
     ViewBag.Title = "ManagerIndex";
 }
 
-@*<h2 class="font-italic text-center mx-auto">ManagerIndex</h2>*@
-    
-        <div class="card bg-white col-md-6 mx-auto">
-            <h4 class="font-italic ml-2 mt-2">Restaurant</h4>
-            <hr />
+<div class="row">
+    <div class="col"></div>
+    <div class="bg-white col text-center">
+        <h4 class="font-italic mt-2">Restaurant Info</h4>
+        <hr />
 
-            <dl class="dl-horizontal ml-2">
-                <dt>
-                    @Html.DisplayNameFor(model => model.Manager.Email)
-                </dt>
 
-                <dd>
-                    @Html.DisplayFor(model => model.Manager.Email)
-                </dd>
+        <dl class="col dl-horizontal ml-2">
+            <dt>
+                @Html.DisplayNameFor(model => model.Manager.Email)
+            </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.CompanyName)
-                </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Manager.Email)
+            </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.CompanyName)
-                </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </dt>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.VAT)
-                </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CompanyName)
+            </dd>
 
-                <dd>
-                    @Html.DisplayFor(model => model.VAT)
-                </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.VAT)
+            </dt>
 
-            </dl>
+            <dd>
+                @Html.DisplayFor(model => model.VAT)
+            </dd>
+
+        </dl>
+        <div class="row">
+            <div class="col p-0 btn-group">
+                @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantId }, new { @class = "btn btn-danger font-weight-bold p-1" })
+                @Html.ActionLink("Add Image", "AddImage", "Images", null, new { @class = "btn btn-danger font-weight-bold p-1" })
+                @Html.ActionLink("Profile Image", "SetProfileImage", "Images", null, new { @class = "btn btn-danger font-weight-bold p-1" })
+                @Html.ActionLink("Back", "ManagerIndex", "Tables", null, new { @class = "btn btn-warning font-weight-bold p-1 ml-auto" })
+
+
+            </div>
         </div>
-   
-         <div class="row">
-        <p class="col-md-6 mx-auto mt-1">
-            @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantId },new { @class = "btn btn-danger font-weight-bold p-1" })
-            @Html.ActionLink("Back", "ManagerIndex", "Tables", null, new { @class = "btn btn-warning font-weight-bold p-1 ml-1" })
-        </p>
-             </div>
+
+    </div>
+    <div class="col"></div>
+
+    <div class="bg-white col-12 mt-3">
+        <h4 class="font-italic mt-2 text-center">Uploaded Images</h4>
+        <hr />
+
+        <div id="all-images" class="text-center">
+            @foreach (var img in Model.Images)
+            {
+                <img id="@img.ImageId" class="rest-img mx-auto" src="@Url.Content(img.ImagePath)" alt="@img.Title" style="width:250px; height:250px;" />
+
+            }
+        </div>
+    </div>
+
+
+
+</div>
+
+
 
 
 

@@ -13,7 +13,12 @@ namespace PiniT
         public void SendToUser(string to, string message)
         {
             var user = db.Users.Find(to);
+            if (user == null)
+            {
+                user = db.Users.FirstOrDefault(x => x.UserName == to);
+            }
             Clients.User(user.UserName).gotMessage(Context.User.Identity.Name, message);
         }
+
     }
 }

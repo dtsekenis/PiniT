@@ -270,6 +270,9 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\images %281%29.png" />
+    <Content Include="Content\Images\images.jfif" />
+    <Content Include="Content\Images\images.png" />
     <Content Include="Content\Images\pexels-photo-1640777.jpeg" />
     <Content Include="Content\Images\usreIndex.jpg" />
     <Content Include="favicon.ico" />
@@ -392,6 +395,7 @@
     <Content Include="Views\AccountWallets\AddCredits.cshtml" />
     <Content Include="Views\Images\AddImage.cshtml" />
     <Content Include="Views\Images\SetProfileImage.cshtml" />
+    <Content Include="Views\AccountWallets\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
