@@ -107,6 +107,7 @@ namespace PiniT.Managers
                 if (!userManager.IsInRole(manager.Id,"Manager"))
                 {
                     userManager.AddToRole(manager.Id, "Manager");
+                    manager.RestaurantAuthorized = true;
                     db.SaveChanges();
                     result = true;
                 }
