@@ -130,9 +130,8 @@
                 $('#sender').html(`${from}`);
                 $('#messages').append(`<p class="text-right">${message}</p>`);
                 $("#messages").scrollTop($("#messages")[0].scrollHeight);
-
-
             };
+
             $('#send-reply').on('click', () => {
                 hub.server.sendToUser(chatUser, $('#message').val());
                 console.log(chatUser);
@@ -147,9 +146,6 @@
             $('#button-close').on('click', () => {
                 $('#chat').addClass('d-none');
             });
-
-
-
         });
 
         $(".panel-heading").parent('.panel').hover(

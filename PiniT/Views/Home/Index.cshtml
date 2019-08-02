@@ -8,21 +8,30 @@
         /*background-image: url('../../Content/Images/patern.png');*/
         /*background-image: url('../../Content/Images/backrfw.jpg');*/
         background-image: url('../../Content/Images/background.jpg');
+        background-size:cover;
+    }
+    .header {
+      padding: 10px 16px;
+    }
+
+    .sticky {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding-top: 102px;
     }
 </style>
 
 @*<div class="row jumbotron-fluid">*@
     <div class="homeimage">
-        <p align="right" class="homeimagetxt">Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Blanditiis accusamus ex, <br> veritatis repellat laudantium, dolores <br> doloribus in praesentium dolore <br> reprehenderit omnis beatae numquam sed <br> eum quasi vero ipsa non porro.</p>
-
+        <p class="homeimagetxt text-right mr-2">Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Blanditiis accusamus ex, <br> veritatis repellat laudantium, dolores <br> doloribus in praesentium dolore <br> reprehenderit omnis beatae numquam sed <br> eum quasi vero ipsa non porro.</p>
     </div>
 
     <div class="homeboxa">
         <p>Top of the week...</p>
     </div>
-
-    <div class="homebox">
-        <div class="row">
+    <div id="" class="homebox">
+        <div class="row mx-auto text-center">
             <div class="col-md-4">
                 <h5>
                     La Bella Mafia
@@ -40,17 +49,14 @@
         </div>
     </div>
 
-
-
     <div class="homeboxa">
         <div class="row">
-            <h2>  Are you hungry for...</h2>
+            <h2 class="ml-4">Are you hungry for...</h2>
         </div>
     </div>
 
-
     <div class="homeboxb">
-    <div class="row">
+    <div class="row text-center mx-auto">
         <div class="col-md-4">
             <h5>
                 Pizza
@@ -83,3 +89,15 @@
     </div>
 
 @*</div>*@
+<script>
+    window.onscroll = function() {myFunction()};
+    var header = document.getElementById("myHeader");
+    var sticky = header.offsetTop;
+    function myFunction() {
+      if (window.pageYOffset > sticky) {
+        header.classList.add("sticky");
+      } else {
+        header.classList.remove("sticky");
+      }
+    }
+</script>
