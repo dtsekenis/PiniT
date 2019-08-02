@@ -64,7 +64,7 @@
         <div id="all-images" class="text-center">
             @foreach (var img in Model.Images)
             {
-                <img id="@img.ImageId" class="rest-img mx-auto" src="@Url.Content(img.ImagePath)" alt="@img.Title" style="width:250px; height:250px;" />
+                <img id="@img.ImageId" class="rest-img mx-auto mb-1" src="@Url.Content(img.ImagePath)" alt="@img.Title" style="width:250px; height:250px;" />
 
             }
         </div>

@@ -4,42 +4,40 @@
     ViewBag.Title = "AddImage";
 }
 
-<h2>AddImage</h2>
+<h2 class="a mx-auto text-center">Add an Image</h2>
 
 
-@using (Html.BeginForm("AddImage","Images",FormMethod.Post, new { enctype = "multipart/form-data"}))
+@using (Html.BeginForm("AddImage", "Images", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Image</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+    <hr />
+    <div class="row">
+        <div class="form-horizontal col-md-4 bg-light text-center mx-auto">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2 font-weight-bold mx-auto", placeholder = "Enter Image Title Here" })
+                <div class="col-md-6 mx-auto">
+                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control mx-auto" } })
+                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" name="ImageFile" required/>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImagePath, htmlAttributes: new { @class = "control-label col-md-6 font-weight-bold" })
+                <div class="col-md-12 border border-dark mx-auto">
+                    <input type="file" name="ImageFile" required />
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+
+            <div class="form-group">
+                <div class="col-md-offset-4 btn-group">
+                    <input type="submit" value="Add Image" class="btn btn-success" />
+                    @Html.ActionLink("Back", "ManagerIndex", null, new { @class = "btn btn-dark" })
+                </div>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
