@@ -14,6 +14,7 @@ namespace PiniT.Controllers
     public class TablesController : Controller
     {
         private TableManager db = new TableManager();
+        private RestaurantManager restDb = new RestaurantManager();
 
         [Authorize(Roles ="Customer")]
         public ActionResult CustomerIndex(string id)
@@ -25,6 +26,12 @@ namespace PiniT.Controllers
         [Authorize(Roles = "Manager")]
         public ActionResult ManagerIndex()
         {
+            Restaurant restaurant = restDb.GetRestaurantFull(User.Identity.GetUserId());
+            if (restaurant == null)
+            {
+                return RedirectToAction("Create","Restaurants");
+            }
+
             if (User.IsInRole("Manager"))
             {
                 var userId = User.Identity.GetUserId();

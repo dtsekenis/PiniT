@@ -75,6 +75,7 @@
             </div>
         </div>
         <div id="notifications"></div>
+        <div id="chat-layout" class=""></div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -86,69 +87,39 @@
 
     <script>
         $(document).ready(() => {
-            let chatUser;
             let hub = $.connection.piniTHub;
             const notificationElement = document.getElementById('notifications');
             hub.client.getReservation = (reservation) => {
                 console.log(reservation);
                 notificationElement.innerHTML = '';
                 $('#notifications').append(`
-                                        <div class="card shadow-lg border border-danger p-0 fixed-bottom alert alert-dismissible fade show mr-auto" role="alert" style="width:300px;">
-                                            <div class="card-header border-dark font-weight-bolder bg-danger text-white text-center">
-                                                <div class="row style="width:300px;"">
-
-                                                    <p class="col-10  mb-0">New Reservation</p>
-                                                    <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="card-body bg-light border-danger text-center">
-                                                <p class="m-0">Customer: <cite class="font-weight-light">${reservation.Customer}</cite></p>
-                                                <hr />
-                                                <p class="m-0">Table: <cite class="font-weight-light">${reservation.Table}</cite></p>
-                                                <hr />
-                                                <p class="m-0">Book date: <cite class="font-weight-light">${reservation.Date}  </cite></p>
-                                                <hr />
-                                                <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
-                                                    Comment
-                                                </button>
-                                                <div class="collapse" id="collapseexample">
-                                                    <div class="card card-body bg-light border-danger text-center mt-1">
-                                                       ${reservation.Comment}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    `);
+                                                    <div class="card shadow-lg border border-danger p-0 fixed-bottom alert alert-dismissible fade show mr-auto" role="alert" style="width:300px;">
+                                                        <div class="card-header border-dark font-weight-bolder bg-danger text-white text-center">
+                                                            <div class="row style="width:300px;"">
+                                                                <p class="col-10  mb-0">New Reservation</p>
+                                                                <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body bg-light border-danger text-center">
+                                                            <p class="m-0">Customer: <cite class="font-weight-light">${reservation.Customer}</cite></p>
+                                                            <hr />
+                                                            <p class="m-0">Table: <cite class="font-weight-light">${reservation.Table}</cite></p>
+                                                            <hr />
+                                                            <p class="m-0">Book date: <cite class="font-weight-light">${reservation.Date}  </cite></p>
+                                                            <hr />
+                                                            <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
+                                                                Comment
+                                                            </button>
+                                                            <div class="collapse" id="collapseexample">
+                                                                <div class="card card-body bg-light border-danger text-center mt-1">
+                                                                    ${reservation.Comment}
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>`);
             };
-
-            hub.client.gotMessage = (from, message) => {
-                chatUser = from;
-                $('#send-reply').attr('data-user',`${from}`)
-                $('#chat').removeClass('d-none');
-                $('#sender').html(`${from}`);
-                $('#messages').append(`<p class="text-right">${message}</p>`);
-                $("#messages").scrollTop($("#messages")[0].scrollHeight);
-
-
-            };
-            $('#send-reply').on('click', () => {
-                hub.server.sendToUser(chatUser, $('#message').val());
-                console.log(chatUser);
-                $('#messages').append(`<p>Me: ${$('#message').val()}</p>`);
-                $("#messages").scrollTop($("#messages")[0].scrollHeight);
-                $('#message').val('').focus();
-            });
-
-            $.connection.hub.start().done(() => {
-                console.log('Connected');
-            });
-            $('#button-close').on('click', () => {
-                $('#chat').addClass('d-none');
-            });
-
-
 
         });
 
@@ -159,6 +130,94 @@
                 $(this).children('.collapse').collapse('hide');
             });
 
+
     </script>
+
+    <script>
+
+        $(document).ready(() => {
+
+            let users = [];
+            let hub = $.connection.piniTHub;
+            hub.client.gotMessage = (from, message) => {
+
+                if (users.includes(from)) {
+                    let chat = document.getElementById(`${from}chat`);
+                    let sender = document.getElementById(`${from}sender`);
+                    let messages = document.getElementById(`${from}messages`);
+                    
+
+
+                    chat.classList.remove('d-none');
+                    sender.innerHTML = `${from}`;
+                    messages.innerHTML += `<p class="text-right border rounded-circle">${message}</p>`;
+                    messages.scrollTop = messages.scrollHeight;
+                }
+                else {
+                    users.push(from);
+                    $(`#chat-layout`).append(`<div id="${from}chat" class="">
+                                                <div class="row">
+                                                    <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" style="width:280px;">
+                                                        <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
+                                                            <div class="row">
+                                                                <p id="${from}sender" class="col-10 mb-0 mr-auto ml-2"></p>
+                                                                <button id="${from}button-close" type="button" class="close col-2 ml-auto mr-1">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-body bg-light border-success">
+                                                            <div id="${from}messages" class="overflow-auto" style="height:120px"></div>
+                                                            <br />
+                                                            <input id="${from}message" class="form-control border border-success">
+                                                            <button id="${from}send-reply" class="btn btn-success mt-1 mx-auto" data-user="" type="button" aria-expanded="false">
+                                                                Send
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>`);
+
+                    let chat = document.getElementById(`${from}chat`);
+                    let sender = document.getElementById(`${from}sender`);
+                    let messages = document.getElementById(`${from}messages`);
+                    let sendReplyButton = document.getElementById(`${from}send-reply`);
+                    let messageInput = document.getElementById(`${from}message`);
+                    let buttonClose = document.getElementById(`${from}button-close`);
+
+                    chat.classList.remove('d-none');
+                    sender.innerHTML = `${from}`;
+                    messages.innerHTML += `<p class="text-right">${message}</p>`;
+                    messages.scrollTop = messages.scrollHeight;
+
+                    sendReplyButton.onclick = () => {
+                        hub.server.sendToUser(from, messageInput.value);
+                        console.log(users);
+                        messages.innerHTML += `<p>${messageInput.value}</p>`;
+                        messages.scrollTop = messages.scrollHeight;
+
+                        messageInput.value = '';
+                        messageInput.focus();
+                    };
+
+                    buttonClose.onclick = () => {
+                        chat.classList.add('d-none');
+                    };
+
+                }
+
+            };
+
+            $.connection.hub.start().done(() => {
+                console.log('Connected');
+
+            });
+
+
+        });
+
+    </script>
+
+
 </body>
 </html>
