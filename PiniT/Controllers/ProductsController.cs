@@ -23,6 +23,11 @@ namespace PiniT.Controllers
         [Authorize(Roles = "Manager")]
         public ActionResult ManagerIndex(string search, string category)
         {
+            Restaurant restaurant = restDb.GetRestaurantFull(User.Identity.GetUserId());
+            if (restaurant == null)
+            {
+                return RedirectToAction("Create", "Restaurants");
+            }
             var userId = User.Identity.GetUserId();
             ViewBag.Categories = new SelectList(pcDb.GetProductCategories(), "Name", "Name");
             IndexProductsVM vm = new IndexProductsVM

@@ -26,6 +26,11 @@ namespace PiniT.Controllers
 
             if (User.IsInRole("Manager"))
             {
+                Restaurant restaurant = restDb.GetRestaurantFull(User.Identity.GetUserId());
+                if (restaurant == null)
+                {
+                    return RedirectToAction("Create", "Restaurants");
+                }
                 ViewBag.Restaurants = restDb.GetRestaurants();
 
                 reservations = db.GetRestaurantReservations(userId);

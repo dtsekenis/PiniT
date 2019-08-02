@@ -93,7 +93,7 @@
 
     <script>
         $(document).ready(() => {
-            let chat = $.connection.piniTHub;
+            let hub = $.connection.piniTHub;
             const categoryDropdown = document.getElementById('restType');
             const searchForm = document.getElementById('search-form');
             categoryDropdown.oninput = (e) => {
@@ -108,7 +108,7 @@
                                             <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
                                                 <div class="row">
                                                     <p class="col-10 mb-0 mr-auto ml-2">${e.target.getAttribute('data-company')}</p>
-                                                    <button type="button" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
+                                                    <button type="button" id="closeme" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
@@ -127,14 +127,14 @@
                 $.connection.hub.start().done(() => {
 
                     $('#send').click(() => {
-                        chat.server.sendToUser(e.target.id, $('#message').val());
+                        hub.server.sendToUser(e.target.id, $('#message').val());
                         $('#messages').append(`<p>Me: ${$('#message').val()}</p>`)
                         $("#messages").scrollTop($("#messages")[0].scrollHeight);
                         $('#message').val('').focus();
+                        $('#closeme').click();
                     });
-
                 });
-                chat.client.gotMessage = (from, message) => {
+                hub.client.gotMessage = (from, message) => {
                     console.log(message);
                 $('#messages').append(`<p>Manager: ${message}</p>`);
                 };
