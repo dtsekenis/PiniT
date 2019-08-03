@@ -4,46 +4,52 @@
     ViewBag.Title = "Log in";
 }
     <style>
-        body{
-            background-color:whitesmoke;
+        body{    
+            background: url('../../Content/Images/background.jpg') no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            max-width:100%
         }
-        #loginimg {
+
+        .container{
+        max-width:80%
+    }
+        /*#loginimg {
             background-image: url('Images/about.jpg');
             height: 650px;
             background-size: cover;
             width: 100%;
-            
+            opacity:1;
             margin-bottom: 30px;
-        }
+        }*/
     </style>
 
 <div class="row">
-
-    <div class="container col-md-7">
+    @*<div class="container col-md-7">
         <img id="loginimg" src="https://cdn11.bigcommerce.com/s-nu6nzn6ej0/images/stencil/1280x1280/products/5708/9868/Interior-waterfall-petrified-wood__50263.1544123948.jpg?c=2&imbypass=on" alt="loginImg" />
-    </div>
-
-
-    <div class="col-md-5 text-center">
+    </div>*@
+    <div class="col-md-6 text-center mx-auto">
 
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
-            <h2 class="a mt-1 mx-auto">@ViewBag.Title</h2>
+            <h1 class="a mt-1 text-white font-weight-bolder font-italic mx-auto m-2">@ViewBag.Title</h1>
             <hr />
-            <div class="container border border-light shadow">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="container bg-light border border-light shadow-lg">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger"})
                 <div class="form-group text-center">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label font-italic font-weight-bold mr-2" })
-                    <div class="col-md-6 col-sm-6 mx-auto">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label font-italic font-weight-bold mt-1 mr-2" })
+                    <div class="col-md-6 col-sm-6 mx-auto text-center">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control font-weight-light text-center" })
                         @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label font-italic font-weight-bold mr-5" })
-                    <div class="col-md-6 col-sm-6 text-center font-italic mx-auto">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label font-italic font-weight-bold mr-0" })
+                    <div class="col-md-6 col-sm-6 col-lg-6 text-center font-italic mx-auto">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control text-center" })
                         @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -75,5 +81,5 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")     
 }
