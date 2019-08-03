@@ -105,8 +105,8 @@
                 $(`#chat`).html('');
                 $('#chat').removeClass('d-none');
                 $('#chat').append(`<div class="row">
-                                        <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:280px;">
-                                            <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
+                                        <div class="card shadow-lg border border-dark p-0 fixed-bottom alert alert-dismissible fade show ml-auto" role="alert" style="width:280px;">
+                                            <div class="card-header border-dark font-weight-bolder bg-dark text-white text-center">
                                                 <div class="row">
                                                     <p class="col-10 mb-0 mr-auto ml-2">${e.target.getAttribute('data-company')}</p>
                                                     <button type="button" id="closeme" class="close col-2 ml-auto mr-1" data-dismiss="alert" aria-label="Close">
@@ -114,12 +114,12 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="card-body bg-light border-success">
+                                            <div class="card-body bg-light border-dark">
                                                 <div id="messages" class="overflow-auto" style="height:120px"></div>
                                                     <br/>
-                                                <input id="message" class="form-control border border-success">
-                                                <button id="send" class="btn btn-success mt-1 mx-auto" type="button" aria-expanded="false">
-                                                    Send
+                                                <input id="message" class="form-control border border-dark" placeholder="Enter a message">
+                                                <button id="send" class="btn btn-dark mt-1 mx-auto" type="button" aria-expanded="false">
+                                                    Send a Chat Request
                                                 </button>
                                             </div>
                                         </div>

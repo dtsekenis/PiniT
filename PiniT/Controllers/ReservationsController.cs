@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.SignalR;
 using PiniT.Managers;
 using PiniT.Models;
+using PiniT.ViewModels;
 
 namespace PiniT.Controllers
 {
@@ -48,24 +49,34 @@ namespace PiniT.Controllers
             TempData["TableId"] = id;
             ViewBag.Restaurant = restDb.GetRestaurant(table.RestaurantId);
             ViewBag.Table = table;
-            return View();
+            CreateReservationsVM vm = new CreateReservationsVM
+            {
+                Table = table,
+                Restaurant = restDb.GetRestaurant(table.RestaurantId),
+
+            };
+            return View(vm);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Reservation reservation)
+        public ActionResult Create(CreateReservationsVM vm)
         {
             Table table = tableDb.GetTable((int)TempData["TableId"]);
             PiniTCustomer customer = custDb.GetCustomer(User.Identity.GetUserId());
             var manager = manDb.GetManager(table.RestaurantId);
             var hub = GlobalHost.ConnectionManager.GetHubContext<PiniTHub>();
 
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || !vm.HasAcceptedTerms)
             {
-                return View(reservation);
+                TempData["TableId"] = table.TableId;
+                vm.Table = table;
+                vm.Restaurant = restDb.GetRestaurant(table.RestaurantId);
+                return View(vm);
             }
 
-            if (customer.AccountWallet.Credits < reservation.BookingFee)
+
+            if (customer.AccountWallet.Credits < vm.Reservation.BookingFee)
             {
                 
                 TempData["Message"] = "Not enough Credits. Reservation Cancelled";
@@ -78,19 +89,23 @@ namespace PiniT.Controllers
                 return RedirectToAction("CustomerIndex","Tables", new { id = table.RestaurantId });
             }
 
-            reservation.TableId = table.TableId;
-            tableDb.ToggleIsBooked(reservation.TableId);
-            reservation.CustomerId = User.Identity.GetUserId();
-            if (reservation.Comment == null || reservation.Comment =="")
+            vm.Reservation.TableId = table.TableId;
+            tableDb.ToggleIsBooked(vm.Reservation.TableId);
+            vm.Reservation.CustomerId = User.Identity.GetUserId();
+            if (vm.Reservation.Comment == null || vm.Reservation.Comment =="")
             {
-                reservation.Comment = "No Comment";
+                vm.Reservation.Comment = "No Comment";
             }
-            db.CreateReservation(reservation);
-            hub.Clients.User(manager.UserName).getReservation(new { Customer = User.Identity.Name,
-                                                                    Comment = reservation.Comment,
-                                                                    Date = reservation.BookDate.ToString("dd/MM/yyyy HH:mm"),
-                                                                    Table = table.Name});
-            bool result = walletDb.PayFee(reservation.BookingFee, reservation.CustomerId, table.RestaurantId);
+            db.CreateReservation(vm.Reservation);
+            hub.Clients.User(manager.UserName).getReservation(new
+            {
+                Customer = User.Identity.Name,
+                Comment = vm.Reservation.Comment,
+                Date = vm.Reservation.BookDate.ToString("dd/MM/yyyy HH:mm"),
+                Table = table.Name,
+                EstimatedTime = vm.Reservation.BookDate.AddMinutes(vm.EstimatedTime).ToString("HH:mm")
+            });
+            bool result = walletDb.PayFee(vm.Reservation.BookingFee, vm.Reservation.CustomerId, table.RestaurantId);
 
             if (result)
             {
