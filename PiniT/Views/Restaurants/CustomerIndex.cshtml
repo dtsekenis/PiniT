@@ -7,18 +7,18 @@
     <style>
         body {
             /*background-image: url("/Content/Images/usreIndex.jpg");*/
-            background-image: url("https://as2.ftcdn.net/jpg/02/56/04/19/500_F_256041907_eWiahJpwVZG5rjyrGX8w42l2K2ZVSXyx.jpg");
+            background-image: url("");
             background-size: cover;
-            background-repeat: no-repeat;
+            
         }
         .card-img-top{
-            max-width:100%; 
-            max-height:100%;
+            width:100px; 
+            height:305px;
         }
     </style>
 <br>
 
-<h2 class="a  mx-auto text-center" style="color:rgba(250, 250, 250, 0.7);">Available Restaurants</h2>
+<h2 class="a  mx-auto font-weight-bolder text-center" style="color:rgba(250, 250, 250, 0.7);">Available Restaurants</h2>
 
 <div class="row mt-3 mb-1">
     <div id="a" class="col-md-6 p-3 border rounded bg-light mx-auto">
@@ -39,55 +39,55 @@
     </div>
 </div>
 
-<div class="row">
+
     @foreach (var restaurant in Model.Restaurants)
-    {
-        <div class="col-md-3 col-sm-6 col-12 card shadow p-0">
-            <div class="card-header border-dark font-weight-bolder bg-secondary text-white text-center">
-                <p class="m-0 font-italic font-weight-bolder">@restaurant.CompanyName</p>
+    {<div class="row">
+    <div class="col-md-10 col-sm-6 card shadow-lg mx-auto mb-1">
+        <div class="card-header border-dark font-weight-bolder bg-dark text-white text-center">
+            <h4 class="m-0 font-italic font-weight-bolder">@restaurant.CompanyName</h4>
+        </div>
+
+        <div class="card-body bg-light border-dark text-center">
+            <div class="row">
+                @if (restaurant.Images.FirstOrDefault(x => x.isProfileImage) == null)
+                {
+                    <img class="col-md-7 col-sm-12 col card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
+                }
+                else
+                {
+                    <img class="col-md-7 col-sm-12 card-img-top" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1">
+
+                }
+            <p class="m-0 col-md-5 col-sm-12 text-center font-italic mt-5">
+                Restaurant Type:
+                @foreach (var item in restaurant.Type)
+                {
+                    <cite class="font-weight-light">@item.Name</cite>
+             
+                }
+                <br />
+
+                <br />
+                Total Free Tables: <cite class="font-weight-light">@restaurant.Tables.Count(x => x.IsBooked == false)</cite>
+            </p>
             </div>
+            
 
-            <div class="card-body bg-light border-dark text-center">
-                <div class="row">
-                    @if (restaurant.Images.FirstOrDefault(x => x.isProfileImage) == null)
-                    {
-                        <img class="col card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
-                    }
-                    else
-                    {
-                        <img class="col card-img-top" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1">
+        </div>
+        <div class="card-footer border-dark bg-light text-center">
+            <div class="row btn-group mr-auto">
 
-                    }
-                </div>
-                <hr class="m-1" />
-                <p class="m-0 font-italic">
-                    Restaurant Type:
-                    @foreach (var item in restaurant.Type)
-                    {
-                        <cite class="font-weight-light">@item.Name</cite>
-                    }
-                </p>
-                <p class="m-0 font-italic">Total Free Tables: <cite class="font-weight-light">@restaurant.Tables.Count(x => x.IsBooked == false)</cite></p>
 
-            </div>
-            <div class="card-footer border-dark bg-light text-center">
-                <div class="row btn-group">
-                    
+                @Html.ActionLink(" Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12 fab fa-pinterest-p" })
+                @Html.ActionLink(" Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6 fas fa-book-open" })
 
-                    @Html.ActionLink(" Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12 fab fa-pinterest-p" })
-                    @Html.ActionLink(" Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6 fas fa-book-open" })
-
-                    <button id="@restaurant.RestaurantId" data-company="@restaurant.CompanyName" class="btn btn-secondary col-6 restaurant-chat fas fa-comments"> Chat</button>
-                </div>
+                <button id="@restaurant.RestaurantId" data-company="@restaurant.CompanyName" class="btn btn-secondary col-6 restaurant-chat fas fa-comments"> Chat</button>
             </div>
         </div>
-    }
-    <footer class="container-fluid text-right">
-        <a href="#myPage" title="To Bottom">
-            <span id="arrow" class="glyphicon glyphicon-chevron-down"></span>
-        </a>
-    </footer>
+    </div>
 </div>
+    }
+
 
 @section scripts {
 
@@ -145,9 +145,5 @@
         });
 
     </script>
-
-
 }
-
-
 
