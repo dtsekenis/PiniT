@@ -34,14 +34,14 @@ h2.a {
 
 h3.a {
     font-family: emoji;
-    /*font-family: "Times New Roman", Times, sans-serif;*/  
-    text-decoration:underline;
+    /*font-family: "Times New Roman", Times, sans-serif;*/
+    text-decoration: underline;
 }
 
 #a {
     margin-left: 160px;
-    margin-bottom:10px;
-    margin-top:5px;
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 
@@ -50,8 +50,8 @@ h3.a {
     height: 400px;
     background-size: cover;
     width: 100%;
-    margin-bottom:20px;
-    opacity:1;
+    margin-bottom: 20px;
+    opacity: 1;
 }
 
 .homeimagetxt {
@@ -85,6 +85,7 @@ h3.a {
     color: white;
     margin-bottom: 40px;
 }
+
 .homeboxa {
     font-family: 'Lobster', cursive;
     font-size: 200%;
@@ -131,12 +132,11 @@ h3.a {
     height: 600px;
     background-size: cover;
     width: 100%;
-    margin-top:10px;
+    margin-top: 10px;
     margin-bottom: 30px;
 }
 
 .homeboxc {
-
     padding: 100px;
     background-color: #404040;
     opacity: 0.95;
@@ -144,7 +144,7 @@ h3.a {
     font-family: 'Berkshire Swash', cursive;
     font-size: 100%;
     color: white;
-    margin-top:100px;
+    margin-top: 100px;
     margin-bottom: 40px;
 }
 
@@ -159,19 +159,93 @@ h3.a {
     opacity: 0.8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 @keyframes animatedBackground {
     from {
         background-position: 0 0;
     }
+
     to {
         background-position: 100% 0;
     }
 }
 
 #animate-area {
-    background-image:url("https://www.tropical-islands.de/fileadmin/_processed_/3/7/csm_TI_RESTAURANT_TROPICAL-GARDEN1_RGB_2000x860_61b40cc4c5.jpg") right bottom no-repeat, url("http://www.amanogroup.de/wp-content/uploads/2015/08/0213.jpg") left top repeat;
+    background-image: url("https://www.tropical-islands.de/fileadmin/_processed_/3/7/csm_TI_RESTAURANT_TROPICAL-GARDEN1_RGB_2000x860_61b40cc4c5.jpg") right bottom no-repeat, url("http://www.amanogroup.de/wp-content/uploads/2015/08/0213.jpg") left top repeat;
     background-size: 1100px 400px;
     background-position: 0px 0px;
     background-repeat: repeat-x;
     animation: animatedBackground 5s linear infinite;
 }
+
+
+@-webkit-keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    from {
+        bottom: 0;
+        opacity: 0;
+    }
+
+    to {
+        bottom: 30px;
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+@keyframes fadeout {
+    from {
+        bottom: 30px;
+        opacity: 1;
+    }
+
+    to {
+        bottom: 0;
+        opacity: 0;
+    }
+}
+
+#toast-alert {
+    position: absolute;
+    background-color: red;
+    z-index: 2;
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    left: 50%;
+    bottom: 30px;
+}
+
+    #toast-alert.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
