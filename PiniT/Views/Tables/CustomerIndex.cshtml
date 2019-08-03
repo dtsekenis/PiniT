@@ -3,38 +3,39 @@
 @{
     ViewBag.Title = "CustomerIndex";
 }
+    <style>
+        body {
+            background-image: url("https://www.wyndhamgrandathens.com/uploads/photos/2018/10/TRIAINA_RESTAURANT__4288.jpg") ;
+            background-size: cover;
+            
+        }
+    </style>
+    
 
-<h2 class="a mb-3 mt-3">Choose a Table</h2>
-
-<table class="table col-6 mx-auto">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Restaurant.CompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Size)
-        </th>
-    </tr>
-
+<h2 class="a mx-auto text-center mt-2 mb-2 font-weight-bold" style="color:whitesmoke">Choose a Table</h2>
+<hr />
+<div class="row">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Size)
-            </td>
-            <td>
-                @Html.ActionLink("PinIT!", "Create", "Reservations", new { id = item.TableId }, new { @class = "btn btn-dark" })
-            </td>
-        </tr>
+        <div class="card col-md-3 m-2 mx-auto" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center"><cite>@Html.DisplayFor(modelItem => item.Restaurant.CompanyName)</cite></h5>
+                <h5 class="card-subtitle mb-2 text-center">Size: <cite class="font-italic font-weight-light">@Html.DisplayFor(modelItem => item.Size)</cite></h5>
+
+                <div class="row">
+                    <div class="col-md-offset-2 col-md-4 mx-auto btn-group p-2 mx-auto">
+                        @Html.ActionLink("PinIT!", "Create", "Reservations", new { id = item.TableId }, new { @class = "btn btn-dark" })
+
+                    </div>
+                </div>
+                @*<a href="#" class="card-link">Another link</a>*@
+            </div>
+        </div>
     }
+</div>
 
-</table>
-
-<div>
-    @Html.ActionLink("Back to List", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-info col-2" })
+<div class="mx-auto text-center m-2">
+    @Html.ActionLink("Back", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-info col-2" })
 </div>
 
 

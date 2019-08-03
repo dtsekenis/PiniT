@@ -51,15 +51,15 @@ h3.a {
     background-size: cover;
     width: 100%;
     margin-bottom:20px;
+    opacity:1;
 }
 
 .homeimagetxt {
-    padding: 35px;
     font-family: 'Courgette', cursive;
-    font-size: 200%;
-    grid-auto-rows: 150px;
+    font-size: 28px;
+    /*grid-auto-rows: 150px;*/
     color: white;
-    text-shadow: 3px 2px black;
+    text-shadow: 2px 2px black;
 }
 
 .roundimage {
@@ -133,4 +133,29 @@ h3.a {
     width: 100%;
     margin-top:10px;
     margin-bottom: 30px;
+}
+
+.homeboxc {
+
+    padding: 100px;
+    background-color: #404040;
+    opacity: 0.95;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Berkshire Swash', cursive;
+    font-size: 100%;
+    color: white;
+    margin-top:100px;
+    margin-bottom: 40px;
+}
+
+.homeboxaa {
+    font-family: 'Lobster', cursive;
+    font-size: 200%;
+    color: white;
+    text-shadow: 3px 2px black;
+    padding: 10px;
+    margin-top: 30px;
+    background-color: #404040;
+    opacity: 0.8;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
