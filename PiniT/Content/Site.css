@@ -78,7 +78,7 @@ h3.a {
 .homebox {
     padding: 10px;
     background-color: brown;
-    opacity: 0.85;
+    opacity: 0.9;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     font-family: 'Berkshire Swash', cursive;
     font-size: 100%;
@@ -158,4 +158,20 @@ h3.a {
     background-color: #404040;
     opacity: 0.8;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+@keyframes animatedBackground {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 100% 0;
+    }
+}
+
+#animate-area {
+    background-image:url("https://www.tropical-islands.de/fileadmin/_processed_/3/7/csm_TI_RESTAURANT_TROPICAL-GARDEN1_RGB_2000x860_61b40cc4c5.jpg") right bottom no-repeat, url("http://www.amanogroup.de/wp-content/uploads/2015/08/0213.jpg") left top repeat;
+    background-size: 1100px 400px;
+    background-position: 0px 0px;
+    background-repeat: repeat-x;
+    animation: animatedBackground 5s linear infinite;
 }

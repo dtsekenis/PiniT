@@ -10,16 +10,7 @@
         background-image: url('../../Content/Images/background.jpg');
         background-size:cover;
     }
-    .header {
-      padding: 10px 16px;
-    }
 
-    .sticky {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding-top: 102px;
-    }
 </style>
 
 @*<div class="row jumbotron-fluid">*@
@@ -30,7 +21,7 @@
     <div class="homeboxa">
         <p>Top of the week...</p>
     </div>
-    <div id="" class="homebox">
+    <div class="homebox">
         <div class="row mx-auto text-center">
             <div class="col-md-4">
                 <h5>
@@ -47,6 +38,7 @@
                 <img class="roundimage" src="~/Content/images/apostolis.jpg" />
             </div>
         </div>
+        
     </div>
 
     <div class="homeboxa">
@@ -55,7 +47,7 @@
         </div>
     </div>
 
-    <div class="homeboxb">
+    <div id="" class="homeboxb">
     <div class="row text-center mx-auto">
         <div class="col-md-4">
             <h5>
@@ -87,17 +79,3 @@
         </div>
     </div>
     </div>
-
-@*</div>*@
-<script>
-    window.onscroll = function() {myFunction()};
-    var header = document.getElementById("myHeader");
-    var sticky = header.offsetTop;
-    function myFunction() {
-      if (window.pageYOffset > sticky) {
-        header.classList.add("sticky");
-      } else {
-        header.classList.remove("sticky");
-      }
-    }
-</script>
