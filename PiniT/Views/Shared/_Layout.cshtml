@@ -46,10 +46,12 @@
         @RenderBody()
         <hr />
         <footer class="row">
-            <p class="mr-auto col-3">&copy; @DateTime.Now.Year - Pinit Application</p>
+            <p class="mr-auto col-3 text-white font-italic">&copy; @DateTime.Now.Year - Pinit Application</p>
             @if (!User.Identity.IsAuthenticated)
             {
-                @Html.ActionLink("Business Account", "RegisterManager", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "col-3 btn btn-primary" })
+                <div class="col-md-7 col">
+    @Html.ActionLink("Business Account", "RegisterManager", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-primary m-3" })
+            </div>
             }
         </footer>
         <div id="chat" class="d-none">
