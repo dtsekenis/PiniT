@@ -1,48 +1,70 @@
-﻿@model PiniT.Models.Reservation
+﻿@model PiniT.ViewModels.CreateReservationsVM
 
 @{
     ViewBag.Title = "Create";
 }
 
-    <h2 class="m-0 mt-3 mb-3 text-center a">@ViewBag.Restaurant.CompanyName</h2>
+<h2 class="m-0 mt-3 mb-3 text-center a">@Model.Restaurant.CompanyName</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="row">
-        <div class="col-md-3 card shadow border border-dark p-0 mx-auto">
-            <div class="card-header border-dark font-weight-bolder bg-secondary text-white text-center">
-                <p class="m-0">Reservation Details</p>
+        <div class="row">
+            <div class="col-md-6 col-8 col-sm-8 card shadow border border-dark p-0 mx-auto">
+                <div class="card-header border-dark font-weight-bolder bg-secondary text-white text-center">
+                    <p class="m-0">Reservation Details</p>
+                </div>
+                <div class="card-body bg-light border-dark text-center">
+
+                    <p class="m-0">Table Size: <cite class="font-weight-light">@Model.Table.Size</cite></p>
+                    <hr />
+
+                    <p class="m-0">BookDate: <cite class="font-weight-light">  @DateTime.Now.ToString("dd/MM/yyyy HH:mm")</cite></p>
+                    <hr />
+                    <p class="m-0">BookFee: <cite class="font-weight-light">  $10</cite></p>
+                    <hr />
+                    @Html.LabelFor(x => x.EstimatedTime)
+                    <p id="estimated-time"></p>
+                    @Html.EditorFor(x => x.EstimatedTime, new { htmlAttributes = new { type = "range", step = "5", @class = "form-control-range mx-auto", id = "estimatedTimeInput", min = "5", max = "90" } })
+
+                    <hr />
+                    @Html.LabelFor(x => x.Reservation.Comment, new { htmlAttributes = new { @class = "mx-auto" } })<br />
+                    @Html.EditorFor(x => x.Reservation.Comment, new { htmlAttributes = new { @class = "m-0 p-0 form-control border border-secondary font-weight-light mx-auto", rows = "5" } })
+
+                </div>
             </div>
-            <div class="card-body bg-light border-dark text-center">
-
-                <p class="m-0">Table Size: <cite class="font-weight-light">@ViewBag.Table.Size</cite></p>
-                <hr />
-
-                <p class="m-0">BookDate: <cite class="font-weight-light">  @DateTime.Now.ToString("dd/MM/yyyy HH:mm")</cite></p>
-                <hr />
-                <p class="m-0">BookFee: <cite class="font-weight-light">  $10</cite></p>
-                <hr />
-                @Html.LabelFor(x => x.Comment, new { htmlAttributes = new { @class = "mx-auto" } })<br />
-                @Html.EditorFor(model => model.Comment, new { htmlAttributes = new { @class = "m-0 p-0 form-control border border-secondary font-weight-light mx-auto", rows = "5" } })
+        </div>
+        <hr />
+        <label class="checkbox-inline col-md-12 text-center p-1 mb-2 mx-auto"><input type="checkbox" name="HasAcceptedTerms" value="true" required>  Are you Sure?</label>
+        <div class="form-group">
+            <div class="text-center mx-auto">
+                <input type="submit" value="Submit" class="btn btn-warning p-1 mx-auto text-center" />
             </div>
         </div>
     </div>
-    <hr />
-        <label class="checkbox-inline col-md-12 text-center p-1 mb-2 mx-auto"><input type="checkbox" value="" required>  Are you Sure?</label>
-    <div class="form-group">
-        <div class="text-center mx-auto">
-            <input type="submit" value="Reservation" class="col-md-1 btn btn-warning p-1 mx-auto text-center" />
-        </div>
-    </div>
-</div>
 }
 
 <div class="text-center">
-    @Html.ActionLink("Back to List", "CustomerIndex","Tables", new { id=ViewBag.Restaurant.RestaurantId}, null)
+    @Html.ActionLink("Back to List", "CustomerIndex", "Tables", new { id = Model.Restaurant.RestaurantId }, null)
 </div>
+
+
+@section scripts {
+
+    <script>
+        window.onload = () => {
+            let rangeDisplay = document.getElementById('estimated-time');
+            let rangeInput = document.getElementById('estimatedTimeInput');
+
+            rangeInput.oninput = () => {
+
+                rangeDisplay.innerHTML = `${rangeInput.value} Minutes`;
+            };
+        };
+    </script>
+}

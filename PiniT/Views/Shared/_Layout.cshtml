@@ -108,6 +108,8 @@
                                                             <p class="m-0">Table: <cite class="font-weight-light">${reservation.Table}</cite></p>
                                                             <hr />
                                                             <p class="m-0">Book date: <cite class="font-weight-light">${reservation.Date}  </cite></p>
+                                                            <p class="m-0">Will arrive at : ${reservation.EstimatedTime}</p>
+                                                            <hr/>
                                                             <hr />
                                                             <button class="btn btn-danger m-0" type="button" data-toggle="collapse" data-target="#collapseexample" aria-expanded="false" aria-controls="collapseexample">
                                                                 Comment
@@ -150,15 +152,15 @@
 
                     chat.classList.remove('d-none');
                     sender.innerHTML = `${from}`;
-                    messages.innerHTML += `<p class="text-right border rounded-circle">${message}</p>`;
+                    messages.innerHTML += `<p style="width:65%" class="ml-auto px-2 border rounded text-white bg-danger">${message}</p>`;
                     messages.scrollTop = messages.scrollHeight;
                 }
                 else {
                     users.push(from);
                     $(`#chat-layout`).append(`<div id="${from}chat" class="">
                                                 <div class="row">
-                                                    <div class="card shadow-lg border border-success p-0 fixed-bottom alert alert-dismissible fade show ml-auto" style="width:280px;">
-                                                        <div class="card-header border-dark font-weight-bolder bg-success text-white text-center">
+                                                    <div class="card shadow-lg border border-dark p-0 fixed-bottom alert alert-dismissible fade show ml-auto" style="width:280px;">
+                                                        <div class="card-header border-dark font-weight-bolder bg-dark text-white text-center">
                                                             <div class="row">
                                                                 <p id="${from}sender" class="col-10 mb-0 mr-auto ml-2"></p>
                                                                 <button id="${from}button-close" type="button" class="close col-2 ml-auto mr-1">
@@ -169,8 +171,8 @@
                                                         <div class="card-body bg-light border-success">
                                                             <div id="${from}messages" class="overflow-auto" style="height:120px"></div>
                                                             <br />
-                                                            <input id="${from}message" class="form-control border border-success">
-                                                            <button id="${from}send-reply" class="btn btn-success mt-1 mx-auto" data-user="" type="button" aria-expanded="false">
+                                                            <input id="${from}message" class="form-control border border-dark">
+                                                            <button id="${from}send-reply" class="btn btn-dark mt-1 mx-auto" data-user="" type="button" aria-expanded="false">
                                                                 Send
                                                             </button>
                                                         </div>
@@ -187,13 +189,13 @@
 
                     chat.classList.remove('d-none');
                     sender.innerHTML = `${from}`;
-                    messages.innerHTML += `<p class="text-right">${message}</p>`;
+                    messages.innerHTML += `<p style="width:65%" class="ml-auto px-2 border rounded text-white bg-danger">${message}</p>`;
                     messages.scrollTop = messages.scrollHeight;
 
                     sendReplyButton.onclick = () => {
                         hub.server.sendToUser(from, messageInput.value);
                         console.log(users);
-                        messages.innerHTML += `<p>${messageInput.value}</p>`;
+                        messages.innerHTML += `<p style="width:65%" class="mr-auto px-2 border rounded text-white bg-dark">${messageInput.value}</p>`;
                         messages.scrollTop = messages.scrollHeight;
 
                         messageInput.value = '';
