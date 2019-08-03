@@ -56,6 +56,10 @@ namespace PiniT.Managers
 
                 if (db.Products.Find(product.ProductId) == null)
                 {
+                    if (product.Category == null)
+                    {
+                        product.Category = db.ProductCategories.FirstOrDefault(x => x.Name == "Other");
+                    }
                     db.Products.Add(product);
                     db.SaveChanges();
                     result = true;

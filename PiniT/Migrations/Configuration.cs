@@ -47,7 +47,7 @@ namespace PiniT.Migrations
             //Create Role "Customer"
             string customerRoleName = "Customer";
             IdentityRole customerRole = roleManager.FindByName(customerRoleName);
-         
+
             if (customerRole == null)
             {
                 customerRole = new IdentityRole(customerRoleName);
@@ -157,7 +157,7 @@ namespace PiniT.Migrations
                 };
                 userManager.Create(customer1, customerPassword_1);
             }
-            if (!userManager.IsInRole(customer1.Id,customerRole.Name))
+            if (!userManager.IsInRole(customer1.Id, customerRole.Name))
             {
                 userManager.AddToRole(customer1.Id, customerRoleName);
             }
@@ -175,7 +175,7 @@ namespace PiniT.Migrations
 
             //Add Wallets
 
-            context.AccountWallets.AddOrUpdate(x=>x.Id,wallet1,wallet2,wallet3,wallet4,wallet5);
+            context.AccountWallets.AddOrUpdate(x => x.Id, wallet1, wallet2, wallet3, wallet4, wallet5);
             context.SaveChanges();
             #endregion
 
@@ -206,6 +206,8 @@ namespace PiniT.Migrations
 
             #region Product Categories
             //Add Product Categories
+            ProductCategory other = new ProductCategory();
+            other.Name = "Other";
             ProductCategory appetizer = new ProductCategory();
             appetizer.Name = "Appetizers";
 
@@ -221,29 +223,29 @@ namespace PiniT.Migrations
             ProductCategory dessert = new ProductCategory();
             dessert.Name = "Desserts";
 
-            context.ProductCategories.AddOrUpdate(x => x.Name, appetizer, salads, main, drinks, dessert);
+            context.ProductCategories.AddOrUpdate(x => x.Name,other, appetizer, salads, main, drinks, dessert);
             context.SaveChanges();
             #endregion
 
             #region Restaurant Types
             //Add Restaurant Type
             RestaurantType bar = new RestaurantType { Name = "Bar" };
-            RestaurantType bistro  = new RestaurantType { Name = "Bistro" };
+            RestaurantType bistro = new RestaurantType { Name = "Bistro" };
             RestaurantType grill = new RestaurantType { Name = "Grill House" };
             RestaurantType vegan = new RestaurantType { Name = "Vegan" };
             RestaurantType italian = new RestaurantType { Name = "Italian" };
             RestaurantType asian = new RestaurantType { Name = "Asian" };
-            RestaurantType french= new RestaurantType { Name = "French" };
-            RestaurantType restaurant= new RestaurantType { Name = "Restaurant" };
-            RestaurantType greek= new RestaurantType { Name = "Greek" };
-            RestaurantType seafood= new RestaurantType { Name = "Seafood" };
-            RestaurantType street= new RestaurantType { Name = "Street Food Bar" };
-            RestaurantType pizza= new RestaurantType { Name = "Pizza" };
+            RestaurantType french = new RestaurantType { Name = "French" };
+            RestaurantType restaurant = new RestaurantType { Name = "Restaurant" };
+            RestaurantType greek = new RestaurantType { Name = "Greek" };
+            RestaurantType seafood = new RestaurantType { Name = "Seafood" };
+            RestaurantType street = new RestaurantType { Name = "Street Food Bar" };
+            RestaurantType pizza = new RestaurantType { Name = "Pizza" };
             RestaurantType barRestaurant = new RestaurantType { Name = "Bar Restaurant" };
             RestaurantType winebar = new RestaurantType { Name = "Wine Bar" };
-            RestaurantType beer= new RestaurantType { Name = "Beer House" };
+            RestaurantType beer = new RestaurantType { Name = "Beer House" };
 
-            context.RestaurantTypes.AddOrUpdate(x => x.Name, bar, bistro,grill, vegan,italian,asian,french,restaurant,greek,seafood,street,pizza,barRestaurant,winebar,beer);
+            context.RestaurantTypes.AddOrUpdate(x => x.Name, bar, bistro, grill, vegan, italian, asian, french, restaurant, greek, seafood, street, pizza, barRestaurant, winebar, beer);
             context.SaveChanges();
             #endregion
 
@@ -393,7 +395,7 @@ namespace PiniT.Migrations
                 Price = 4.50m
             };
 
-           // Products of Restaurant "Ôhe beautiful Beijing"
+            // Products of Restaurant "Ôhe beautiful Beijing"
             Product p19 = new Product()
             {
                 Name = "Chicken Kow",
@@ -507,7 +509,7 @@ namespace PiniT.Migrations
                 Price = 2.50m
             };
 
-           // Products of Restaurant "God Bless America"
+            // Products of Restaurant "God Bless America"
             Product p36 = new Product()
             {
                 Name = "Cheeseburger Deluxe",
@@ -756,11 +758,11 @@ namespace PiniT.Migrations
             Table t12 = new Table { Size = 8, Name = "A12" };
             Table t13 = new Table { Size = 4, Name = "A13" };
             Table t14 = new Table { Size = 6, Name = "A14" };
-            Table t15= new Table { Size = 8, Name = "A15" };
+            Table t15 = new Table { Size = 8, Name = "A15" };
             Table t16 = new Table { Size = 4, Name = "A16" };
             Table t17 = new Table { Size = 6, Name = "A17" };
             Table t18 = new Table { Size = 8, Name = "A18" };
-            Table t19= new Table { Size = 4, Name = "A19" };
+            Table t19 = new Table { Size = 4, Name = "A19" };
             Table t20 = new Table { Size = 6, Name = "A20" };
             Table t21 = new Table { Size = 8, Name = "A21" };
             Table t22 = new Table { Size = 4, Name = "A22" };
@@ -777,10 +779,10 @@ namespace PiniT.Migrations
             Table t33 = new Table { Size = 8, Name = "A33" };
             Table t34 = new Table { Size = 4, Name = "A34" };
             Table t35 = new Table { Size = 6, Name = "A35" };
-            Table t36= new Table { Size = 8, Name = "A36" };
+            Table t36 = new Table { Size = 8, Name = "A36" };
             Table t37 = new Table { Size = 4, Name = "A37" };
-            Table t38= new Table { Size = 6, Name = "A38" };
-            Table t39= new Table { Size = 8, Name = "A39" };
+            Table t38 = new Table { Size = 6, Name = "A38" };
+            Table t39 = new Table { Size = 8, Name = "A39" };
             Table t40 = new Table { Size = 4, Name = "A40" };
             Table t41 = new Table { Size = 6, Name = "A41" };
             Table t42 = new Table { Size = 8, Name = "A42" };
@@ -792,7 +794,7 @@ namespace PiniT.Migrations
             Table t48 = new Table { Size = 8, Name = "A48" };
 
 
-            context.Tables.AddOrUpdate(x => x.TableId, t1, t2, t3,t4,t5,t6,t7,t8,t9,t10,t11,t12,t13,t14,t15,t16,t17,t18,t19,t20,t21,t22,t23,t24,t25,t26,t27,t28,t29,t30,t31,t32,t33,t34,t35,t36,t37,t38,t39,t40,t41,t42,t43,t44,t45,t46,t47,t48);
+            context.Tables.AddOrUpdate(x => x.TableId, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42, t43, t44, t45, t46, t47, t48);
 
             context.SaveChanges();
             #endregion
@@ -805,8 +807,8 @@ namespace PiniT.Migrations
                 VAT = "12345678",
                 Manager = restManager1,
                 Type = { pizza, italian },
-                Menu = {p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11,p12,p13,p14,p15,p16,p17,p18},
-                Tables = {t1,t2,t3,t4,t5,t6,t7,t8,t9,t10,t11,t12}
+                Menu = { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18 },
+                Tables = { t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12 }
             };
 
             Restaurant restaurant2 = new Restaurant
@@ -814,7 +816,7 @@ namespace PiniT.Migrations
                 CompanyName = "The Beautiful Beijing",
                 VAT = "12345679",
                 Manager = restManager2,
-                Type = { restaurant, asian  },
+                Type = { restaurant, asian },
                 Menu = { p19, p20, p21, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35 },
                 Tables = { t13, t14, t15, t16, t17, t18, t19, t20, t21, t22, t23, t24 }
             };
@@ -824,8 +826,8 @@ namespace PiniT.Migrations
                 CompanyName = "God Bless America",
                 VAT = "12345680",
                 Manager = restManager3,
-                Type = { restaurant, grill},
-                Menu = { p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49},
+                Type = { restaurant, grill },
+                Menu = { p36, p37, p38, p39, p40, p41, p42, p43, p44, p45, p46, p47, p48, p49 },
                 Tables = { t25, t26, t27, t28, t29, t30, t31, t32, t33, t34, t35, t36 }
             };
 
@@ -834,16 +836,27 @@ namespace PiniT.Migrations
                 CompanyName = "La vie en rose",
                 VAT = "12345682",
                 Manager = restManager4,
-                Type = { restaurant, french,bistro, bar },
+                Type = { restaurant, french, bistro, bar },
                 Menu = { p50, p51, p52, p53, p54, p55, p56, p57, p58, p60, p61, p62, p63 },
                 Tables = { t37, t38, t39, t40, t41, t42, t43, t44, t45, t46, t47, t48 }
             };
 
 
-            context.Restaurants.AddOrUpdate(x => x.RestaurantId, restaurant1,restaurant2,restaurant3,restaurant4);
+            context.Restaurants.AddOrUpdate(x => x.RestaurantId, restaurant1, restaurant2, restaurant3, restaurant4);
             context.SaveChanges();
             #endregion
 
+            #region Profile Images
+            //Image img1 = new Image
+            //{
+            //    Restaurant = restaurant1,
+            //    Title = "La Bella Mafia",
+            //    ImagePath = "~/Content/images/labellamafia.jpg",
+            //    isProfileImage = true
+            //};
+
+            //context.Images.AddOrUpdate(x => x.ImageId, img1);
+            #endregion
         }
     }
 }
