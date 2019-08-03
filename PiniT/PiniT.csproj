@@ -275,6 +275,7 @@
     <Content Include="Content\Images\images %281%29.png" />
     <Content Include="Content\Images\images.jfif" />
     <Content Include="Content\Images\images.png" />
+    <Content Include="Content\Images\labellamafia.jpg" />
     <Content Include="Content\Images\pexels-photo-1640777.jpeg" />
     <Content Include="Content\Images\usreIndex.jpg" />
     <Content Include="favicon.ico" />
