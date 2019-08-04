@@ -3,14 +3,22 @@
 @{
     ViewBag.Title = "AddCredits";
 }
-
+    <style>
+        body {
+            /*background-image: url('../../Content/Images/backrf.jpg');*/
+            /*background-image: url('../../Content/Images/patern.png');*/
+            /*background-image: url('../../Content/Images/backrfw.jpg');*/
+            background-image: url('../../Content/Images/background.jpg');
+            background-size: cover;
+        }
+    </style>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4 class="mx-auto font-weight-bold font-italic text-center mt-3">Add Credits To Your PiniT Wallet!</h4>
-        <p class="mx-auto text-center mb-2"> Simply Enter the amount you want to Add!</p>
+        <h4 class="mx-auto font-weight-bold text-white font-italic text-center mt-3">Add Credits To Your PiniT Wallet!</h4>
+        <p class="mx-auto text-center text-white mb-2"> Simply Enter the amount you want to Add!</p>
         <hr />
         <div class="container col-md-6 mx-auto bg-white text-center">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })

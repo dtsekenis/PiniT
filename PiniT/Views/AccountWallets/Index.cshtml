@@ -3,8 +3,16 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2 class="mx-auto font-weight-bold font-italic text-center mt-2 mb-2">PiniT Wallet</h2>
+    <style>
+        body {
+            /*background-image: url('../../Content/Images/backrf.jpg');*/
+            /*background-image: url('../../Content/Images/patern.png');*/
+            /*background-image: url('../../Content/Images/backrfw.jpg');*/
+            background-image: url('../../Content/Images/background.jpg');
+            background-size: cover;
+        }
+    </style>
+<h2 class="mx-auto font-weight-bold font-italic text-center mt-2 mb-2 text-white">PiniT Wallet</h2>
 
 <div class="container col-md-6 mx-auto bg-white text-center">
     <h4 class="col-md-6 mx-auto my-2 text-center font-weight-bold font-italic">@Html.DisplayFor(model => model.User.UserName)'s <cite class="font-weight-normal">Wallet!</cite></h4>
