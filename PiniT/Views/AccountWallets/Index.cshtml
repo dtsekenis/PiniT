@@ -4,31 +4,32 @@
     ViewBag.Title = "Index";
 }
 
-<h2 class="h2 mx-auto my-2">PiniT Wallet</h2>
+<h2 class="mx-auto font-weight-bold font-italic text-center mt-2 mb-2">PiniT Wallet</h2>
 
-<div>
-    <h4 class="h4 mx-auto my-2">@Html.DisplayFor(model => model.User.UserName)'s Wallet!</h4>
+<div class="container col-md-6 mx-auto bg-white text-center">
+    <h4 class="col-md-6 mx-auto my-2 text-center font-weight-bold font-italic">@Html.DisplayFor(model => model.User.UserName)'s <cite class="font-weight-normal">Wallet!</cite></h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
+    <dl class="col-md-6 dl-horizontal text-center mx-auto">
+        <dt class="h4 font-weight-bold">
             @Html.DisplayNameFor(model => model.Credits)
         </dt>
 
-        <dd>
+        <dd class="h5 font-italic">
             @Html.DisplayFor(model => model.Credits)
         </dd>
 
     </dl>
-</div>
-<p class="btn-group">
-    @if (User.IsInRole("Customer"))
-    {
-        @Html.ActionLink("Add Credits", "Addcredits", null, new { @class = "btn btn-danger" })
-        @Html.ActionLink("Back", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-dark" })
-    }
-    else
-    {
-        @Html.ActionLink("Back", "ManagerIndex", "Restaurants", null, new { @class = "btn btn-dark" })
+    <p class="btn-group">
+        @if (User.IsInRole("Customer"))
+        {
+            @Html.ActionLink("Add Credits", "Addcredits", null, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Back", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-dark" })
+        }
+        else
+        {
+            @Html.ActionLink("Back", "ManagerIndex", "Restaurants", null, new { @class = "btn btn-dark" })
 
-    }
-</p>
+        }
+    </p>
+</div>
+
