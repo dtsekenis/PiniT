@@ -13,7 +13,7 @@
         }
         .card-img-top{
             width:100px; 
-            height:305px;
+            height:275px;
         }
     </style>
 <br>
@@ -51,39 +51,38 @@
             <div class="row">
                 @if (restaurant.Images.FirstOrDefault(x => x.isProfileImage) == null)
                 {
-                    <img class="col-md-7 col-sm-12 col card-img-top" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
+                    <img class="col-md-4 col-sm-12 col card-img-top roundedimage" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
                 }
                 else
                 {
-                    <img class="col-md-7 col-sm-12 card-img-top" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1">
+                    <img class="col-md-4 col-sm-12 card-img-top roundedimage" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1">
 
                 }
-            <p class="m-0 col-md-5 col-sm-12 text-center font-italic mt-5">
+            <p class="m-0 col-md-8 col-sm-12 text-center font-italic mt-5">
                 Restaurant Type:
                 @foreach (var item in restaurant.Type)
                 {
                     <cite class="font-weight-light">@item.Name</cite>
-             
                 }
                 <br />
-
                 <br />
                 Total Free Tables: <cite class="font-weight-light">@restaurant.Tables.Count(x => x.IsBooked == false)</cite>
+                <br />
+                    @Html.ActionLink(" Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-md-6 fab fa-pinterest-p mt-5 mb-1" })
+                    @Html.ActionLink(" Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-md-6 fas fa-book-open mb-1" })
+                    <button id="@restaurant.RestaurantId" data-company="@restaurant.CompanyName" class="btn btn-secondary col-md-6 restaurant-chat fas fa-comments"> Chat</button>
             </p>
             </div>
             
 
         </div>
-        <div class="card-footer border-dark bg-light text-center">
+        @*<div class="card-footer border-dark bg-light text-center">
             <div class="row btn-group mr-auto">
-
-
                 @Html.ActionLink(" Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-12 fab fa-pinterest-p" })
                 @Html.ActionLink(" Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-6 fas fa-book-open" })
-
                 <button id="@restaurant.RestaurantId" data-company="@restaurant.CompanyName" class="btn btn-secondary col-6 restaurant-chat fas fa-comments"> Chat</button>
             </div>
-        </div>
+        </div>*@
     </div>
 </div>
     }
