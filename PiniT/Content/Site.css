@@ -302,3 +302,17 @@ h3.a {
     color:red;
     cursor:pointer;
 }
+
+#create-category {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px;
+}
+#create-type {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 5px;
+}
+
