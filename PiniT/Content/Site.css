@@ -297,9 +297,10 @@ h3.a {
     
     .gotomarker{
         transition:0.3s;
+        color:black;
     }
 .gotomarker:hover {
-    color:red;
+    color:yellow;
     cursor:pointer;
 }
 
