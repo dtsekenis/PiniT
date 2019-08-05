@@ -400,6 +400,8 @@
     <Content Include="Views\Images\AddImage.cshtml" />
     <Content Include="Views\Images\SetProfileImage.cshtml" />
     <Content Include="Views\AccountWallets\Index.cshtml" />
+    <Content Include="Views\Admin\RestaurantTypeIndex.cshtml" />
+    <Content Include="Views\Admin\CreateRestaurantType.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

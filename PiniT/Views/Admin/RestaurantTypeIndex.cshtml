@@ -1,0 +1,27 @@
+﻿@model IEnumerable<PiniT.Models.RestaurantType>
+
+@{
+    ViewBag.Title = "RestaurantTypeIndex";
+}
+
+<h2>RestaurantTypeIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateRestaurantType")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(x=>x.Name)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+           @Html.DisplayFor(modelItem =>item.Name)
+        </td>
+    </tr>
+}
+
+</table>

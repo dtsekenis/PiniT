@@ -14,6 +14,7 @@ namespace PiniT.Controllers
         private ManagerContext manDb = new ManagerContext();
         private CustomerContext cusDb = new CustomerContext();
         private ProductCategoryManager pcDb = new ProductCategoryManager();
+        private RestaurantTypeManager rtDb = new RestaurantTypeManager();
 
         public ActionResult Index()
         {
@@ -42,6 +43,28 @@ namespace PiniT.Controllers
 
             pcDb.CreateProductCategory(category);
             return RedirectToAction("ProductCategoryIndex");
+        }
+
+        public ActionResult RestaurantTypeIndex()
+        {
+            var types = rtDb.GetRestaurantTypes();
+            return View(types);
+        }
+        public ActionResult CreateRestaurantType()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateRestaurantType(RestaurantType type)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(type);
+            }
+            rtDb.CreateRestaurantType(type);
+            return RedirectToAction("RestaurantTypeIndex");
         }
 
         public ActionResult CustomersIndex()
@@ -141,16 +164,6 @@ namespace PiniT.Controllers
             manDb.DeleteManager(id);
             return RedirectToAction("ManagersIndex");
         }
-
-
-        //Needs to be executed with Ajax
-
-        //public ActionResult ToggleAuthorize(string id)
-        //{
-        //    bool response;
-        //    response = manDb.ToggleRestaurantAuthorize(id);
-        //    return RedirectToAction("ManagersIndex");
-        //}
 
         public ActionResult AssignRoleManager(string id)
         {

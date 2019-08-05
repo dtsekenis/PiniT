@@ -10,8 +10,8 @@ namespace PiniT.Controllers
 {
     public class HomeController : Controller
     {
-        RestaurantManager restDb = new RestaurantManager();
-        ReservationManager resDb = new ReservationManager();
+        private RestaurantManager restDb = new RestaurantManager();
+        private ReservationManager resDb = new ReservationManager();
         public ActionResult Index()
         {
             if (User.IsInRole("Manager"))

@@ -19,5 +19,23 @@ namespace PiniT.Managers
             }
             return types;
         }
+        public bool CreateRestaurantType(RestaurantType type)
+        {
+            bool result;
+            using (ApplicationDbContext db = new ApplicationDbContext())
+            {
+                if (db.RestaurantTypes.Find(type.Name) == null)
+                {
+                    db.RestaurantTypes.Add(type);
+                    db.SaveChanges();
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+            return result;
+        }
     }
 }
