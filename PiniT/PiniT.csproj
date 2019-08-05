@@ -243,6 +243,10 @@
     <Compile Include="Migrations\201907301842452_bool_ProfileImage.Designer.cs">
       <DependentUpon>201907301842452_bool_ProfileImage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908050845098_RestAddress.cs" />
+    <Compile Include="Migrations\201908050845098_RestAddress.Designer.cs">
+      <DependentUpon>201908050845098_RestAddress.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -433,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907301842452_bool_ProfileImage.resx">
       <DependentUpon>201907301842452_bool_ProfileImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908050845098_RestAddress.resx">
+      <DependentUpon>201908050845098_RestAddress.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -6,9 +6,10 @@
 
     <style>
         body {
-            /*background-image: url("/Content/Images/usreIndex.jpg");*/
-            background-image: url("");
+
+            background-image: url("/Content/Images/background.jpg");
             background-size: cover;
+            background-attachment:fixed;
             
         }
         .card-img-top{
@@ -42,32 +43,34 @@
 
     @foreach (var restaurant in Model.Restaurants)
     {<div class="row">
-    <div class="col-md-10 col-sm-6 card shadow-lg mx-auto mb-1">
+    <div class="col col-sm-10 card shadow-lg mx-auto mb-1 p-0">
         <div class="card-header border-dark font-weight-bolder bg-dark text-white text-center">
             <h4 class="m-0 font-italic font-weight-bolder">@restaurant.CompanyName</h4>
         </div>
 
-        <div class="card-body bg-light border-dark text-center">
+        <div class="card-body bg-light border-dark text-center p-1">
             <div class="row">
                 @if (restaurant.Images.FirstOrDefault(x => x.isProfileImage) == null)
                 {
-                    <img class="col-md-4 col-sm-12 col card-img-top roundedimage" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
+                    <img class="col-md-4 col card-img-top roundedimage" src="https://comelite-arch.com/wp-content/uploads/2018/04/How-to-Create-a-Successful-Fine-Dining-Restaurant-0-256x256.jpg" alt="restaurant1">
                 }
                 else
                 {
-                    <img class="col-md-4 col-sm-12 card-img-top roundedimage" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1">
+                    <img class="col-md-4 col card-img-top roundedimage" src="@Url.Content(restaurant.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath)" alt="restaurant1">
 
                 }
-            <p class="m-0 col-md-8 col-sm-12 text-center font-italic mt-5">
+            <p class="m-0 col-md-8 col-6 text-center font-italic my-3">
+                
                 Restaurant Type:
                 @foreach (var item in restaurant.Type)
                 {
                     <cite class="font-weight-light">@item.Name</cite>
                 }
                 <br />
-                <br />
                 Total Free Tables: <cite class="font-weight-light">@restaurant.Tables.Count(x => x.IsBooked == false)</cite>
                 <br />
+                Address: <cite class="font-weight-light">@restaurant.Address</cite>
+                <br/>
                     @Html.ActionLink(" Book Now!", "CustomerIndex", "Tables", new { id = restaurant.RestaurantId }, new { @class = "btn btn-danger col-md-6 fab fa-pinterest-p mt-5 mb-1" })
                     @Html.ActionLink(" Menu", "CustomerIndex", "Products", new { id = restaurant.RestaurantId }, new { @class = "btn btn-primary col-md-6 fas fa-book-open mb-1" })
                     <button id="@restaurant.RestaurantId" data-company="@restaurant.CompanyName" class="btn btn-secondary col-md-6 restaurant-chat fas fa-comments"> Chat</button>
