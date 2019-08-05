@@ -4,9 +4,9 @@
     ViewBag.Title = "ManagersIndex";
 }
 
-<h2>ManagersIndex</h2>
+<h2 class="a text-center mx-auto mt-3 mb-3">ManagersIndex</h2>
 
-<table class="table">
+<table class="col-md-10 mx-auto text-center container bg-white">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -37,10 +37,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
         </td>
-        <td>
-            @Html.ActionLink("Edit", "EditManager", new { id=item.Id }) |
-            @Html.ActionLink("Authorize", "AssignRoleManager", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "DeleteManager", new { id=item.Id })
+        <td class="form-group mx-auto text-center btn-group">
+            @Html.ActionLink("Edit", "EditManager", new { id = item.Id }, new { @class = "btn btn-warning" })
+            @Html.ActionLink("Delete", "DeleteManager", new { id = item.Id }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Authorize", "AssignRoleManager", new { id = item.Id }, new { @class = "btn btn-dark" })
         </td>
     </tr>
 }

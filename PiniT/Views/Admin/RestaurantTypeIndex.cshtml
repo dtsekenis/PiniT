@@ -4,24 +4,28 @@
     ViewBag.Title = "RestaurantTypeIndex";
 }
 
-<h2>RestaurantTypeIndex</h2>
+<h2 class="a text-center mx-auto mt-3 mb-3">RestaurantTypeIndex</h2>
 
 <p>
-    @Html.ActionLink("Create New", "CreateRestaurantType")
+    
 </p>
-<table class="table">
+<table class="col-md-6 font-weight-normal mx-auto text-center container bg-white">
     <tr>
-        <th>
-            @Html.DisplayNameFor(x=>x.Name)
+        <th class="h4">
+            @Html.DisplayNameFor(x => x.Name)
+           
         </th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-           @Html.DisplayFor(modelItem =>item.Name)
-        </td>
-    </tr>
+<tr>
+    <td class="font-italic">
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td class="form-group mx-auto text-center btn-group">
+    @Html.ActionLink(" ", "CreateRestaurantType", null, new { @class = "btn btn-primary fas fa-plus" })
+    </td>
+</tr>
 }
 
 </table>

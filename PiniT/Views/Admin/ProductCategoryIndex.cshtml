@@ -4,27 +4,29 @@
     ViewBag.Title = "ProductCategoryIndex";
 }
 
-<h2>ProductCategoryIndex</h2>
+<h2 class="a text-center mx-auto mt-3 mb-3">ProductCategoryIndex</h2>
 
-<p>
-    @Html.ActionLink("Create New", "CreateProductCategory")
-</p>
-<table class="table">
+<table class="col-md-6 font-weight-bold mx-auto text-center container bg-white">
     <tr>
-        <th>
+        <th class="h4">
             @Html.DisplayNameFor(x => x.Name)
+            
         </th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        @*<td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    @*<td>
             @Html.ActionLink("Delete", "Delete", new { id=item.Name })
         </td>*@
-    </tr>
+<td class="form-group mx-auto text-center btn-group">
+    @Html.ActionLink(" ", "CreateProductCategory", null, new { @class = "btn btn-primary fas fa-plus" })
+
+</td>
+</tr>
 }
 
 </table>
