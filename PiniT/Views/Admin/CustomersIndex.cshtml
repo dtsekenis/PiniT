@@ -4,9 +4,9 @@
     ViewBag.Title = "CustomersIndex";
 }
 
-<h2>All Customers</h2>
+<h2 class="a text-center mx-auto mt-3 mb-3">All Customers</h2>
 
-<table class="table">
+<table class="col-md-10 mx-auto text-center container bg-white">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -23,25 +23,32 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "EditCustomer", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "DeleteCustomer", new { id=item.Id })
-        </td>
-    </tr>
-}
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Email)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.FirstName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastName)
+    </td>
+    <td class="form-group mx-auto text-center btn-group">
+        @Html.ActionLink("Edit", "EditCustomer", new { id = item.Id },new{ @class = "btn btn-warning" })
+        @Html.ActionLink("Delete", "DeleteCustomer", new { id = item.Id },new { @class = "btn btn-danger" })
+
+    </td>
+  
+</tr>
+
+
+    }
 
 </table>
+
