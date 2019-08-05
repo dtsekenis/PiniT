@@ -33,6 +33,7 @@
                 }
                 @if (User.IsInRole("Admin"))
                 {
+                    <li class="nav-item">@Html.ActionLink("Types", "RestaurantTypeIndex", "Admin", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Products", "ProductCategoryIndex", "Admin", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Customers", "CustomersIndex", "Admin", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Managers", "ManagersIndex", "Admin", null, new { @class = "nav-link" })</li>
