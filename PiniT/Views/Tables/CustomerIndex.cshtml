@@ -28,7 +28,6 @@
 
                     </div>
                 </div>
-                @*<a href="#" class="card-link">Another link</a>*@
             </div>
         </div>
     }
@@ -37,17 +36,3 @@
 <div class="mx-auto text-center m-2">
     @Html.ActionLink("Back", "CustomerIndex", "Restaurants", null, new { @class = "btn btn-info col-2" })
 </div>
-
-
-@section scripts {
-    <script>
-        window.onload = () => {
-
-            if ("@TempData["Message"]")
-            {
-                alert("@TempData["Message"]");
-            }
-        };
-    </script>
-
-}

@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PiniT.Managers;
+using PiniT.ViewModels;
 
 namespace PiniT.Controllers
 {
     public class HomeController : Controller
     {
+        RestaurantManager restDb = new RestaurantManager();
+        ReservationManager resDb = new ReservationManager();
         public ActionResult Index()
         {
             if (User.IsInRole("Manager"))
@@ -18,7 +22,13 @@ namespace PiniT.Controllers
             {
                 return RedirectToAction("CustomerIndex", "Restaurants");
             }
-            return View();
+
+            var restaurants = restDb.GetRestaurantsFull();      
+            HomeIndexVM vm = new HomeIndexVM
+            {
+                Restaurants = restaurants
+            };
+            return View(vm);
         }
 
         public ActionResult About()

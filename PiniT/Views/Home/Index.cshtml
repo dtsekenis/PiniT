@@ -1,42 +1,44 @@
-﻿@{
+﻿@model PiniT.ViewModels.HomeIndexVM
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <style>
     body {
-        /*background-image: url('../../Content/Images/backrf.jpg');*/
-        /*background-image: url('../../Content/Images/patern.png');*/
-        /*background-image: url('../../Content/Images/backrfw.jpg');*/
         background-image: url('../../Content/Images/background.jpg');
         background-size:cover;
     }
 
 </style>
 
-@*<div class="row jumbotron-fluid">*@
     <div class="homeimage">
         <p class="homeimagetxt text-right mr-2">Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Blanditiis accusamus ex, <br> veritatis repellat laudantium, dolores <br> doloribus in praesentium dolore <br> reprehenderit omnis beatae numquam sed <br> eum quasi vero ipsa non porro.</p>
     </div>
 
     <div class="homeboxa">
-        <p>Top of the week...</p>
+        <p>Collaborating with... and More!</p>
     </div>
     <div class="homebox">
         <div class="row mx-auto text-center">
+            
+            @foreach (var item in Model.Restaurants.Take(3))
+            {
             <div class="col-md-4">
                 <h5>
-                    La Bella Mafia
+                    @item.CompanyName
                 </h5>
-                <img class="roundimage" src="~/Content/images/labellamafia.jpg" />
+                @if (item.Images.FirstOrDefault(x => x.isProfileImage) == null)
+                {
+                    <img class="roundimage" src="~/Content/images/labellamafia.jpg" />
+                }
+                else
+                {
+                    <img class="roundimage" src="@item.Images.FirstOrDefault(x=>x.isProfileImage).ImagePath" alt="@item.Images.FirstOrDefault(x=>x.isProfileImage).Title" />
+
+                }
             </div>
-            <div class="col-md-4">
-                <h5>God Bless America</h5>
-                <img class="roundimage" src="~/Content/images/god.jpg" />
-            </div>
-            <div class="col-md-4">
-                <h5>Tuapostoli Tokutuki</h5>
-                <img class="roundimage" src="~/Content/images/apostolis.jpg" />
-            </div>
+            }
         </div>
         
     </div>
