@@ -3,30 +3,35 @@
 @{
     ViewBag.Title = "ProductCategoryIndex";
 }
-
+    <style>
+        #create-category {
+            position: absolute;
+            top: 0;
+            left: 0;
+            margin: 5px;
+        }
+    </style>
 <h2 class="a text-center mx-auto mt-3 mb-3">ProductCategoryIndex</h2>
 
 <table class="col-md-6 font-weight-bold mx-auto text-center container bg-white">
     <tr>
         <th class="h4">
             @Html.DisplayNameFor(x => x.Name)
-            
+            @Html.ActionLink(" ", "CreateProductCategory", null, new { id="create-category", @class = "btn btn-primary fas fa-plus" })
         </th>
     </tr>
 
-@foreach (var item in Model) {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    @*<td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.Name })
-        </td>*@
-<td class="form-group mx-auto text-center btn-group">
-    @Html.ActionLink(" ", "CreateProductCategory", null, new { @class = "btn btn-primary fas fa-plus" })
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            @*<td>
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Name })
+                </td>*@
 
-</td>
-</tr>
-}
+        </tr>
+    }
 
 </table>
