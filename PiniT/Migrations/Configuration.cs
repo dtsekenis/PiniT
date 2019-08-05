@@ -847,15 +847,15 @@ namespace PiniT.Migrations
             #endregion
 
             #region Profile Images
-            //Image img1 = new Image
-            //{
-            //    Restaurant = restaurant1,
-            //    Title = "La Bella Mafia",
-            //    ImagePath = "~/Content/images/labellamafia.jpg",
-            //    isProfileImage = true
-            //};
+            Image img1 = new Image
+            {
+                Restaurant = restaurant1,
+                Title = "La Bella Mafia",
+                ImagePath = "/Content/images/labellamafia.jpg",
+                isProfileImage = true
+            };
 
-            //context.Images.AddOrUpdate(x => x.ImageId, img1);
+            context.Images.AddOrUpdate(x => x.ImageId, img1);
             #endregion
         }
     }
