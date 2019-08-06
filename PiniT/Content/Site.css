@@ -368,3 +368,7 @@ h3.a {
 #card-back {
     background-image: linear-gradient(to right,rgba(84, 22, 7, 0.87),rgb(233, 66, 66));
 }
+
+#table {
+    opacity: 0.9;
+}

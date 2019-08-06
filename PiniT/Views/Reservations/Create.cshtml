@@ -4,7 +4,15 @@
     ViewBag.Title = "Create";
 }
 
-<h2 class="m-0 mt-3 mb-3 text-center a">@Model.Restaurant.CompanyName</h2>
+<style>
+    body {
+        background-image: url('../../Content/Images/background.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+
+<h2 class="m-0 mt-3 mb-3 text-center a text-white">@Model.Restaurant.CompanyName</h2>
 
 @using (Html.BeginForm())
 {
@@ -29,32 +37,28 @@
                     <p class="m-0">BookFee: <cite class="font-weight-light">  $10</cite></p>
                     <hr />
                     @Html.LabelFor(x => x.EstimatedTime)
-                <div class="slidecontainer">
-                    <p id="estimated-time"></p>
+                    <div class="slidecontainer">
+                        <p id="estimated-time"></p>
 
-                    @Html.EditorFor(x => x.EstimatedTime, new { htmlAttributes = new { type = "range", step = "5", @class = "form-control-range slider mx-auto", id = "estimatedTimeInput", min = "5", max = "90" } })
-                </div>
-                        <hr />
-                        @Html.LabelFor(x => x.Reservation.Comment, new { htmlAttributes = new { @class = "mx-auto" } })<br />
-                        @Html.EditorFor(x => x.Reservation.Comment, new { htmlAttributes = new { @class = "m-0 p-0 form-control border border-secondary font-weight-light mx-auto", rows = "5" } })
-
+                        @Html.EditorFor(x => x.EstimatedTime, new { htmlAttributes = new { type = "range", step = "5", @class = "form-control-range slider mx-auto", id = "estimatedTimeInput", min = "5", max = "90" } })
                     </div>
+                    <hr />
+                    @Html.LabelFor(x => x.Reservation.Comment, new { htmlAttributes = new { @class = "mx-auto" } })<br />
+                    @Html.EditorFor(x => x.Reservation.Comment, new { htmlAttributes = new { @class = "m-0 p-0 form-control border border-secondary text-center font-weight-light mx-auto", rows = "5" } })
+
                 </div>
-        </div>
-        <hr />
-        <label class="checkbox-inline col-md-12 text-center p-1 mb-2 mx-auto"><input type="checkbox" name="HasAcceptedTerms" value="true" required>  Are you Sure?</label>
-        <div class="form-group">
-            <div class="text-center mx-auto">
-                <input type="submit" value="Submit" class="btn btn-warning p-1 mx-auto text-center" />
             </div>
         </div>
+        <hr />
+        <label class="checkbox-inline col-md-12 text-center font-italic font-weight-bold text-white p-1 mb-2 mx-auto"><input type="checkbox" name="HasAcceptedTerms" value="true" required>  Are you Sure?</label>
+        
+            <div class="form-group text-center mx-auto">
+                <input type="submit" value="Submit" class="btn btn-warning btn-group" />
+                @Html.ActionLink("Back", "CustomerIndex", "Tables", new { id = Model.Restaurant.RestaurantId }, new { @class = "btn btn-dark" })
+            </div>
+       
     </div>
 }
-
-<div class="text-center">
-    @Html.ActionLink("Back to List", "CustomerIndex", "Tables", new { id = Model.Restaurant.RestaurantId }, null)
-</div>
-
 
 @section scripts {
 
