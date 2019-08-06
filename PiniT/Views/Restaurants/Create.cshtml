@@ -12,14 +12,13 @@
     </style>
 <h2 class="mx-auto mb-2 mt-4 text-center text-light font-weight-bold a">Create</h2>
 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
 <div id="card-back" class="col-md-8 col shadow-lg rounded border border-dark text-white text-center mx-auto p-0">
 
-    <h4 class="bg-dark tezt-light p-2">Restaurant</h4>
+    <h4 class="bg-dark text-light p-2">Restaurant</h4>
     <hr class="m-0"/>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 

@@ -4,58 +4,62 @@
     ViewBag.Title = "Edit";
 }
 
-<h2 class="a text-center mx-auto">Edit Tables</h2>
+<style>
+    body {
+        background-image: url("/Content/Images/background.jpg");
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
 
-
+<h2 class="mx-auto mb-2 mt-4 text-center text-light font-weight-bold a">Edit Table</h2>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>Restaurant</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Restaurant.RestaurantId)
+<div id="card-back" class="col-md-8 col shadow-lg rounded border border-dark text-white text-center mx-auto p-0">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Restaurant.CompanyName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Restaurant.CompanyName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Restaurant.CompanyName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Restaurant.VAT, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Restaurant.VAT, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Restaurant.VAT, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Restaurant.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Restaurant.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Restaurant.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Restaurant.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.ListBoxFor(model => model.SelectedTypes, Model.Types)
-                @Html.ValidationMessageFor(model => model.Restaurant.Type, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <h4 class="bg-dark text-light p-2">Restaurant</h4>
+    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Restaurant.RestaurantId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Restaurant.CompanyName, htmlAttributes: new { @class = "control-label col-md-2 mx-auto font-weight-bold" })
+        <div class="col-md-10 mx-auto">
+            @Html.EditorFor(model => model.Restaurant.CompanyName, new { htmlAttributes = new { @class = "form-control mx-auto text-center" } })
+            @Html.ValidationMessageFor(model => model.Restaurant.CompanyName, "", new { @class = "text-danger" })
         </div>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "ManagerIndex")
+    <div class="form-group">
+        @Html.LabelFor(model => model.Restaurant.VAT, htmlAttributes: new { @class = "control-label col-md-2 mx-auto font-weight-bold" })
+        <div class="col-md-10 mx-auto">
+            @Html.EditorFor(model => model.Restaurant.VAT, new { htmlAttributes = new { @class = "form-control mx-auto text-center" } })
+            @Html.ValidationMessageFor(model => model.Restaurant.VAT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Restaurant.Address, htmlAttributes: new { @class = "control-label col-md-2 mx-auto font-weight-bold" })
+        <div class="col-md-10 mx-auto">
+            @Html.EditorFor(model => model.Restaurant.Address, new { htmlAttributes = new { @class = "form-control mx-auto text-center" } })
+            @Html.ValidationMessageFor(model => model.Restaurant.Address, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Restaurant.Type, htmlAttributes: new { @class = "control-label col-md-2 mx-auto font-weight-bold" })
+        <div class="col-md-10 mx-auto">
+            @Html.ListBoxFor(model => model.SelectedTypes, Model.Types)
+            @Html.ValidationMessageFor(model => model.Restaurant.Type, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-6 btn-group">
+            <input type="submit" value="Save" class="btn btn-success" />
+            @Html.ActionLink("Back", "ManagerIndex", null, new { @class = "btn btn-dark mx-auto" })
+        </div>
+    </div>
 </div>
+}
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
