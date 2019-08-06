@@ -3,11 +3,7 @@ namespace PiniT.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using PiniT.Models;
-    using System;
-    using System.Collections.Generic;
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<PiniT.Models.ApplicationDbContext>
     {
@@ -142,7 +138,7 @@ namespace PiniT.Migrations
 
             #endregion
 
-            // Tess Area
+            #region Customer
             string customerUsername_1 = "Customer1";
             string customerEmail_1 = "customer1@gmail.com";
             string customerPassword_1 = "iamthecustomer1";
@@ -161,7 +157,8 @@ namespace PiniT.Migrations
             {
                 userManager.AddToRole(customer1.Id, customerRoleName);
             }
-            context.SaveChanges();
+            context.SaveChanges(); 
+            #endregion
 
             #region Wallets
             //Manager Wallets
@@ -223,7 +220,7 @@ namespace PiniT.Migrations
             ProductCategory dessert = new ProductCategory();
             dessert.Name = "Desserts";
 
-            context.ProductCategories.AddOrUpdate(x => x.Name,other, appetizer, salads, main, drinks, dessert);
+            context.ProductCategories.AddOrUpdate(x => x.Name, other, appetizer, salads, main, drinks, dessert);
             context.SaveChanges();
             #endregion
 
@@ -805,7 +802,7 @@ namespace PiniT.Migrations
             {
                 CompanyName = "La Bella Mafia",
                 VAT = "12345678",
-                Address ="Praxitelous 43, Athens",
+                Address = "Praxitelous 43, Athens",
                 Manager = restManager1,
                 Type = { pizza, italian },
                 Menu = { p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18 },
@@ -816,7 +813,7 @@ namespace PiniT.Migrations
             {
                 CompanyName = "The Beautiful Beijing",
                 VAT = "12345679",
-                Address="Xenofontos 20, Glyfada",
+                Address = "Xenofontos 20, Glyfada",
                 Manager = restManager2,
                 Type = { restaurant, asian },
                 Menu = { p19, p20, p21, p25, p26, p27, p28, p29, p30, p31, p32, p33, p34, p35 },
@@ -850,16 +847,55 @@ namespace PiniT.Migrations
             context.SaveChanges();
             #endregion
 
-            #region Profile Images
-            Image img1 = new Image
+            #region Images
+            Image laBellaMafia1 = new Image
             {
                 Restaurant = restaurant1,
                 Title = "La Bella Mafia",
-                ImagePath = "/Content/images/labellamafia.jpg",
+                ImagePath = "/Content/images/bellaMafia.jpg",
                 isProfileImage = true
             };
-
-            context.Images.AddOrUpdate(x => x.ImageId, img1);
+            Image labellamafia2 = new Image
+            {
+                Restaurant = restaurant1,
+                Title = "Plate with food",
+                ImagePath = "/Content/images/bellaMafia2.jpg"
+            };
+            Image godBless1 = new Image
+            {
+                Restaurant = restaurant3,
+                Title = "God Bless America",
+                ImagePath = "/Content/Images/GodBless1.jpg",
+                isProfileImage = true
+            };
+            Image godBless2 = new Image
+            {
+                Restaurant = restaurant3,
+                Title = "Burger n Chips",
+                ImagePath = "/Content/Images/Godbless2.jpg"
+            };
+            Image godBless3 = new Image
+            {
+                Restaurant = restaurant3,
+                Title = "God Bless Room",
+                ImagePath = "/Content/Images/Godbless3.jpg"
+            };
+            Image laVieEnRose = new Image
+            {
+                Restaurant = restaurant4,
+                Title = "La Vie En Rose",
+                ImagePath = "/Content/Images/LaVieEnRose.jpg",
+                isProfileImage = true
+            };
+            Image beijing = new Image
+            {
+                Restaurant = restaurant2,
+                Title = "The Beautiful Beijing",
+                ImagePath = "/Content/Images/beijing.jpg",
+                isProfileImage = true
+            };
+            context.Images.AddOrUpdate(x => x.ImageId, laBellaMafia1, labellamafia2, godBless1, godBless2, godBless3, laVieEnRose, beijing);
+            context.SaveChanges();
             #endregion
         }
     }

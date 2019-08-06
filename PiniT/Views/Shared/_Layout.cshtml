@@ -12,7 +12,7 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-danger fixed-top">
-        @Html.ActionLink("PiniT", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        <a href="/Home/Index" class="navbar-brand m-0"><img src="~/Content/Images/logoS.png" style="width:35px"/></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,14 +21,14 @@
                 <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
                 @if (User.IsInRole("Manager"))
                 {
-                    <li class="nav-item my-auto" style="color:yellow;">@Html.ActionLink(" ", "Index", "AccountWallets", null, new { @class = "nav-link fas fa-coins p-0 fa-2x text-warning" })</li>
+                    <li class="nav-item my-auto" style="color:yellow;">@Html.ActionLink(" ", "Index", "AccountWallets", null, new { @class = "nav-link fas fa-coins p-0 text-warning" })</li>
                     <li class="nav-item">@Html.ActionLink("Restaurant", "ManagerIndex", "Restaurants", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Menu", "ManagerIndex", "Products", null, new { @class = "nav-link" })</li>
                     <li class="nav-item">@Html.ActionLink("Reservations", "Index", "Reservations", null, new { @class = "nav-link" })</li>
                 }
                 @if (User.IsInRole("Customer"))
                 {
-                    <li class="nav-item my-auto" style="color:yellow;">@Html.ActionLink(" ", "Index", "AccountWallets", null, new { @class = "nav-link fas fa-coins p-0 fa-2x text-warning" })</li>
+                    <li class="nav-item my-auto" style="color:yellow;">@Html.ActionLink(" ", "Index", "AccountWallets", null, new { @class = "nav-link fas fa-coins p-0 text-warning" })</li>
                     <li class="nav-item">@Html.ActionLink("Reservations", "Index", "Reservations", null, new { @class = "nav-link" })</li>
                 }
                 @if (User.IsInRole("Admin"))

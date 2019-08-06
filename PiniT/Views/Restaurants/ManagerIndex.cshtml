@@ -5,19 +5,25 @@
         height: 300px;
         overflow-y: scroll;
     }
+        body {
+        background-image: url('../../Content/Images/background.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+    }
 </style>
+
 @{
     ViewBag.Title = "ManagerIndex";
 }
 
 <div class="row">
     <div class="col"></div>
-    <div class="bg-white col text-center">
-        <h4 class="font-italic mt-2">Restaurant Info</h4>
-        <hr />
+    <div class="bg-white col-8 text-center shadow-lg text-light p-0" id="card-back">
+        <h4 class="font-italic p-2 bg-dark">Restaurant Info</h4>
+        <hr class="m-0"/>
 
 
-        <dl class="col dl-horizontal ml-2">
+        <dl class="col dl-horizontal mx-auto">
             <dt>
                 @Html.DisplayNameFor(model => model.Manager.Email)
             </dt>
@@ -44,7 +50,7 @@
 
         </dl>
         <div class="row">
-            <div class="col p-0 btn-group">
+            <div class="col p-0 btn-group mx-3">
                 @Html.ActionLink("Edit", "Edit", new { id = Model.RestaurantId }, new { @class = "btn btn-danger font-weight-bold p-1" })
                 @Html.ActionLink("Add Image", "AddImage", "Images", null, new { @class = "btn btn-danger font-weight-bold p-1" })
                 @Html.ActionLink("Profile Image", "SetProfileImage", "Images", null, new { @class = "btn btn-danger font-weight-bold p-1" })
@@ -57,14 +63,14 @@
     </div>
     <div class="col"></div>
 
-    <div class="bg-white col-12 mt-3">
-        <h4 class="font-italic mt-2 text-center">Uploaded Images</h4>
-        <hr />
+    <div id="card-back" class="bg-white col-12 mt-3 shadow-lg text-light p-0">
+        <h4 class="font-italic text-center bg-dark p-2 m-0">Uploaded Images</h4>
+        <hr class="m-0"/>
 
         <div id="all-images" class="text-center">
             @foreach (var img in Model.Images)
             {
-                <img id="@img.ImageId" class="rest-img mx-auto mb-1" src="@Url.Content(img.ImagePath)" alt="@img.Title" style="width:250px; height:250px;" />
+                <img id="@img.ImageId" class="mx-auto mb-1" src="@Url.Content(img.ImagePath)" alt="@img.Title" style="width:250px; height:250px;" />
 
             }
         </div>
