@@ -369,3 +369,22 @@ h3.a {
 #table {
     opacity: 0.9;
 }
+@keyframes opaqTransition {
+    3% {
+        transform: translateX( 0 );
+    }
+
+
+    25% {
+        transform: translateX( 0 );
+    }
+
+
+    28% {
+        transform: translateX( -700px );
+    }
+
+
+    100% {
+        transform: translateX( -700px );
+    }

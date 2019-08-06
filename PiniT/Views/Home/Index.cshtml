@@ -10,7 +10,42 @@
         background-size:cover;
         background-attachment:fixed;
     }
-
+    .card {
+    position: relative;
+    width: 700px;
+    height: 400px;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+    *,*::before,*::after {
+    box-sizing: border-box;
+}
+    .card::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 900;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(140, 22, 115, 0.2);
+    }
+.card_part {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transform: translateX( 700px );
+    background-image: url('Images/bannerafi.jpg');
+    /*background-image: url('Images/labellamafia.jpg');*/
+    animation: opaqTransition 28s cubic-bezier(0, 0, 0, 0.97) infinite;
+}
 </style>
 
     <div class="homeimage">
@@ -48,37 +83,34 @@
         </div>
     </div>
 
-    <div id="animate-area" class="homeboxb">
-      
-       
-        @*<div class="row text-center mx-auto">
-            <div class="col-md-4">
-                <h5>
-                    Pizza
-                </h5>
-                <img class="roundimages" src="~/Content/images/pizza.jpg" />
+
+    <div id="" class="homeboxb">
+        <div class="row text-center mx-auto">
+            <div class="col-md-12">
+                <div class="card">
+
+
+                    <div id="">
+
+                    </div>
+
+                    <!-- Photo 2 -->
+                    @*<div class="card_part card_part-two">
+
+
+                    </div>*@
+                </div>
+                <!-- <marquee behavior="scroll" direction="right">
+                <img src="~/content/images/bannera.jpg" width="600" height="100" />
+            </marquee> -->
+
+
+
             </div>
-            <div class="col-md-4">
-                <h5>Burger</h5>
-                <img class="roundimages" src="~/Content/images/burger.jpg" />
-            </div>
-            <div class="col-md-4">
-                <h5>Grill</h5>
-                <img class="roundimages" src="~/Content/images/gril.jpg" />
-            </div>
-            <div class="col-md-4">
-                <h5>
-                    pasta
-                </h5>
-                <img class="roundimages" src="~/Content/images/pasta.jpg" />
-            </div>
-            <div class="col-md-4">
-                <h5>Seafood</h5>
-                <img class="roundimages" src="~/Content/images/seafood.jpg" />
-            </div>
-            <div class="col-md-4">
-                <h5>Sushi</h5>
-                <img class="roundimages" src="~/Content/images/sushi.jpg" />
-            </div>
-        </div>*@
+        </div>
     </div>
+
+    @*<div id="animate-area" class="homeboxb">
+      
+        
+    </div>*@
