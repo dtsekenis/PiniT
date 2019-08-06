@@ -188,7 +188,7 @@
                     sender.innerHTML = `${from}`;
                     messages.innerHTML += `<p style="width:65%" class="ml-auto px-2 border rounded text-white bg-danger">${message}</p>`;
                     messages.scrollTop = messages.scrollHeight;
-
+                    
                     sendReplyButton.onclick = () => {
                         hub.server.sendToUser(from, messageInput.value);
                         console.log(users);
@@ -198,7 +198,12 @@
                         messageInput.value = '';
                         messageInput.focus();
                     };
-
+                    messageInput.addEventListener('keyup', (e) => {
+                        if (e.keyCode === 13) {
+                            e.preventDefault();
+                            sendReplyButton.click();
+                        }
+                    });
                     buttonClose.onclick = () => {
                         chat.classList.add('d-none');
                     };
