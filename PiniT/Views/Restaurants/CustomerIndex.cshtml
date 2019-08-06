@@ -122,6 +122,12 @@
                         $('#closeme').click();
                     });
                 });
+                $('#message').on('keyup', (e) => {
+                    if (e.keyCode === 13) {
+                        e.preventDefault();
+                        $('#send').click();
+                    }
+                });
                 hub.client.gotMessage = (from, message) => {
                     console.log(message);
                     $('#messages').append(`<p>Manager: ${message}</p>`);
