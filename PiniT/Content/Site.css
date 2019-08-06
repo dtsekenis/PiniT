@@ -360,3 +360,11 @@ h3.a {
     cursor: pointer;
     padding: 12px 28px;
 }
+.card-img-top {
+    width: 100px;
+    height: 275px;
+}
+
+#card-back {
+    background-image: linear-gradient(to right,rgba(84, 22, 7, 0.87),rgb(233, 66, 66));
+}
