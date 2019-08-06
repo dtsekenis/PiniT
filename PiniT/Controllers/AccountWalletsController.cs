@@ -26,6 +26,7 @@ namespace PiniT.Controllers
             }
             return View(wallet);
         }
+
         [Authorize(Roles = "Customer")]
         public ActionResult AddCredits()
         {

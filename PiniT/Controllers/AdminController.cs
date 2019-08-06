@@ -50,6 +50,7 @@ namespace PiniT.Controllers
             var types = rtDb.GetRestaurantTypes();
             return View(types);
         }
+
         public ActionResult CreateRestaurantType()
         {
             return View();
@@ -145,6 +146,7 @@ namespace PiniT.Controllers
             manDb.UpdateManager(manager);
             return RedirectToAction("ManagersIndex");
         }
+
         public ActionResult DeleteManager(string id)
         {
             PiniTManager manager = manDb.GetManager(id);

@@ -58,6 +58,7 @@ namespace PiniT.Controllers
             return View(vm);
         }
 
+        [System.Web.Mvc.Authorize(Roles = "Customer")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CreateReservationsVM vm)
@@ -74,7 +75,6 @@ namespace PiniT.Controllers
                 vm.Restaurant = restDb.GetRestaurant(table.RestaurantId);
                 return View(vm);
             }
-
 
             if (customer.AccountWallet.Credits < vm.Reservation.BookingFee)
             {
