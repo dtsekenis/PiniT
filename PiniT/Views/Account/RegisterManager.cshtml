@@ -17,18 +17,10 @@
     .container {
         max-width: 80%
     }
-    /*#loginimg {
-            background-image: url('Images/about.jpg');
-            height: 650px;
-            background-size: cover;
-            width: 100%;
-            opacity:1;
-            margin-bottom: 30px;
-        }*/
 </style>
 
 <div class="row">
-    <div class="col-md-6 text-center mx-auto">
+    <div class="col-md-8 col text-center mx-auto">
         @using (Html.BeginForm("RegisterManager", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
             @Html.AntiForgeryToken()
@@ -37,21 +29,21 @@
             <div class="container bg-light border border-light shadow-lg">
                 @Html.ValidationSummary("", new { @class = "text-danger" })
                 <div class="form-group text-center">
-                    @Html.LabelFor(m => m.Email, new { @class = "control-label font-italic font-weight-bold mt-1 mr-2" })
-                    <div class="col-md-6 col-sm-6 mx-auto text-center">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control font-weight-light text-center" })
+                    @Html.LabelFor(m => m.Email, new { @class = "control-label font-italic font-weight-bold mt-1 mx-auto" })
+                    <div class="col-md-10 col-sm-10 mx-auto text-center">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control font-weight-light text-center mx-auto" })
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    @Html.LabelFor(m => m.Password, new { @class = "control-label font-italic font-weight-bold mr-0" })
-                    <div class="col-md-6 col-sm-6 col-lg-6 text-center font-italic mx-auto">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control font-weight-light text-center" })
+                    @Html.LabelFor(m => m.Password, new { @class = "control-label font-italic font-weight-bold mx-auto" })
+                    <div class="col-md-10 col-sm-10 col-lg-10 text-center font-italic mx-auto">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control font-weight-light text-center mx-auto" })
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label font-italic font-weight-bold mr-0" })
-                    <div class="col-md-6 col-sm-6 col-lg-6 text-center font-italic mx-auto">
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control font-weight-light text-center" })
+                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label font-italic font-weight-bold mx-auto" })
+                    <div class="col-md-10 col-sm-10 col-lg-10 text-center font-italic mx-auto">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control font-weight-light text-center mx-auto" })
                     </div>
                 </div>
                 <div class="form-group">
