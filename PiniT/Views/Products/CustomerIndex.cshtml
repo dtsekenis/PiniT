@@ -41,28 +41,32 @@
     <div class="row">
         @foreach (var category in Model.Categories.Reverse())
         {
+            if (Model.Products.Any(x => x.CategoryId == category.Name))
+            {
 
-            <div class="col-sm-2"></div>
-            <div class="col-sm-8 rounded shadow-lg mx-auto mt-3 mb-1 text-center container">
-                <h3 class="font-italic bg-dark text-white mb-0">@category.Name</h3>
-                
-                @foreach (var product in Model.Products)
-                {
-            <div id="card-back">
-                @if (product.CategoryId == category.Name)
-                {
-                    <br />
-                    <p class="h5 font-weight-bold font-italic text-white mb-0">
-                        @product.Name - <cite class="font-weight-light">$@product.Price</cite><br />
-                        <cite class="font-weight-lighter font-italic">@product.Description</cite>
-                    </p>
-                    <br />
-                    <hr class="m-0" />
-                }
-            </div>
-                }
-            </div>
-            <div class="col-sm-2"></div>
+
+                <div class="col-sm-2"></div>
+                <div class="col-sm-8 rounded shadow-lg mx-auto mt-3 mb-1 text-center container">
+                    <h3 class="font-italic bg-dark text-white mb-0">@category.Name</h3>
+
+                    @foreach (var product in Model.Products)
+                    {
+                        <div id="card-back">
+                            @if (product.CategoryId == category.Name)
+                            {
+                                <br />
+                                <p class="h5 font-weight-bold font-italic text-white mb-0">
+                                    @product.Name - <cite class="font-weight-light">$@product.Price</cite><br />
+                                    <cite class="font-weight-lighter font-italic">@product.Description</cite>
+                                </p>
+                                <br />
+                                <hr class="m-0" />
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="col-sm-2"></div>
+            }
 
         }
     </div>

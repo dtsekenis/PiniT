@@ -278,13 +278,15 @@
     <Content Include="Content\Images\banera.jpg" />
     <Content Include="Content\Images\banerb.jpg" />
     <Content Include="Content\Images\bannerafi.jpg" />
-    <Content Include="Content\Images\icons.png" />
+    <Content Include="Content\Images\fb.png" />
     <Content Include="Content\Images\iconsm.png" />
     <Content Include="Content\Images\images %281%29.png" />
     <Content Include="Content\Images\images.jfif" />
     <Content Include="Content\Images\images.png" />
+    <Content Include="Content\Images\insta.png" />
     <Content Include="Content\Images\labellamafia.jpg" />
     <Content Include="Content\Images\pexels-photo-1640777.jpeg" />
+    <Content Include="Content\Images\pin.png" />
     <Content Include="Content\Images\usreIndex.jpg" />
     <Content Include="Content\Images\yt.png" />
     <Content Include="favicon.ico" />
