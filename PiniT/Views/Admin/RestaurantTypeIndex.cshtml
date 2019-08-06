@@ -3,24 +3,32 @@
 @{
     ViewBag.Title = "RestaurantTypeIndex";
 }
-<h2 class="a text-center mx-auto mt-3 mb-3">RestaurantType</h2>
+<style>
+    body {
+        background-image: url('../../Content/Images/background.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+<h2 class="a text-center mx-auto mt-3 mb-3 text-light">All Restaurant Types</h2>
 
 <table class="col-md-4 font-weight-normal mx-auto text-center container bg-white">
     <tr>
         <th class="h4 ml-2">
-            @Html.ActionLink(" ", "CreateRestaurantType", null, new {id="create-type", @class = "btn btn-primary fas fa-plus" })
+            @Html.ActionLink(" ", "CreateRestaurantType", null, new { id = "create-type", @class = "btn btn-primary fas fa-plus" })
             @Html.DisplayNameFor(x => x.Name)
-        </th> 
+        </th>
     </tr>
-  
-@foreach (var item in Model) {
-<tr>
-    <td class="font-italic">
-        @Html.DisplayFor(modelItem => item.Name)
-    </td>
-    <td class="form-group mx-auto text-center btn-group">
-    </td>
-</tr>
-}
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="font-italic">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="form-group mx-auto text-center btn-group">
+            </td>
+        </tr>
+    }
 
 </table>

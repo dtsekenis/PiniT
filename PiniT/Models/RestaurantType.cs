@@ -17,6 +17,7 @@ namespace PiniT.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("Type")]
+        [MinLength(1, ErrorMessage = "Value can't be Empty!")]
         public string Name { get; set; }
 
         public virtual ICollection<Restaurant> Restaurants { get; set; }

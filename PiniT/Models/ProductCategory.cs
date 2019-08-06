@@ -17,6 +17,7 @@ namespace PiniT.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [DisplayName("Category")]
+        [MinLength(1,ErrorMessage = "Value can't be Empty!")]
         public string Name { get; set; }
         public virtual ICollection<Product> Products { get; set; }  
     }
