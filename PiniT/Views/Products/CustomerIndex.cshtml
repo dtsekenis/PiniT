@@ -20,9 +20,7 @@
                 <div class="col-4 px-1">
                     @Html.DropDownListFor(x => x.Category, (SelectList)ViewBag.Categories, "Category", new { @class = "form-control", id = "category" })
                 </div>
-                @*<div class="col-2 px-1">
-                        @Html.EnumDropDownListFor(x => x.SortBy, "Sort By", new { @class = "form-control" })
-                    </div>*@
+              
                 <div class="col-2 px-1">
                     <button id="search" type="submit" class="btn btn-primary btn-block">Search</button>
                 </div>

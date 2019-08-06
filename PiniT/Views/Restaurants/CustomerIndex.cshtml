@@ -11,29 +11,13 @@
         background-attachment: fixed;
         
     }
-    .card-img-top {
-        width: 100px;
-        height: 275px;
-    }
-    #card-back{
-        background-image: linear-gradient(to right,rgba(84, 22, 7, 0.87),rgb(233, 66, 66));
-        
-        
-    }
-   
 </style>
 <br>
 
 <h2 class="a  mx-auto font-weight-bolder text-white text-center">Available Restaurants</h2>
 
 <div class="row mt-3 mb-1">
-    <div id="a" class="col-md-6 p-3 rounded mx-auto" @*style="background: repeating-linear-gradient(
-   -55deg,
-  #222,
-  #222 10px,
-  #333 10px,
-  #333 20px
-)"*@>
+    <div id="a" class="col-md-6 p-3 rounded mx-auto">
         @using (Html.BeginForm("CustomerIndex", "Restaurants", FormMethod.Get, new { id = "search-form" }))
         {
             <div id="filters" class="row">

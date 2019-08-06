@@ -21,7 +21,7 @@
     @Html.AntiForgeryToken()
     
 <div class="col-md-6 col-8 shadow-lg container border border-white bg-white text-center mx-auto">
-    @*<div class="form-horizontal">*@
+    
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold" })
