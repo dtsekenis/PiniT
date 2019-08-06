@@ -170,23 +170,20 @@ h3.a {
 @keyframes animatedBackground {
     from {
         background-position: 0 0;
-       
     }
 
     to {
         background-position: 100% 0;
-        
     }
 }
 
 #animate-area {
-    background-image: url("Images/bannerafi.jpg"), url("Images/banerb.jpg");
+    background-image: url("Images/bannerafi.jpg");
     height:330px;
     background-position: 0px 0px;
     background-repeat: repeat-x;
     animation: animatedBackground 15s linear infinite;
 }
-
 
 @-webkit-keyframes fadein {
     from {

@@ -8,25 +8,24 @@
     body {
         background-image: url("https://lonelyplanetimages.imgix.net/copilot/images/interest/food-and-drink.jpg?auto=compress&h=800");
         background-size: cover;
-        opacity: 0.9;
-    }
-    
+        background-attachment: fixed;
+        opacity: 1.3;
+    }  
 </style>
 
-<h2 class="mx-auto mb-2 mt-2 text-center a">Edit Product</h2>
+<h2 class="mx-auto mb-2 mt-4 text-center font-weight-bold a">Edit Product</h2>
 <hr />
-
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    <div class="col-md-8 col shadow-lg container border border-white bg-white text-center mx-auto">
+    <div id="card-back" class="col-md-6 col-8 shadow-lg rounded border border-dark text-white text-center mx-auto">
             
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.ProductId)
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold mx-auto" })
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label text-center font-italic font-weight-bold mx-auto" })
                 <div class="col-md-10 mx-auto">
                     @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control mx-auto" } })
                     @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
@@ -34,7 +33,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold mx-auto" })
+                @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label text-center font-italic font-weight-bold mx-auto" })
                 <div class="col-md-10 mx-auto">
                     @Html.DropDownListFor(x => x.CategoryId, (SelectList)ViewBag.Categories, "Category", htmlAttributes: new { @class = "form-control mx-auto" })
                     @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
@@ -50,22 +49,20 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold mx-auto" })
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label font-italic text-center font-weight-bold" })
                 <div class="col-md-10 mx-auto">
-                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control mx-auto" } })
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control text-center mx-auto font-weight-light" } })
                     @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-offset-2 col-md-8 mx-auto">
-                    <input type="submit" value="Create" class="btn btn-info mb-2" />
+                <div class="col-md-offset-2 col-md-6 mx-auto text-center btn-group">
+                    <input type="submit" value="Create" class="btn btn-success mb-2" />
                     @Html.ActionLink("Back", "ManagerIndex", null, new { @class = "btn btn-dark ml-auto mb-2" })
                 </div>
             </div>
         </div>
         }
-
-        
 
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")

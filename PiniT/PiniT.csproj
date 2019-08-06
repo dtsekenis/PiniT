@@ -286,6 +286,7 @@
     <Content Include="Content\Images\labellamafia.jpg" />
     <Content Include="Content\Images\pexels-photo-1640777.jpeg" />
     <Content Include="Content\Images\usreIndex.jpg" />
+    <Content Include="Content\Images\yt.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
