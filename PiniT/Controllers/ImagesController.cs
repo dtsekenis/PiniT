@@ -10,6 +10,7 @@ using PiniT.Models;
 
 namespace PiniT.Controllers
 {
+    [Authorize(Roles ="Manager")]
     public class ImagesController : Controller
     {
         private ImageManager imgDb = new ImageManager();

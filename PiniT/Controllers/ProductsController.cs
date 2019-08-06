@@ -11,7 +11,6 @@ using System.Web.Mvc;
 
 namespace PiniT.Controllers
 {
-    //Need to check views and add js/ajax if needed
     [Authorize]
     public class ProductsController : Controller
     {
@@ -19,7 +18,6 @@ namespace PiniT.Controllers
         private ProductCategoryManager pcDb = new ProductCategoryManager();
         private RestaurantManager restDb = new RestaurantManager();
 
-        //Tested
         [Authorize(Roles = "Manager")]
         public ActionResult ManagerIndex(string search, string category)
         {
@@ -41,7 +39,6 @@ namespace PiniT.Controllers
             return View(vm);
         }
 
-        //Tested
         [Authorize(Roles = "Customer")] 
         public ActionResult CustomerIndex(string id,string search,string category)
         {
@@ -58,7 +55,6 @@ namespace PiniT.Controllers
             return View(vm);
         }
 
-        //Tested
         [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
@@ -67,7 +63,6 @@ namespace PiniT.Controllers
             return View();
         }
 
-        //Tested
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -85,7 +80,6 @@ namespace PiniT.Controllers
             return RedirectToAction("ManagerIndex");
         }
 
-        //Tested
         [Authorize(Roles = "Manager")]
         public ActionResult Edit(int id)
         {
@@ -103,7 +97,6 @@ namespace PiniT.Controllers
             return View(product);
         }
 
-        //Tested
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -119,7 +112,6 @@ namespace PiniT.Controllers
             return RedirectToAction("ManagerIndex");
         }
 
-        //Tested
         [Authorize(Roles = "Manager")]
         public ActionResult Delete(int id)
         {
@@ -136,7 +128,6 @@ namespace PiniT.Controllers
             return View(product);
         }
 
-        //Tested
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -11,7 +11,6 @@ using PiniT.ViewModels;
 
 namespace PiniT.Controllers
 {
-    //Need to check views and add js/ajax if needed
     [Authorize]
     public class RestaurantsController : Controller
     {
@@ -19,8 +18,6 @@ namespace PiniT.Controllers
         private RestaurantTypeManager typeDb = new RestaurantTypeManager();
 
 
-        //Not Finished// Not sure
-        //Maybe restaurant overview with all tables/products/reservations and data
         [Authorize(Roles = "Manager")]
         public ActionResult ManagerIndex()
         {
@@ -32,7 +29,6 @@ namespace PiniT.Controllers
             return View(restaurant);
         }
 
-        //Added Search
         [Authorize(Roles ="Customer")]
         public ActionResult CustomerIndex(string search, string type)
         {
@@ -46,8 +42,6 @@ namespace PiniT.Controllers
             return View(vm);
         }
 
-        //Tested
-        //Need to Add Type select list
         [Authorize(Roles = "Manager")]
         public ActionResult Create()
         {
@@ -64,8 +58,6 @@ namespace PiniT.Controllers
         }
 
 
-        //Tested
-        //Need to Add Types
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -82,7 +74,6 @@ namespace PiniT.Controllers
         }
 
 
-        //Tested
         [Authorize(Roles = "Manager")]
         public ActionResult Edit()
         {
@@ -107,7 +98,6 @@ namespace PiniT.Controllers
         }
 
 
-        //Tested
         [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
