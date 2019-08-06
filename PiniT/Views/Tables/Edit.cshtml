@@ -18,7 +18,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal col-md-6 bg-light mx-auto text-center">
+    <div class="form-horizontal col-md-8 col bg-light mx-auto text-center">
 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -26,22 +26,22 @@
         @Html.HiddenFor(model => model.RestaurantId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold" })
-            <div class="col-md-6 mx-auto">
-                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control text-center" } })
+            @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold mx-auto" })
+            <div class="col-md-10 mx-auto">
+                @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control text-center mx-auto" } })
                 @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold" })
-            <div class="col-md-6 mx-auto">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control text-center" } })
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2 font-italic font-weight-bold mx-auto" })
+            <div class="col-md-10 mx-auto">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control text-center mx-auto" } })
                 @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-offset-2 col-md-4 mx-auto  btn-group">
+            <div class="col-md-offset-2 col-4 mx-auto  btn-group">
                 <input type="submit" value="Save" class="btn btn-success mb-2" />
                 @Html.ActionLink("Back", "ManagerIndex", null, new { @class = "btn btn-dark ml-auto mb-2" })
             </div>
