@@ -3,14 +3,20 @@
 @{
     ViewBag.Title = "ProductCategoryIndex";
 }
-    
-<h2 class="a text-center mx-auto mt-3 mb-3">ProductCategoryIndex</h2>
+<style>
+    body {
+        background-image: url('../../Content/Images/background.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+<h2 class="a text-center mx-auto mt-3 mb-3 text-light">All Product Categories</h2>
 
 <table class="col-md-6 font-weight-bold mx-auto text-center container bg-white">
     <tr>
         <th class="h4">
             @Html.DisplayNameFor(x => x.Name)
-            @Html.ActionLink(" ", "CreateProductCategory", null, new { id="create-category", @class = "btn btn-primary fas fa-plus" })
+            @Html.ActionLink(" ", "CreateProductCategory", null, new { id = "create-category", @class = "btn btn-primary fas fa-plus" })
         </th>
     </tr>
 

@@ -36,8 +36,9 @@ namespace PiniT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateProductCategory(ProductCategory category)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || category.Name == null)
             {
+                TempData["Message"] = "Name Can't be Empty!";
                 return View(category);
             }
 
@@ -60,8 +61,9 @@ namespace PiniT.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateRestaurantType(RestaurantType type)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || type.Name == null)
             {
+                TempData["Message"] = "Name Can't be Empty!";
                 return View(type);
             }
             rtDb.CreateRestaurantType(type);

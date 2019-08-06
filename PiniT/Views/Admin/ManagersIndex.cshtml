@@ -3,8 +3,14 @@
 @{
     ViewBag.Title = "ManagersIndex";
 }
-
-<h2 class="a text-center mx-auto mt-3 mb-3">ManagersIndex</h2>
+<style>
+    body {
+        background-image: url('../../Content/Images/background.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+    }
+</style>
+<h2 class="a text-center mx-auto mt-3 mb-3 text-light">All Managers</h2>
 
 <table class="col-md-10 mx-auto text-center container bg-white">
     <tr>
@@ -23,25 +29,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RestaurantAuthorized)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
-        </td>
-        <td class="form-group mx-auto text-center btn-group">
-            @Html.ActionLink("Edit", "EditManager", new { id = item.Id }, new { @class = "btn btn-warning" })
-            @Html.ActionLink("Delete", "DeleteManager", new { id = item.Id }, new { @class = "btn btn-danger" })
-            @Html.ActionLink("Authorize", "AssignRoleManager", new { id = item.Id }, new { @class = "btn btn-dark" })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RestaurantAuthorized)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Restaurant.CompanyName)
+            </td>
+            <td class="form-group mx-auto text-center btn-group">
+                @Html.ActionLink("Edit", "EditManager", new { id = item.Id }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "DeleteManager", new { id = item.Id }, new { @class = "btn btn-danger" })
+                @Html.ActionLink("Authorize", "AssignRoleManager", new { id = item.Id }, new { @class = "btn btn-dark" })
+            </td>
+        </tr>
+    }
 </table>
